@@ -312,7 +312,7 @@ return [
             'can'  => 'manage-blog',
         ],
         [
-            'text'        => 'pages',
+            'text'        => 'Pendientes',
             'url'         => 'admin/pages',
             'icon'        => 'far fa-fw fa-file',
             'label'       => 4,
@@ -324,62 +324,46 @@ return [
             'route'  => 'admin.users.index',
             'icon' => 'fas fa-fw fa-user',
         ],
+
         [
-            'text' => 'change_password',
+            'text' => 'Vehículos',
+            'url'  => 'admin/settings',
+            'icon' => 'fas fa-fw fa-car',
+        ],
+        [
+            'text' => 'Suministros',
+            'url'  => 'admin/settings',
+            'icon' => 'fas fa-fw fa-arrow-circle-up',
+            'icon_color' => 'green',
+
+        ],
+        [
+            'text' => 'Movimientos de Salida',
+            'url'  => 'admin/settings',
+            'icon_color' => 'orange',
+            'icon' => 'fas fa-fw fa-arrow-circle-down',
+        ],
+        [
+            'text' => 'Roles',
             'url'  => 'admin/settings',
             'icon' => 'fas fa-fw fa-lock',
+            'icon_color' => 'yellow',
+
         ],
+
+        ['header' => 'Etiquetas'],
         [
-            'text'    => 'multilevel',
-            'icon'    => 'fas fa-fw fa-share',
-            'submenu' => [
-                [
-                    'text' => 'level_one',
-                    'url'  => '#',
-                ],
-                [
-                    'text'    => 'level_one',
-                    'url'     => '#',
-                    'submenu' => [
-                        [
-                            'text' => 'level_two',
-                            'url'  => '#',
-                        ],
-                        [
-                            'text'    => 'level_two',
-                            'url'     => '#',
-                            'submenu' => [
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                            ],
-                        ],
-                    ],
-                ],
-                [
-                    'text' => 'level_one',
-                    'url'  => '#',
-                ],
-            ],
-        ],
-        ['header' => 'labels'],
-        [
-            'text'       => 'important',
+            'text'       => 'Importantes',
             'icon_color' => 'red',
             'url'        => '#',
         ],
         [
-            'text'       => 'warning',
+            'text'       => 'Alerta',
             'icon_color' => 'yellow',
             'url'        => '#',
         ],
         [
-            'text'       => 'information',
+            'text'       => 'Informativo',
             'icon_color' => 'cyan',
             'url'        => '#',
         ],
