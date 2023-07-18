@@ -64,7 +64,10 @@ class UserController extends Controller
             $user->roles()->sync(1);
         } */
 
-        return redirect()->route('admin.users.index')->with('mensaje', 'Usuario creado correctamente');
+        return redirect()->route('admin.users.index')
+        ->with('mensaje', 'Usuario creado correctamente')
+        ->with('color', 'success');
+
     }
 
     /**

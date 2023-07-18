@@ -10,14 +10,14 @@
 @section('content')
 
     <div class="card">
-        @if (session('mensaje'))
+        {{-- @if (session('mensaje'))
             <div class='alert alert-{{ session('color') }}'>
                 <strong>{{ session('mensaje') }}</strong>
             </div>
-        @endif
+        @endif --}}
 
         <div class="card-header">
-            <a href="{{ route('admin.users.create') }}" class="btn btn-primary"> Crear Usuario</a>
+            <a href="{{ route('admin.users.create') }}" class="btn btn-primary"> Ingresar Vehículo</a>
         </div>
 
         <div class="card-body">
@@ -25,30 +25,34 @@
                 <thead>
                     <tr>
                         <th>Id</th>
-                        <th>Nombre</th>
-                        <th>Email</th>
-                        <th>Fecha de Creación</th>
-                        <th> </th>
+                        <th>tipo</th>
+                        <th>marca</th>
+                        <th>color</th>
+                        <th>modelo</th>
+                        <th>kilometraje</th>
+                        <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($users as $user)
+                    @foreach ($cars as $car)
                         <tr>
-                            <td>{{ $user->id }}</td>
-                            <td>{{ $user->name }}</td>
-                            <td>{{ $user->email }}</td>
-                            <td>{{ date('d/m/Y H:m:s', strtotime($user->created_at)) }}</td>
+                            <td>{{ $car->id }}</td>
+                            <td>{{ $car->type }}</td>
+                            <td>{{ $car->brand }}</td>
+                            <td>{{ $car->color }}</td>
+                            <td>{{ $car->model }}</td>
+                            <td>{{ $car->mileage }}</td>
                             <td>
                                 {{-- Mostrar --}}
-                                <a href="{{ route('admin.users.show', $user) }}" class="btn btn-primary">Ver</a>
+                                <a href="{{ route('admin.cars.show', $car) }}" class="btn btn-primary">Movimientos</a>
 
                                 {{-- Editar --}}
 
-                                <a href="{{ route('admin.users.edit', $user) }}" class="btn btn-success">Editar</a>
+                                <a href="{{ route('admin.cars.edit', $car) }}" class="btn btn-success">Editar</a>
 
 
                                 {{-- Eliminar --}}
-                                <form style="display: inline" action="{{ route('admin.users.destroy', $user) }}"
+                                <form style="display: inline" action="{{ route('admin.cars.destroy', $car) }}"
                                     method="post" class="formulario-eliminar">
                                     @csrf
                                     @method('DELETE')
