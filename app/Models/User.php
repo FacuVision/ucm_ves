@@ -10,6 +10,7 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Profile;
+use App\Models\History;
 
 class User extends Authenticatable
 {
@@ -61,7 +62,17 @@ class User extends Authenticatable
     ];
 
     public function profile() {
-        return $this->hasOne(Profile::class)
+        return $this->hasOne(Profile::class);
         //un usuario tiene un solo perfil
+    }
+
+    /**
+     * Get all of the comments for the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function histories()
+    {
+        return $this->hasMany(History::class);
     }
 }

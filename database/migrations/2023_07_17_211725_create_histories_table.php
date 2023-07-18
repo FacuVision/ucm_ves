@@ -17,6 +17,8 @@ return new class extends Migration
             $table->enum("status", ["conforme", "con modifcaciones"]);
 
             $table->unsignedBigInteger('supply_id')->nullable();
+            $table->unsignedBigInteger('user_id')->nullable();
+
 
             $table->foreign('supply_id')
             ->references('id')
@@ -24,6 +26,11 @@ return new class extends Migration
             ->onDelete('set null')
             ->onUpdate('cascade');
 
+            $table->foreign('user_id')
+            ->references('id')
+            ->on('users')
+            ->onDelete('set null')
+            ->onUpdate('cascade');
 
             $table->timestamps();
         });

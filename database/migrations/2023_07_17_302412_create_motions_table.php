@@ -13,8 +13,25 @@ return new class extends Migration
     {
         Schema::create('motions', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id')->unique();
-            $table->unsignedBigInteger('car_id')->unique();
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->unsignedBigInteger('car_id')->nullable();
+            $table->string('title',100);
+            $table->text('detail');
+
+            $table->enum('status',["borrador","registrado"]);
+
+            //RELACIONES
+            $table->foreign('user_id')
+            ->references('id')
+            ->on('users')
+            ->onDelete('set null')
+            ->onUpdate('cascade');
+
+            $table->foreign('car_id')
+            ->references('id')
+            ->on('cars')
+            ->onDelete('set null')
+            ->onUpdate('cascade');
 
             $table->timestamps();
         });
