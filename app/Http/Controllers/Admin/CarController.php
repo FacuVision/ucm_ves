@@ -13,7 +13,7 @@ class CarController extends Controller
      */
     public function index()
     {
-        $cars = Car::all();
+        $cars = Car::where('status','alta')->get();
         return view("admin.cars.index", compact('cars'));
     }
 
@@ -118,7 +118,7 @@ class CarController extends Controller
      */
     public function destroy(Car $car)
     {
-        $car->delete();
+        $car->update(["status" => "baja"]);
         return redirect()
         ->route('admin.cars.index')
         ->with('color', 'danger')

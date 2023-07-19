@@ -3,7 +3,7 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <h1>Suministros</h1>
+    <h1>Productos</h1>
     @include('admin.partials.css_datatables')
 @stop
 
@@ -17,7 +17,7 @@
         @endif
 
         <div class="card-header">
-            <a href="{{ route('admin.cars.create') }}" class="btn btn-primary"> Ingresar nuevo suministro</a>
+            <a href="{{ route('admin.supplies.create') }}" class="btn btn-primary"> Ingresar nuevo producto</a>
         </div>
 
         <div class="card-body">
@@ -33,28 +33,27 @@
                         <th>Unidad</th>
                         <th>Precio</th>
                         <th>Cantidad</th>
+                        <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($cars as $car)
+                    @foreach ($supplies as $supply)
                         <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td>{{$supply->id}}</td>
+                            <td>{{$supply->code}}</td>
+                            <td>{{$supply->name}}</td>
+                            <td>{{$supply->detail}}</td>
+                            <td>{{$supply->line}}</td>
+                            <td>{{$supply->brand}}</td>
+                            <td>{{$supply->unit}}</td>
+                            <td>{{$supply->price}}</td>
+                            <td>{{$supply->cant}}</td>
                             <td>
-                                {{-- Mostrar --}}
-                                <a href="{{ route('admin.cars.show', $car) }}" class="btn btn-primary">Movimientos</a>
 
                                 {{-- Editar --}}
-
-                                <a href="{{ route('admin.cars.edit', $car) }}" class="btn btn-success">Editar</a>
-
-
+                                <a href="{{ route('admin.supplies.edit', $supply) }}" class="btn btn-success">Editar</a>
                                 {{-- Eliminar --}}
-                                <form style="display: inline" action="{{ route('admin.cars.destroy', $car) }}"
+                                <form style="display: inline" action="{{ route('admin.supplies.destroy', $supply) }}"
                                     method="post" class="formulario-eliminar">
                                     @csrf
                                     @method('DELETE')

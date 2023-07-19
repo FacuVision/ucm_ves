@@ -13,8 +13,10 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
+        $users = User::where('status','alta')->get();
+
         return view("admin.users.index", compact("users"));
+
     }
 
     /**
@@ -227,14 +229,12 @@ class UserController extends Controller
         else
         {
 
-            $user->delete();
+            $user->update(["status"=>"baja"]);
+
             return redirect()->route('admin.users.index')
                 ->with('mensaje', 'Usuario eliminado correctamente')
                 ->with('color','success');
         }
-
-
-        //$user->delete()
 
 
     }

@@ -331,8 +331,8 @@ return [
             'route'  => 'admin.cars.index',
         ],
         [
-            'text' => 'Suministros',
-            'url'  => 'admin/settings',
+            'text' => 'Productos',
+            'route'  => 'admin.supplies.index',
             'icon' => 'fas fa-fw fa-arrow-circle-up',
             'icon_color' => 'green',
 

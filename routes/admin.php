@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\CarController;
+use App\Http\Controllers\Admin\SupplyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,9 +20,8 @@ use App\Http\Controllers\Admin\CarController;
 Route::get('/', [HomeController::class,'index']);
 Route::resource('users', UserController::class)->names('admin.users');
 Route::resource('cars', CarController::class)->names('admin.cars');
+Route::resource('supplies', SupplyController::class)->names('admin.supplies');
 
 
 //Route::resource('/users', UserController2::class)->names('admin.users');;
-
-
 //Route::resource('users',UserController::class);

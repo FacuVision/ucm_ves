@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\Supply;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,9 @@ class SupplyController extends Controller
      */
     public function index()
     {
-        return view('admin.supplies.index');
+        $supplies = Supply::where('status','alta')->get();
+
+        return view("admin.supplies.index", compact('supplies'));
     }
 
     /**
@@ -20,7 +23,8 @@ class SupplyController extends Controller
      */
     public function create()
     {
-        //
+        return view("admin.supplies.create");
+
     }
 
     /**
@@ -28,7 +32,24 @@ class SupplyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $codigo_unico = [
+            "code" => "unique:supplies|required",
+            "name" => "required|string",
+            "line" => "required|string",
+            "detail" => "required|string",
+            "brand" => "required|string",
+            "unit" => "required|string",
+            "price" => "numeric|required",
+            "cant" => "numeric|required"
+        ];
+
+        $request->validate($codigo_unico);
+
+        $supply = Supply::create($request->all());
+
+        return redirect()->route('admin.supplies.index')
+        ->with('mensaje', 'Producto añadido correctamente')
+        ->with('color', 'success');
     }
 
     /**
@@ -44,7 +65,27 @@ class SupplyController extends Controller
      */
     public function edit(Supply $supply)
     {
-        //
+
+        $arr= [
+            'globales',
+            'metros',
+            'centimetros',
+            'milimetros',
+            'toneladas',
+            'kilogramos',
+            'gramos',
+            'litros',
+            'mililitros',
+            'metros cuadrados',
+            'metros cúbicos',
+        ];
+
+        $arr2 = ['parte', 'suministro', 'respuesto'];
+
+        $cod_unidad = array_search($supply->unit, $arr);
+        $cod_linea = array_search($supply->line, $arr2);
+
+        return view('admin.supplies.edit',compact('supply','cod_unidad','cod_linea'));
     }
 
     /**
@@ -52,7 +93,45 @@ class SupplyController extends Controller
      */
     public function update(Request $request, Supply $supply)
     {
-        //
+        $codigo_igual = [
+            "code" => "required",
+            "name" => "required|string",
+            "line" => "required|string",
+            "detail" => "required|string",
+            "brand" => "required|string",
+            "unit" => "required|string",
+            "price" => "numeric|required",
+            "cant" => "numeric|required"
+        ];
+
+        $codigo_nuevo = [
+            "code" => "unique:supplies|required",
+            "name" => "required|string",
+            "line" => "required|string",
+            "detail" => "required|string",
+            "brand" => "required|string",
+            "unit" => "required|string",
+            "price" => "numeric|required",
+            "cant" => "numeric|required"
+        ];
+
+        if($request->code != $supply->code){
+            $request->validate($codigo_nuevo);
+
+            $supply->update($request->all());
+
+            return redirect()->route('admin.supplies.index')
+            ->with('mensaje', 'Producto editado correctamente')
+            ->with('color', 'success');
+        }
+
+
+        $request->validate($codigo_igual);
+        $supply->update($request->all());
+
+        return redirect()->route('admin.supplies.index')
+        ->with('mensaje', 'Producto editado correctamente')
+        ->with('color', 'success');
     }
 
     /**
@@ -60,6 +139,10 @@ class SupplyController extends Controller
      */
     public function destroy(Supply $supply)
     {
-        //
+        $supply->update(["status" => "baja"]);
+
+        return redirect()->route('admin.supplies.index')
+        ->with('mensaje', 'Producto eliminado correctamente')
+        ->with('color', 'danger');
     }
 }
