@@ -3,7 +3,7 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <h1>Usuarios</h1>
+    <h1>Movimientos</h1>
     @include('admin.partials.css_datatables')
 @stop
 
@@ -77,30 +77,6 @@
 @stop
 
 @section('js')
-
-    <script type="text/javascript">
-        $('.formulario-eliminar').submit(function(e) {
-            e.preventDefault();
-
-            Swal.fire({
-                title: '¿Estas seguro?',
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Sí, Borrar'
-            }).then((result) => {
-                if (result.isConfirmed) {
-/*                     Swal.fire(
-                        'Deleted!',
-                        'Your file has been deleted.',
-                        'success'
-                    ) */
-                    this.submit();
-                }
-            })
-        });
-    </script>
     @include('admin.partials.js_datatables copy')
 
 @stop

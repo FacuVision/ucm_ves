@@ -9,8 +9,9 @@ use App\Models\Motion;
 class Car extends Model
 {
     use HasFactory;
+    protected $guarded = [];
 
-    public function motion() {
-        return $this->belongsTo(Motion::class);
+    public function motions() {
+        return $this->hasMany(Motion::class);
     }
 }

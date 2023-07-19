@@ -10,9 +10,10 @@ use App\Models\Motion;
 class Motion extends Model
 {
     use HasFactory;
+    protected $guarded = [];
 
-    public function cars() {
-        return $this->hasMany(Car::class);
+    public function car() {
+        return $this->belongsTo(Car::class);
     }
 
     /**
@@ -23,6 +24,11 @@ class Motion extends Model
     public function supplies(): BelongsToMany
     {
         return $this->belongsToMany(Supply::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 
 

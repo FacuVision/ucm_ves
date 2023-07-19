@@ -3,7 +3,7 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <h1>Usuarios</h1>
+    <h1>Suministros</h1>
     @include('admin.partials.css_datatables')
 @stop
 
@@ -17,7 +17,7 @@
         @endif
 
         <div class="card-header">
-            <a href="{{ route('admin.cars.create') }}" class="btn btn-primary"> Ingresar Vehículo</a>
+            <a href="{{ route('admin.cars.create') }}" class="btn btn-primary"> Ingresar nuevo suministro</a>
         </div>
 
         <div class="card-body">
@@ -25,23 +25,25 @@
                 <thead>
                     <tr>
                         <th>Id</th>
-                        <th>tipo</th>
-                        <th>marca</th>
-                        <th>color</th>
-                        <th>modelo</th>
-                        <th>kilometraje</th>
-                        <th>Acciones</th>
+                        <th>Código</th>
+                        <th>Nombre</th>
+                        <th>Descripcion</th>
+                        <th>Línea</th>
+                        <th>Marca</th>
+                        <th>Unidad</th>
+                        <th>Precio</th>
+                        <th>Cantidad</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($cars as $car)
                         <tr>
-                            <td>{{ $car->id }}</td>
-                            <td>{{ $car->type }}</td>
-                            <td>{{ $car->brand }}</td>
-                            <td>{{ $car->color }}</td>
-                            <td>{{ $car->model }}</td>
-                            <td>{{ $car->mileage }}</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
                             <td>
                                 {{-- Mostrar --}}
                                 <a href="{{ route('admin.cars.show', $car) }}" class="btn btn-primary">Movimientos</a>

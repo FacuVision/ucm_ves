@@ -9,6 +9,8 @@ use App\Moddels\History;
 class Supply extends Model
 {
     use HasFactory;
+    protected $guarded = [];
+
 
     /**
      * Get all of the comments for the History

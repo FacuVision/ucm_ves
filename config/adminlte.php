@@ -327,8 +327,8 @@ return [
 
         [
             'text' => 'Vehículos',
-            'url'  => 'admin/settings',
             'icon' => 'fas fa-fw fa-car',
+            'route'  => 'admin.cars.index',
         ],
         [
             'text' => 'Suministros',

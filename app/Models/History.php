@@ -10,6 +10,7 @@ use App\Models\User;
 class History extends Model
 {
     use HasFactory;
+    protected $guarded = [];
 
     /**
      * Get all of the comments for the History

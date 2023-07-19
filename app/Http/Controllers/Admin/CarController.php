@@ -22,7 +22,7 @@ class CarController extends Controller
      */
     public function create()
     {
-        //
+        return view("admin.cars.create");
     }
 
     /**
@@ -30,15 +30,33 @@ class CarController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $con_placa = [
+            "plate" => "required|string|max:8|unique:cars",
+            "type" => "required|string",
+            "color" => "required|string",
+            "brand" => "required|string",
+            "mileage" => "numeric|required",
+            "model" => "required|string"
+        ];
+
+
+        $request->validate($con_placa);
+
+        Car::create($request->all());
+
+        return redirect()->route('admin.cars.index')
+        ->with('mensaje', 'Vehículo creado correctamente')
+        ->with('color', 'success');
+
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Car $car)
+    public function show(Car $car) //VER MOVIMIENTOS DETALLADOS DEL VEHÍCULO
     {
-        //
+        $car_movimientos = $car->motions;
+        return view("admin.cars.show", compact("car_movimientos","car"));
     }
 
     /**
@@ -46,7 +64,7 @@ class CarController extends Controller
      */
     public function edit(Car $car)
     {
-        //
+        return view("admin.cars.edit", compact('car'));
     }
 
     /**
@@ -54,7 +72,45 @@ class CarController extends Controller
      */
     public function update(Request $request, Car $car)
     {
-        //
+
+        $con_placa = [
+            "plate" => "required|string|max:8|unique:cars",
+            "type" => "required|string",
+            "color" => "required|string",
+            "brand" => "required|string",
+            "mileage" => "numeric|required",
+            "model" => "required|string"
+        ];
+
+        $sin_placa = [
+            "plate" => "required|string|max:8",
+            "type" => "required|string",
+            "color" => "required|string",
+            "brand" => "required|string",
+            "mileage" => "numeric|required",
+            "model" => "required|string"
+        ];
+
+
+
+        //Si son distintos, quiere decir que se hizo un cambio
+        if($request->plate != $car->plate){
+
+            $request->validate($con_placa);
+
+        } else {
+
+            $request->validate($sin_placa);
+
+        }
+
+        $car->update($request->all());
+
+        return redirect()
+        ->route('admin.cars.edit', $car)
+        ->with('color', 'success')
+        ->with('mensaje', 'El vehículo ha sido modificado correctamente');
+
     }
 
     /**
@@ -62,6 +118,10 @@ class CarController extends Controller
      */
     public function destroy(Car $car)
     {
-        //
+        $car->delete();
+        return redirect()
+        ->route('admin.cars.index')
+        ->with('color', 'danger')
+        ->with('mensaje', 'El vehículo se ha eliminado correctamente');
     }
 }
