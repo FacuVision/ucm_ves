@@ -3,7 +3,7 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <h1>Movimientos</h1>
+    <h1>Movimientos de Salida</h1>
     @include('admin.partials.css_datatables')
 @stop
 
@@ -17,7 +17,7 @@
         @endif
 
         <div class="card-header">
-            <a href="{{ route('admin.cars.create') }}" class="btn btn-primary"> Ingresar Vehículo</a>
+            <a href="{{ route('admin.motions.create') }}" class="btn btn-primary"> Ingresar Movimiento</a>
         </div>
 
         <div class="card-body">
@@ -25,38 +25,36 @@
                 <thead>
                     <tr>
                         <th>Id</th>
-                        <th>tipo</th>
-                        <th>marca</th>
-                        <th>color</th>
-                        <th>modelo</th>
-                        <th>kilometraje</th>
+                        <th>Título</th>
+                        <th>Detalle</th>
+                        <th>Vehículo placa</th>
+                        <th>Fecha de movimiento</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($cars as $car)
+                    @foreach ($motions as $motion)
                         <tr>
-                            <td>{{ $car->id }}</td>
-                            <td>{{ $car->type }}</td>
-                            <td>{{ $car->brand }}</td>
-                            <td>{{ $car->color }}</td>
-                            <td>{{ $car->model }}</td>
-                            <td>{{ $car->mileage }}</td>
+                            <td>{{ $motion->id }}</td>
+                            <td>{{ $motion->title }}</td>
+                            <td>{{ $motion->detail }}</td>
+                            <td>{{ $motion->car->plate}}</td>
+                            <td>{{ $motion->created_at}}</td>
                             <td>
                                 {{-- Mostrar --}}
-                                <a href="{{ route('admin.cars.show', $car) }}" class="btn btn-primary">Movimientos</a>
+                                <a href="{{ route('admin.motions.show', $motion) }}" class="btn btn-primary">Ver detalle</a>
 
                                 {{-- Editar --}}
 
-                                <a href="{{ route('admin.cars.edit', $car) }}" class="btn btn-success">Editar</a>
+                                <a href="{{ route('admin.motions.edit', $motion) }}" class="btn btn-success">Editar</a>
 
 
                                 {{-- Eliminar --}}
-                                <form style="display: inline" action="{{ route('admin.cars.destroy', $car) }}"
+                                <form style="display: inline" action="{{ route('admin.motions.destroy', $motion) }}"
                                     method="post" class="formulario-eliminar">
                                     @csrf
                                     @method('DELETE')
-                                    <input type="submit" id="delete" value="Eliminar" class="btn btn-danger">
+                                    <input type="submit" id="delete" value="Datos del vehículo" class="btn btn-warning">
                                 </form>
 
                             </td>

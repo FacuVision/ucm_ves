@@ -339,7 +339,7 @@ return [
         ],
         [
             'text' => 'Movimientos de Salida',
-            'url'  => 'admin/settings',
+            'route'  => 'admin.motions.index',
             'icon_color' => 'orange',
             'icon' => 'fas fa-fw fa-arrow-circle-down',
         ],

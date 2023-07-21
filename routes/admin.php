@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\CarController;
 use App\Http\Controllers\Admin\SupplyController;
+use App\Http\Controllers\Admin\MotionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +22,7 @@ Route::get('/', [HomeController::class,'index']);
 Route::resource('users', UserController::class)->names('admin.users');
 Route::resource('cars', CarController::class)->names('admin.cars');
 Route::resource('supplies', SupplyController::class)->names('admin.supplies');
+Route::resource('motions', MotionController::class)->names('admin.motions');
 
 
 //Route::resource('/users', UserController2::class)->names('admin.users');;

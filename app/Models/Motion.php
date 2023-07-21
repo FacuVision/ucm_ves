@@ -5,7 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Motion;
-
+use App\Models\User;
+use App\Models\Car;
 
 class Motion extends Model
 {
@@ -30,6 +31,5 @@ class Motion extends Model
     {
         return $this->belongsTo(User::class);
     }
-
 
 }

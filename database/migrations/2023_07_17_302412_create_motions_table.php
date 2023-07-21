@@ -18,8 +18,6 @@ return new class extends Migration
             $table->string('title',100);
             $table->text('detail');
 
-            $table->enum('status',["borrador","registrado"]);
-
             //RELACIONES
             $table->foreign('user_id')
             ->references('id')
