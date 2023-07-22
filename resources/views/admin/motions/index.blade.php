@@ -26,7 +26,6 @@
                     <tr>
                         <th>Id</th>
                         <th>Título</th>
-                        <th>Detalle</th>
                         <th>Vehículo placa</th>
                         <th>Fecha de movimiento</th>
                         <th>Acciones</th>
@@ -37,7 +36,6 @@
                         <tr>
                             <td>{{ $motion->id }}</td>
                             <td>{{ $motion->title }}</td>
-                            <td>{{ $motion->detail }}</td>
                             <td>{{ $motion->car->plate}}</td>
                             <td>{{ $motion->created_at}}</td>
                             <td>

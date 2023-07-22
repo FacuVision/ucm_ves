@@ -52,7 +52,6 @@
                         <th>Responsable</th>
                         <th>Titulo</th>
                         <th>Descripcion</th>
-                        <th>Estado</th>
                         <th>Fecha de creacion</th>
                     </tr>
                 </thead>
@@ -63,7 +62,6 @@
                             <td>{{ $movimiento->user->profile->name }}</td>
                             <td>{{ $movimiento->title }}</td>
                             <td>{{ $movimiento->detail }}</td>
-                            <td>{{ $movimiento->status }}</td>
                             <td>{{ $movimiento->created_at }}</td>
                         </tr>
                     @endforeach

@@ -3,7 +3,7 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <h1>Usuarios</h1>
+    <h1>Vehículos</h1>
     @include('admin.partials.css_datatables')
 @stop
 

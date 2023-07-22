@@ -21,4 +21,16 @@ class Supply extends Model
     {
         return $this->hasMany(History::class);
     }
+
+    /**
+     * The roles that belong to the Supply
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function motions()
+    {
+        return $this->belongsToMany(Motion::class, 'motion_supply', 'supply_id', 'motion_id')
+        ->withPivot('cant', 'motion_price');;
+
+    }
 }

@@ -67,17 +67,31 @@ const addJsonElement = json => {
 
     $btnSave.addEventListener("click", (event) => {
 
-        // document.getElementById("title_h").value =  $form.title.value
-        // document.getElementById("detail_h").value = $form.detail.value
-        // document.getElementById("car_id_h").value = $form.car.value
+            let title = document.getElementById("title").value;
+            let detail = document.getElementById("detail").value;
+            let car = document.getElementById("car").value;
+
+            const $form = document.getElementById("FormFinal");
+
+            $form.title_h.value = title;
+            $form.detail_h.value = detail;
+            $form.id_car_h.value = car;
+
 
 
             parameters = parameters.filter(el => el != null)
             const $jsonDiv = document.getElementById("jsonDiv")
             document.getElementById("hiden_json").value = `${JSON.stringify(parameters)}`
 
+
+
+
+
+
             $divElements.innerHTML = ""
             parameters = []
+
+
 
 
             $FormFinal.submit()

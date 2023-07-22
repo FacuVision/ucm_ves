@@ -15,7 +15,7 @@ class MotionController extends Controller
      */
     public function index()
     {
-        $motions = Motion::all();
+       $motions = Motion::all();
         return view("admin.motions.index", compact("motions"));
     }
 
@@ -24,25 +24,26 @@ class MotionController extends Controller
      */
     public function create()
     {
+        //HACEMOS LA Busqueda de informacion de los campos y almacenamos en los arrays
+        //los que no esten de baja
         $select_supply = Supply::all()->where("status","<>","baja");
         $carros = Car::all()->where("status","<>","baja");
 
-
+        //crearemos un array especial para recorrerlos dentro de los select de la vista
         foreach ($select_supply as $key) {
-          $array[$key->id] = $key->name ." - ". $key->brand. "- Cod. ".$key->code." - S/. ". $key->price;
+          $array[$key->id] = $key->name ." - ". $key->brand. " - Cod. ".$key->code." - Stock: ". $key->cant ." - Precio - S/. ". $key->price;
         }
 
         foreach ($carros as $carro) {
-            $array_vehiculos[$carro->id] = $carro->type ." - Marca: ". $carro->brand. "- N° Placa ".$carro->plate." - Color : ". $carro->color;
+            $array_vehiculos[$carro->id] = $carro->type ." -
+            Marca: ". $carro->brand. " -
+            N° Placa ".$carro->plate." -
+            Color : ". $carro->color;
         }
 
+        //finalmente asignamos en otra variable para mejor nombre
         $select_vehiculos = $array_vehiculos;
         $select_supply = $array;
-
-      //return $array;
-
-
-
 
         return view("admin.motions.create", compact("select_supply", "select_vehiculos"));
     }
@@ -53,13 +54,6 @@ class MotionController extends Controller
     public function store(Request $request)
     {
 
-        $request->validate([
-            "hiden_json" => "required",
-        ]);
-
-        return $request->all();
-
-
         //EN CASO SE ENVIE UN LISTADO SIN PRODUCTOS
         $lista_productos = json_decode($request->hiden_json);
 
@@ -67,49 +61,70 @@ class MotionController extends Controller
             return redirect()->route('admin.motions.create')->with('error', 'Las actividades no pueden estar vacias');
         }
 
+        $request->validate([
+            "hiden_json" => "required",
+            "title_h" => "required|string",
+            "detail_h" => "required|string",
+            "id_car_h" => "required",
+        ]);
 
-        $array = [];
+        //hacemos la creacion del movimiento
 
-        foreach ($lista_productos as $producto => $value) {
-           $array[$producto] = $value;
+        $recient_motion = Motion::create([
+            "user_id" => auth()->user()->id,
+            "car_id" => $request->id_car_h,
+            "title" =>  $request->title_h,
+            "detail" =>  $request->detail_h
+        ]);
+
+
+//VERIFICAMOS LA CANTIDAD Y EL STOCK
+        foreach ($lista_productos as $key) {
+        $producto = Supply::where("id",$key->supply_id)->get();
+
+            if($key->cant > $producto[0]->cant){
+
+                $recient_motion->delete();
+
+                return redirect()->route('admin.motions.index')
+                ->with('mensaje', 'No hay Stock disponible para el producto seleccionado')
+                ->with('color', 'danger');
+
+            }
         }
 
-        return $array;
-        die();
-        //PENDIENTE HACER LA INSERCION
-        foreach ($array as $prod) {
 
-            Actividad::create([
-                "descripcion" => $act->descripcion,
-                "puntaje_max" => $act->puntaje_max,
-                "tipo" => $act->tipo,
-                "tarea_id" => $request->tarea_id,
-                "recurso" => $act->recurso
+
+//REALIZAMOS LA INSERCION DE LOS PRODUCTOS Y EL MOVIMIENTO
+        foreach ($lista_productos as $key) {
+
+        $producto = Supply::where("id",$key->supply_id)->get();
+        $recient_motion->supplies()->attach($key->supply_id,
+                                            [
+                                                "cant"=> $key->cant,
+                                                "motion_price" => $producto[0]->price
+                                            ]
+                                            );
+
+            Supply::where("id",$key->supply_id)->update([
+                "cant" => ($producto[0]->cant - $key->cant)
             ]);
+
+            $producto = null;
+
         }
 
-
-
-
-        // $sumatotal = 0;
-
-        // foreach ($array as $act) {
-
-        //     $sumatotal = $sumatotal + $act->puntaje_max;
-        // }
-
-        // if ($sumatotal != 20) {
-        //     return redirect()->route('admin.actividades.show', $tarea)->with('error', 'La suma de los puntajes deben de ser de 20 pts');
-        // }
+        //die();
+        //return $array_final;
+        //die();
 
 
 
 
-        return redirect()->route('admin.tareas.show', compact("tarea", "carpeta"))->with('mensaje_act', 'Actividades creadas correctamente');
+        return redirect()->route('admin.motions.index')
+        ->with('mensaje', 'Movimiento creado correctamente')
+        ->with('color', 'success');
 
-        //return $lista_productos;
-
-        //return $request->all();
     }
 
     /**
@@ -117,8 +132,34 @@ class MotionController extends Controller
      */
     public function show(Motion $motion)
     {
-        //
+        $supplies_motions = $motion->supplies;
+
+        //return $supplies_motions[0];
+
+        $productos = [];
+        foreach ($supplies_motions as $sm) {
+
+            array_push($productos,
+            [
+                "id" => $sm->id,
+                "name" => $sm->name,
+                "brand" => $sm->brand,
+                "cant" => $sm->pivot->cant,
+                "price" => $sm->pivot->motion_price,
+                "subtotal" => $sm->pivot->cant * $sm->pivot->motion_price
+            ]
+        );
+
+        }
+
+        $suma = 0;
+        foreach ($productos as $prod) {
+            $suma = $suma + $prod["subtotal"];
+        }
+
+        return view("admin.motions.show", compact("supplies_motions", "motion", "suma", "productos"));
     }
+
 
     /**
      * Show the form for editing the specified resource.

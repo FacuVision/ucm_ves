@@ -15,6 +15,7 @@
 
             responsive: true,
             autowidth: false,
+            pageLength : 25,
 
             "language": {
             "lengthMenu": "Mostrando _MENU_ registros por pagina",
@@ -23,7 +24,6 @@
             "infoEmpty": "No hay datos",
             "infoFiltered": "(Filtrado de _MAX_ registros)",
             "search": "Buscar:",
-
             'paginate':{
                 'next':'Siguiente',
                 'previous':'Anterior'

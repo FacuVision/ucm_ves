@@ -34,9 +34,9 @@
 
             {!! Form::open(['method' => 'POST', 'route' => 'admin.motions.store', 'id' => 'FormFinal']) !!}
             {!! Form::hidden('hiden_json', '', ['id' => 'hiden_json']) !!}
-            {!! Form::hidden('title_h', '', ['id' => 'title']) !!}
-            {!! Form::hidden('detail_h', '', ['id' => 'detail']) !!}
-            {!! Form::hidden('id_car_h', '', ['id' => 1]) !!}
+            {!! Form::hidden('title_h', '', ['id' => 'title_h']) !!}
+            {!! Form::hidden('detail_h', '', ['id' => 'detail_h']) !!}
+            {!! Form::hidden('id_car_h', '', ['id' => 'id_car_h']) !!}
 
             {!! Form::close() !!}
 

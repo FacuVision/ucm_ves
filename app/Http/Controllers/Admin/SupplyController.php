@@ -96,10 +96,10 @@ class SupplyController extends Controller
         $codigo_igual = [
             "code" => "required",
             "name" => "required|string",
-            "line" => "required|string",
+            "line" => "required",
             "detail" => "required|string",
             "brand" => "required|string",
-            "unit" => "required|string",
+            "unit" => "required",
             "price" => "numeric|required",
             "cant" => "numeric|required"
         ];
@@ -107,10 +107,10 @@ class SupplyController extends Controller
         $codigo_nuevo = [
             "code" => "unique:supplies|required",
             "name" => "required|string",
-            "line" => "required|string",
+            "line" => "required",
             "detail" => "required|string",
             "brand" => "required|string",
-            "unit" => "required|string",
+            "unit" => "required",
             "price" => "numeric|required",
             "cant" => "numeric|required"
         ];
@@ -125,7 +125,7 @@ class SupplyController extends Controller
             ->with('color', 'success');
         }
 
-
+        //return $request->all();
         $request->validate($codigo_igual);
         $supply->update($request->all());
 

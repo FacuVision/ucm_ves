@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Motion;
 use App\Models\User;
 use App\Models\Car;
 
@@ -22,9 +21,12 @@ class Motion extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function supplies(): BelongsToMany
+    public function supplies()
     {
-        return $this->belongsToMany(Supply::class);
+        //return $this->belongsToMany(Supply::class);
+        return $this->belongsToMany(Supply::class, 'motion_supply', 'motion_id', 'supply_id')
+        ->withPivot('cant', 'motion_price');
+
     }
 
     public function user()

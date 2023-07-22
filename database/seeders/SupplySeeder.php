@@ -16,7 +16,7 @@ class SupplySeeder extends Seeder
 
             $supply = Supply::create([
                 "code" => "abcdef",
-                "name" => "s_001",
+                "name" => "aerosol",
                 "detail" => "aea",
                 "cant" => "50",
                 "line" => "parte",
@@ -28,7 +28,7 @@ class SupplySeeder extends Seeder
                 "code" => "abcd5646f",
                 "name" => "aceite",
                 "detail" => "sdsdasdas",
-                "cant" => "550",
+                "cant" => "100",
                 "line" => "suministro",
                 "brand" => "vvv",
                 "unit" => "litros",
