@@ -44,7 +44,7 @@
 
                                 {{-- Editar --}}
 
-                                <a href="{{ route('admin.motions.edit', $motion) }}" class="btn btn-success">Editar</a>
+                                {{-- <a href="{{ route('admin.motions.edit', $motion) }}" class="btn btn-success">Editar</a> --}}
 
 
                                 {{-- Eliminar --}}

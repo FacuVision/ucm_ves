@@ -18,6 +18,8 @@
 
             <div class="card" style="width: auto;">
                 <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><strong>Responsable:</strong> {{ $motion->user->profile->name }} {{ $motion->user->profile->lastname }}</li>
+                    <li class="list-group-item"><strong>Responsable DNI:</strong> {{ $motion->user->profile->dni }}</li>
                     <li class="list-group-item"><strong>Titulo:</strong> {{ $motion->title }}</li>
                     <li class="list-group-item"><strong>Descripcion:</strong> {{ $motion->detail }}</li>
                     <li class="list-group-item "><strong>Fecha:</strong> {{ $motion->created_at }}</li>
