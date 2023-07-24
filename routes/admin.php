@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\CarController;
 use App\Http\Controllers\Admin\SupplyController;
 use App\Http\Controllers\Admin\MotionController;
+use App\Http\Controllers\Admin\HistoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,7 +24,5 @@ Route::resource('users', UserController::class)->names('admin.users');
 Route::resource('cars', CarController::class)->names('admin.cars');
 Route::resource('supplies', SupplyController::class)->names('admin.supplies');
 Route::resource('motions', MotionController::class)->names('admin.motions');
+Route::resource('histories', HistoryController::class)->names('admin.histories');
 
-
-//Route::resource('/users', UserController2::class)->names('admin.users');;
-//Route::resource('users',UserController::class);

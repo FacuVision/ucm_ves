@@ -26,7 +26,7 @@
                     <li class="list-group-item "><strong>Marca:</strong> {{ $car->brand }}</li>
                     <li class="list-group-item "><strong>Color:</strong> {{ $car->color }} </li>
                     <li class="list-group-item "><strong>Modelo:</strong> {{ $car->model }} </li>
-                    <li class="list-group-item "><strong>Primer ingreso al sistema: </strong> {{ $car->created_at }} </li>
+                    <li class="list-group-item "><strong>Primer ingreso al sistema: </strong> {{ $car->created_at->format('d-m-Y g:i a') }} </li>
                 </ul>
 
             </div>
@@ -62,7 +62,7 @@
                             <td>{{ $movimiento->user->profile->name }}</td>
                             <td>{{ $movimiento->title }}</td>
                             <td>{{ $movimiento->detail }}</td>
-                            <td>{{ $movimiento->created_at }}</td>
+                            <td>{{ $movimiento->created_at->format('d-m-Y g:i a') }}</td>
                         </tr>
                     @endforeach
 

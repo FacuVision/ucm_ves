@@ -54,7 +54,7 @@
                         <div class="row">
                             <div class="col">
                                 {!! Form::label('detail', 'Detalles') !!}
-                                {!! Form::textarea('detail', null , ['class' => 'form-control', 'rows' => 3]) !!}
+                                {!! Form::textarea('detail', null, ['class' => 'form-control', 'rows' => 3]) !!}
                             </div>
                         </div>
                     </div>
@@ -62,6 +62,8 @@
 
                     <div class="form-group">
                         <div class="row">
+
+
                             <div class="col">
                                 {!! Form::label('brand', 'Marca') !!}
                                 {!! Form::text('brand', null, ['class' => 'form-control']) !!}
@@ -100,11 +102,7 @@
                             </div>
                             <div class="col">
                                 {!! Form::label('cant', 'Cantidad') !!}
-                                {!! Form::number('cant', 1, ['class' => 'form-control', 'min' => '1']) !!}
-                            </div>
-                            <div class="col">
-                                {!! Form::label('observation', 'Observación') !!}
-                                {!! Form::select('observation', ["conforme", "con modificaciones"], null, ['class' => 'form-control']) !!}
+                                {!! Form::number('cant', null, ['class' => 'form-control']) !!}
                             </div>
                         </div>
                     </div>

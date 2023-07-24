@@ -95,18 +95,13 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">S/.</span>
                                         </div>
-                                        {!! Form::number('price', $supply->price, ['class' => 'form-control', "step" =>"any", "min" => 1]) !!}
+                                        {!! Form::number('price', $supply->price, ['min' => 1 ,'class' => 'form-control', "step" =>"any"]) !!}
                                     </div>
                                 </div>
                                 <div class="col">
                                     {!! Form::label('cant', 'Cantidad') !!}
                                     {!! Form::number('cant', $supply->cant, ['class' => 'form-control']) !!}
                                 </div>
-                                <div class="col">
-                                    {!! Form::label('observation', 'Observación') !!}
-                                    {!! Form::select('observation', ["conforme", "con modificaciones"], $observation_id, ['class' => 'form-control']) !!}
-                                </div>
-
                             </div>
                         </div>
                     </div>

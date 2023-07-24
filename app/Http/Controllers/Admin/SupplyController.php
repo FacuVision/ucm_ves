@@ -39,9 +39,9 @@ class SupplyController extends Controller
             "brand" => "required|string",
             "unit" => "required|string",
             "price" => "numeric|required",
+            "observation" => "required",
             "cant" => "numeric|required"
         ];
-
 
         $arr = [
             'globales',
@@ -58,10 +58,13 @@ class SupplyController extends Controller
         ];
 
         $arr2 = ['parte', 'suministro', 'respuesto'];
-
+        $observations_array = ["conforme", "con modificaciones"];
 
 
         $request->validate($codigo_unico);
+
+        //return $request->all();
+        //die();
 
         $supply = Supply::create([
             "unit" =>  $arr[$request->unit],
@@ -71,8 +74,38 @@ class SupplyController extends Controller
             "detail" =>  $request->detail,
             "brand" =>  $request->brand,
             "price" =>  $request->price,
-            "cant" =>  $request->cant
+            "cant" =>  $request->cant,
+            "observation" => $observations_array[$request->observation]
         ]);
+
+
+
+
+
+        //ZONA DE CREACION DE HISTORIAL CUANDO SE INGRESA UN PRODUCTO
+
+        // $table->string("datos_antiguos")->nullable();
+        // $table->string("datos_nuevos");
+        // $table->enum("type", ["actualizacion", "primer ingreso","salida","eliminacion"]);
+        // $table->enum("status", ["conforme", "con modifcaciones"]);
+
+        if ($supply != null) {
+
+            $observations_array = ["conforme", "con modificaciones"];
+
+            $datos_nuevos = "Id: ".$supply->id."\nCodigo :".$supply->code."\nNombre: ".$supply->name."\nDetalle: ".$supply->detail."\nLinea: ".$supply->line."\nMarca: ".$supply->brand."\nUnidades: ".$supply->unit."\nCantidad: ".$supply->cant."\nCosto: ".$supply->price;
+
+            $supply->histories()->create([
+
+                "datos_antiguos" => "No registra",
+                "datos_nuevos" => $datos_nuevos,
+                "type" => "primer ingreso",
+                "status" => $observations_array[$request->observation],
+                "user_id" => auth()->user()->id
+            ]);
+        }
+
+
 
         return redirect()->route('admin.supplies.index')
             ->with('mensaje', 'Producto añadido correctamente')
@@ -84,7 +117,12 @@ class SupplyController extends Controller
      */
     public function show(Supply $supply)
     {
-        //
+        //MOSTRAR LA INFORMACION A DETALLE DEL PRODUCTO
+        //JUNTO CON EL HISTORIAL DEL MISMO
+
+        $histories = $supply->histories;
+
+        return view("admin.supplies.show", compact("histories","supply"));
     }
 
     /**
@@ -108,11 +146,18 @@ class SupplyController extends Controller
         ];
 
         $arr2 = ['parte', 'suministro', 'respuesto'];
+        $observations_array = ["conforme", "con modificaciones"];
+
 
         $cod_unidad = array_search($supply->unit, $arr);
         $cod_linea = array_search($supply->line, $arr2);
+        $observation_id = array_search($supply->observation, $observations_array);
 
-        return view('admin.supplies.edit', compact('supply', 'cod_unidad', 'cod_linea'));
+        //return  $observation_id;
+
+       // die();
+
+        return view('admin.supplies.edit', compact('supply', 'cod_unidad', 'cod_linea','observation_id'));
     }
 
     /**
@@ -120,6 +165,7 @@ class SupplyController extends Controller
      */
     public function update(Request $request, Supply $supply)
     {
+
         $codigo_igual = [
             "code" => "required",
             "name" => "required|string",
@@ -128,7 +174,8 @@ class SupplyController extends Controller
             "brand" => "required|string",
             "unit" => "required",
             "price" => "numeric|required",
-            "cant" => "numeric|required"
+            "cant" => "numeric|required",
+            "observation" => "required"
         ];
 
         $codigo_nuevo = [
@@ -139,7 +186,8 @@ class SupplyController extends Controller
             "brand" => "required|string",
             "unit" => "required",
             "price" => "numeric|required",
-            "cant" => "numeric|required"
+            "cant" => "numeric|required",
+            "observation" => "required"
         ];
 
         $arr = [
@@ -158,11 +206,50 @@ class SupplyController extends Controller
 
         $arr2 = ['parte', 'suministro', 'respuesto'];
 
-        //return $arr[$request->unit] . " ". $arr2[$request->line];
-        //die();
-        //return $request->all();
 
-        //die();
+
+
+               // ZONA CUANDO SE HACE UNA ACTUALIZACION DE PRODUCTO
+
+        if ($supply != null) {
+
+            $observations_array = ["conforme", "con modificaciones"];
+            $arr = [
+                'globales',
+                'metros',
+                'centimetros',
+                'milimetros',
+                'toneladas',
+                'kilogramos',
+                'gramos',
+                'litros',
+                'mililitros',
+                'metros cuadrados',
+                'metros cúbicos',
+            ];
+
+            $arr2 = ['parte', 'suministro', 'respuesto'];
+
+            //$cod_unidad = array_search($supply->unit, $arr);
+            //$cod_linea = array_search($supply->line, $arr2);
+
+
+            $datos_nuevos = "Id: ".$supply->id."\nCodigo :".$request->code."\nNombre: ".$request->name."\nDetalle: ".$request->detail."\nLinea: ".$arr2[$request->line]."\nMarca: ".$request->brand."\nUnidades: ".$arr[$request->unit]."\nCantidad: ".$request->cant."\nCosto: ".$request->price;
+            $datos_antiguos = "Id: ".$supply->id."\nCodigo :".$supply->code."\nNombre: ".$supply->name."\nDetalle: ".$supply->detail."\nLinea: ".$supply->line."\nMarca: ".$supply->brand."\nUnidades: ".$supply->unit."\nCantidad: ".$supply->cant."\nCosto: ".$supply->price;
+
+
+            //Si hay actualizacion de cantidad
+
+            $supply->histories()->create([
+                "type" => "actualizacion",
+                "datos_nuevos" => $datos_nuevos,
+                "datos_antiguos" => $datos_antiguos,
+                "user_id" => auth()->user()->id,
+                "status" => $observations_array[$request->observation]
+            ]);
+        }
+
+
 
 
         if ($request->code != $supply->code) {
@@ -178,6 +265,7 @@ class SupplyController extends Controller
             $supply->brand = $request->brand;
             $supply->price = $request->price;
             $supply->cant = $request->cant;
+            $supply->observation = $observations_array[$request->observation];
             $supply->save();
 
 
@@ -187,7 +275,6 @@ class SupplyController extends Controller
                 ->with('color', 'success');
         }
 
-        //return $request->all();
         $request->validate($codigo_igual);
 
         $supply->line = $arr2[$request->line];
@@ -198,7 +285,11 @@ class SupplyController extends Controller
         $supply->brand = $request->brand;
         $supply->price = $request->price;
         $supply->cant = $request->cant;
+        $supply->observation = $observations_array[$request->observation];
         $supply->save();
+
+
+
 
         return redirect()->route('admin.supplies.index')
             ->with('mensaje', 'Producto editado correctamente')

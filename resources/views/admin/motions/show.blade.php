@@ -3,7 +3,7 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <h1> Movimiento de fecha {{ $motion->created_at }} </h1>
+    <h1> Movimiento de fecha {{ $motion->created_at->format('d-m-Y g:i a') }} </h1>
 @stop
 
 @section('css')
@@ -22,7 +22,7 @@
                     <li class="list-group-item"><strong>Responsable DNI:</strong> {{ $motion->user->profile->dni }}</li>
                     <li class="list-group-item"><strong>Titulo:</strong> {{ $motion->title }}</li>
                     <li class="list-group-item"><strong>Descripcion:</strong> {{ $motion->detail }}</li>
-                    <li class="list-group-item "><strong>Fecha:</strong> {{ $motion->created_at }}</li>
+                    <li class="list-group-item "><strong>Fecha:</strong> {{ $motion->created_at->format('d-m-Y g:i a') }}</li>
                     <li class="list-group-item "><strong>Vehiculo destinado:</strong> {{ $motion->car->plate }} </li>
                 </ul>
 

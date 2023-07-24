@@ -13,8 +13,10 @@ return new class extends Migration
     {
         Schema::create('histories', function (Blueprint $table) {
             $table->id();
-            $table->string("detail");
-            $table->enum("status", ["conforme", "con modifcaciones"]);
+            $table->text("datos_antiguos")->nullable();
+            $table->text("datos_nuevos");
+            $table->enum("type", ["actualizacion", "primer ingreso","salida","eliminacion"]);
+            $table->enum("status", ["conforme", "con modificaciones"]);
 
             $table->unsignedBigInteger('supply_id')->nullable();
             $table->unsignedBigInteger('user_id')->nullable();

@@ -27,11 +27,10 @@
                         <th>Id</th>
                         <th>Código</th>
                         <th>Nombre</th>
-                        <th>Descripcion</th>
                         <th>Línea</th>
                         <th>Marca</th>
-                        <th>Unidad</th>
-                        <th>Precio</th>
+                        <th>Observacion</th>
+                        <th>Costo</th>
                         <th>Cantidad</th>
                         <th>Acciones</th>
                     </tr>
@@ -39,22 +38,29 @@
                 <tbody>
                     @foreach ($supplies as $supply)
                         <tr>
-                            <td>{{$supply->id}}</td>
-                            <td>{{$supply->code}}</td>
-                            <td>{{$supply->name}}</td>
-                            <td>{{$supply->detail}}</td>
-                            <td>{{$supply->line}}</td>
-                            <td>{{$supply->brand}}</td>
-                            <td>{{$supply->unit}}</td>
-                            <td>{{$supply->price}}</td>
-                            <td>{{$supply->cant}}</td>
+                            <td>{{ $supply->id }}</td>
+                            <td>{{ $supply->code }}</td>
+                            <td>{{ $supply->name }}</td>
+                            <td>{{ $supply->line }}</td>
+                            <td>{{ $supply->brand }}</td>
+
+                            @if ($supply->observation == 'conforme')
+                                <td style="font-weight: bold; color:green">{{ $supply->observation }}</td>
+                            @else
+                                <td style="font-weight: bold; color:red">{{ $supply->observation }}</td>
+                            @endif
+                            <td>{{ $supply->price }}</td>
+                            <td>{{ $supply->cant }}</td>
                             <td>
 
+                                {{-- Ver --}}
+                                <a href="{{ route('admin.supplies.show', $supply) }}" class="btn btn-primary">Ver</a>
                                 {{-- Editar --}}
                                 <a href="{{ route('admin.supplies.edit', $supply) }}" class="btn btn-success">Editar</a>
                                 {{-- Eliminar --}}
-                                <form style="display: inline" action="{{ route('admin.supplies.destroy', $supply) }}"
-                                    method="post" class="formulario-eliminar">
+                                <form id="delete" style="display: inline"
+                                    action="{{ route('admin.supplies.destroy', $supply) }}" method="post"
+                                    class="formulario-eliminar">
                                     @csrf
                                     @method('DELETE')
                                     <input type="submit" id="delete" value="Eliminar" class="btn btn-danger">
@@ -80,28 +86,34 @@
 @section('js')
 
     <script type="text/javascript">
-        $('.formulario-eliminar').submit(function(e) {
-            e.preventDefault();
+        //         $('.formulario-eliminar').submit(function(e) {
+        //             e.preventDefault();
 
-            Swal.fire({
-                title: '¿Estas seguro?',
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Sí, Borrar'
-            }).then((result) => {
-                if (result.isConfirmed) {
-/*                     Swal.fire(
-                        'Deleted!',
-                        'Your file has been deleted.',
-                        'success'
-                    ) */
-                    this.submit();
-                }
-            })
-        });
+        //             Swal.fire({
+        //                 title: '¿Estas seguro?',
+        //                 icon: 'warning',
+        //                 showCancelButton: true,
+        //                 confirmButtonColor: '#3085d6',
+        //                 cancelButtonColor: '#d33',
+        //                 confirmButtonText: 'Sí, Borrar'
+        //             }).then((result) => {
+        //                 if (result.isConfirmed) {
+        // /*                     Swal.fire(
+        //                         'Deleted!',
+        //                         'Your file has been deleted.',
+        //                         'success'
+        //                     ) */
+        //                     this.submit();
+        //                 }
+        //             })
+        //         });
+
     </script>
+
+    <div class="modal-dialog modal-dialog-centered">
+
+    </div>
+
     @include('admin.partials.js_datatables copy')
 
 @stop

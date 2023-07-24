@@ -3,7 +3,7 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <h1>Vehículo de placa N° {{ $car->plate }} </h1>
+    <h1> Detalle del producto :  {{$supply->name}} </h1>
 @stop
 
 @section('css')
@@ -18,22 +18,40 @@
 
             <div class="card" style="width: auto;">
                 <div class="card-header bg-info-subtle">
-                    <strong> Tipo:</strong> {{ $car->type }}
+                    <strong> Código :</strong> {{ $supply->code }}
                 </div>
+
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item"><strong>Placa:</strong> {{ $car->plate }}</li>
-                    <li class="list-group-item"><strong>Kilometraje:</strong> {{ $car->mileage }}</li>
-                    <li class="list-group-item "><strong>Marca:</strong> {{ $car->brand }}</li>
-                    <li class="list-group-item "><strong>Color:</strong> {{ $car->color }} </li>
-                    <li class="list-group-item "><strong>Modelo:</strong> {{ $car->model }} </li>
-                    <li class="list-group-item "><strong>Primer ingreso al sistema: </strong> {{ $car->created_at }} </li>
+                    <li class="list-group-item"><strong>Nombre:</strong> {{ $supply->name }}</li>
+                    <li class="list-group-item "><strong>Línea:</strong> {{ $supply->line }}</li>
+                    <li class="list-group-item "><strong>Marca:</strong> {{ $supply->brand }} </li>
+                    <li class="list-group-item "><strong>Unidad:</strong> {{ $supply->unit }} </li>
+                    <li class="list-group-item "><strong>Costo: </strong> S/. {{ $supply->price }} </li>
+                    <li class="list-group-item "><strong>Cantidad disponible: </strong> {{ $supply->cant }} </li>
+                    <li class="list-group-item "><strong>Observacion: </strong>
+
+                        @if ($supply->observation == "conforme")
+                            <span class="badge badge-success">{{ $supply->observation }} </span>
+                            @else
+                            <span class="badge badge-danger">{{ $supply->observation }} </span>
+
+                        @endif
+
+                    </li>
+                    <li class="list-group-item "><strong>Fecha de primer ingreso: </strong> {{$supply->created_at->format('d-m-Y g:i a')}} </li>
+                    <li class="list-group-item "><strong>Fecha de ultima actualizacion: </strong> {{ $supply->updated_at->format('d-m-Y g:i a') }} </li>
                 </ul>
 
             </div>
+
+            <div class="mb-3">
+                <label for="detail" class="form-label">Detalles</label>
+                <textarea class="form-control" id="detail" rows="3" disabled>{{$supply->detail}}</textarea>
+              </div>
         </div>
 
         <div class="card-footer">
-            <a href="{{ route('admin.cars.index') }}" class="btn btn-warning"> Volver </a>
+            <a href="{{ route('admin.supplies.index') }}" class="btn btn-warning"> Volver </a>
         </div>
 
     </div>
@@ -42,7 +60,7 @@
         <div class="card-header">
 
 
-            <h5 class="color">Movimientos del vehículo</h5>
+            <h5 class="color">Historial del producto</h5>
         </div>
         <div class="card-body">
             <table id="tabla" class="table-striped dt-responsive nowrap display compact" style="width:100%">
@@ -50,21 +68,27 @@
                     <tr>
                         <th>Id</th>
                         <th>Responsable</th>
-                        <th>Titulo</th>
-                        <th>Descripcion</th>
+                        <th>Dni Responsable</th>
                         <th>Estado</th>
-                        <th>Fecha de creacion</th>
+                        <th>Tipo</th>
+                        <th>Fecha de actualizacion</th>
+                        <th>Detalle</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($car_movimientos as $movimiento)
+                    @foreach ($histories as $his)
                         <tr>
-                            <td>{{ $movimiento->id }}</td>
-                            <td>{{ $movimiento->user->profile->name }}</td>
-                            <td>{{ $movimiento->title }}</td>
-                            <td>{{ $movimiento->detail }}</td>
-                            <td>{{ $movimiento->status }}</td>
-                            <td>{{ $movimiento->created_at }}</td>
+                            <td>{{ $his->id }}</td>
+                            <td>{{ $his->user->profile->name }}</td>
+                            <td>{{ $his->user->profile->dni }}</td>
+                            <td>{{ $his->status }}</td>
+                            <td>{{ $his->type}}</td>
+                            <td>{{ $his->created_at->format('d-m-Y g:i a') }}</td>
+                            <td>
+                                {{-- Ver --}}
+                                <a href="{{ route('admin.histories.show', $his) }}" class="btn btn-primary">Ver</a>
+
+                            </td>
                         </tr>
                     @endforeach
 

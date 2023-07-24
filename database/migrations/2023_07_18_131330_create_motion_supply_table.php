@@ -18,6 +18,7 @@ return new class extends Migration
         $table->unsignedBigInteger('motion_id');
         $table->unsignedBigInteger('supply_id');
 
+
         $table->integer('cant');
         $table->float('motion_price', 8, 2);
 

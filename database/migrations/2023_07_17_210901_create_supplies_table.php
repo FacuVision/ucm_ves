@@ -33,6 +33,7 @@ return new class extends Migration
                     "globales"
                 ]);
             $table->float('price', 8, 2);
+            $table->enum("observation", ["conforme", "con modificaciones"]);
             $table->enum("status", ["alta", "baja"])->default('alta');
             $table->timestamps();
         });

@@ -3,7 +3,7 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <h1>Usuarios</h1>
+    <h1>Historial de movimientos de productos</h1>
     @include('admin.partials.css_datatables')
 @stop
 
@@ -17,7 +17,7 @@
         @endif
 
         <div class="card-header">
-            <a href="{{ route('admin.users.create') }}" class="btn btn-primary"> Crear Usuario</a>
+            <a href="{{ route('admin.supplies.create') }}" class="btn btn-primary"> Ingresar nuevo producto</a>
         </div>
 
         <div class="card-body">
@@ -25,30 +25,32 @@
                 <thead>
                     <tr>
                         <th>Id</th>
-                        <th>Nombre</th>
-                        <th>Email</th>
-                        <th>Fecha de Creación</th>
-                        <th> </th>
+                        <th>Nombre Producto</th>
+                        <th>Responsable</th>
+                        <th>Dni</th>
+                        <th>Detalle</th>
+                        <th>Fecha</th>
+                        <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($users as $user)
+                    @foreach ($histories as $his)
                         <tr>
-                            <td>{{ $user->id }}</td>
-                            <td>{{ $user->name }}</td>
-                            <td>{{ $user->email }}</td>
-                            <td>{{ $user->created_at->format('d-m-Y g:i a') }}</td>
+                            <td>{{$his->id}}</td>
+                            <td>{{$his->supply->name}}</td>
+                            <td>{{$supply->name}}</td>
+                            <td>{{$supply->detail}}</td>
+                            <td>{{$supply->line}}</td>
+                            <td>{{$supply->brand}}</td>
+                            <td>{{$supply->unit}}</td>
+                            <td>{{$supply->price}}</td>
+                            <td>{{$supply->cant}}</td>
                             <td>
-                                {{-- Mostrar --}}
-                                <a href="{{ route('admin.users.show', $user) }}" class="btn btn-primary">Ver</a>
 
                                 {{-- Editar --}}
-
-                                <a href="{{ route('admin.users.edit', $user) }}" class="btn btn-success">Editar</a>
-
-
+                                <a href="{{ route('admin.supplies.edit', $supply) }}" class="btn btn-success">Editar</a>
                                 {{-- Eliminar --}}
-                                <form style="display: inline" action="{{ route('admin.users.destroy', $user) }}"
+                                <form style="display: inline" action="{{ route('admin.supplies.destroy', $supply) }}"
                                     method="post" class="formulario-eliminar">
                                     @csrf
                                     @method('DELETE')

@@ -37,7 +37,7 @@
                             <td>{{ $motion->id }}</td>
                             <td>{{ $motion->title }}</td>
                             <td>{{ $motion->car->plate}}</td>
-                            <td>{{ $motion->created_at}}</td>
+                            <td>{{ $motion->created_at->format('d-m-Y g:i a')}}</td>
                             <td>
                                 {{-- Mostrar --}}
                                 <a href="{{ route('admin.motions.show', $motion) }}" class="btn btn-primary">Ver detalle</a>
