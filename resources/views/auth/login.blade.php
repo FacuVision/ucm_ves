@@ -1,4 +1,4 @@
-<x-guest-layout>
+{{-- <x-guest-layout>
     <x-authentication-card>
         <x-slot name="logo">
             <x-authentication-card-logo />
@@ -45,4 +45,16 @@
             </div>
         </form>
     </x-authentication-card>
-</x-guest-layout>
+</x-guest-layout> --}}
+@extends('adminlte::auth.login')
+
+
+<style>
+    a[href="http://ucm_ves.test/password/reset"] {
+        display:none;
+    }
+
+    a[href="http://ucm_ves.test/register"] {
+        display:none;
+    }
+</style>
