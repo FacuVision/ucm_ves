@@ -16,7 +16,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'UCM_VES'),
+    'name' => env('APP_NAME', 'SISTEMA DE CONTROL DE REPUESTOS'),
 
     /*
     |--------------------------------------------------------------------------
