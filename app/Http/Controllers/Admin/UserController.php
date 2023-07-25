@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Spatie\Permission\Models\Role;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -14,7 +15,6 @@ class UserController extends Controller
     public function index()
     {
         $users = User::where('status','alta')->get();
-
         return view("admin.users.index", compact("users"));
 
     }
@@ -24,7 +24,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view("admin.users.create");
+        $roles = Role::all();
+        return view("admin.users.create", compact("roles"));
     }
 
     /**
@@ -40,6 +41,7 @@ class UserController extends Controller
             "phone" => "numeric|required|unique:profiles|digits:9",
             "dni" => "required|string|max:8",
             "direccion" => "required|max:100",
+            "roles" => "required",
         ]);
 
         $user = User::create([
@@ -60,15 +62,20 @@ class UserController extends Controller
             ]
         );
 
-       /*  //si se marco el rol de admin
-        if ($request->rol_id) {
-            // 1 = id admin
-            $user->roles()->sync(1);
-        } */
+
+
+                      //CREACION DE ROLES
+
+                      $user->roles()->sync($request->roles);
+
+
 
         return redirect()->route('admin.users.index')
         ->with('mensaje', 'Usuario creado correctamente')
         ->with('color', 'success');
+
+
+
 
     }
 
@@ -77,7 +84,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        return view('admin.users.show', compact('user'));
+        return view('admin.users.show', compact('user') );
     }
 
     /**
@@ -85,7 +92,8 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        return view('admin.users.edit', compact('user'));
+        $roles = Role::all();
+        return view('admin.users.edit', compact('user','roles'));
 
     }
 
@@ -94,6 +102,7 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
+
         $sin = [ //no se modifica correo ni contraseña
             "email" => "required|string|email|max:100",
             "name" => "required|string",
@@ -124,10 +133,6 @@ class UserController extends Controller
 
 
         //si se modifica solo el telefono
-
-
-
-
 
     //si el correo y el request que llega son iguales, quiere decir que no se modifico el correo
     if ($user->email == $request->email) {
@@ -171,37 +176,12 @@ class UserController extends Controller
 
 
 
+                //ACTUALIZACION DE ROLES
 
-      /*   if ($request->roles) { // si esta marcado
-            // 1 = id admin
-
-            if ($user->roles->isEmpty()) { //EN CASO NO EXISTA LA RELACION
-                $user->roles()->sync(1);
-
-            } else {
-
-                foreach ($user->roles as $role) {   // si el usuario a editar era un docente
-                                                    // mantiene el docente y se añade el admin
-                    if ($role->id == 2) {
-                        $user->roles()->sync([2, 1]);
-                    }
-
-                    if ($role->id == 3) {
-                        return redirect()->route('admin.users.edit', $user)->with('mensaje', 'El usuario es un alumno, no se puede convertir en admin');
-                    }
-                }
-            }
+                $user->roles()->sync($request->roles);
 
 
-        } else { // si no esta marcado // LE ESTAMOS QUITANDO EL ROL DE DOCENTE
-            foreach ($user->roles as $role) {
-                // si el usuario a editar era un docente
-                // mantiene el docente y se quita el admin
-                if ($role->id == 2) {
-                    $user->roles()->sync(2);
-                }
-            }
-        } */
+
 
         return redirect()
         ->route('admin.users.edit', $user)
@@ -213,11 +193,7 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        //echo "no se debe borrar";
-        /*      echo auth()->user()->id ." " . $user->id;
-        die(); */
 
-        //return $user;
 
         if (auth()->user()->id == $user->id) {
 

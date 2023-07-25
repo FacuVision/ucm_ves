@@ -77,12 +77,18 @@
                         {!! Form::label('direccion', 'Direccion') !!}
                         {!! Form::text('address', $user->profile->address, ['class' => 'form-control']) !!}
                     </div>
+                    @can('admin.users.destroy')
+                    {!! Form::label('rol', 'Roles:') !!} <br>
                     <div class="form-group">
-                        {!! Form::label('rol', 'Rol: (opcional)') !!} <br>
+                        @foreach ($roles as $role)
                         <label>
-                            {!! Form::checkbox('roles', 1, null, ['class' => 'mr-1']) !!} Admin
+                            {!! Form::checkbox('roles[]', $role->id, null, ['class' => 'mr-1']) !!}
+                            {{ $role->name }} &nbsp;&nbsp;
                         </label>
+                        @endforeach
                     </div>
+                    @endcan
+
                 </div>
 
 

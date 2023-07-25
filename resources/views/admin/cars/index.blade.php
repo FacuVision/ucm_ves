@@ -15,20 +15,21 @@
                 <strong>{{ session('mensaje') }}</strong>
             </div>
         @endif
-
-        <div class="card-header">
-            <a href="{{ route('admin.cars.create') }}" class="btn btn-primary"> Ingresar Vehículo</a>
-        </div>
+        @can('admin.cars.create')
+            <div class="card-header">
+                <a href="{{ route('admin.cars.create') }}" class="btn btn-primary"> Ingresar Vehículo</a>
+            </div>
+        @endcan
 
         <div class="card-body">
             <table id="tabla" class="table-striped dt-responsive nowrap display compact" style="width:100%">
                 <thead>
                     <tr>
                         <th>Id</th>
+                        <th>placa</th>
                         <th>tipo</th>
                         <th>marca</th>
                         <th>color</th>
-                        <th>modelo</th>
                         <th>kilometraje</th>
                         <th>Acciones</th>
                     </tr>
@@ -37,27 +38,36 @@
                     @foreach ($cars as $car)
                         <tr>
                             <td>{{ $car->id }}</td>
+                            <td>{{ $car->plate }}</td>
                             <td>{{ $car->type }}</td>
                             <td>{{ $car->brand }}</td>
                             <td>{{ $car->color }}</td>
-                            <td>{{ $car->model }}</td>
                             <td>{{ $car->mileage }}</td>
                             <td>
+
+                                @can('admin.cars.show')
                                 {{-- Mostrar --}}
                                 <a href="{{ route('admin.cars.show', $car) }}" class="btn btn-primary">Movimientos</a>
+                                @endcan
 
                                 {{-- Editar --}}
+                                @can('admin.cars.edit')
 
                                 <a href="{{ route('admin.cars.edit', $car) }}" class="btn btn-success">Editar</a>
-
+@endcan
 
                                 {{-- Eliminar --}}
+                                @can('admin.cars.destroy')
+
                                 <form style="display: inline" action="{{ route('admin.cars.destroy', $car) }}"
-                                    method="post" class="formulario-eliminar">
+                                    method="post" class="formulario-eliminar"
+                                    onsubmit="return confirm('¿Está seguro que quiere eliminar este registro?')">
                                     @csrf
                                     @method('DELETE')
                                     <input type="submit" id="delete" value="Eliminar" class="btn btn-danger">
                                 </form>
+                                @endcan
+
 
                             </td>
                         </tr>
@@ -78,7 +88,7 @@
 
 @section('js')
 
-    <script type="text/javascript">
+    {{-- <script type="text/javascript">
         $('.formulario-eliminar').submit(function(e) {
             e.preventDefault();
 
@@ -100,7 +110,7 @@
                 }
             })
         });
-    </script>
+    </script> --}}
     @include('admin.partials.js_datatables copy')
 
 @stop

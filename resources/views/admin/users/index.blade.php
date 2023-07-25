@@ -16,9 +16,13 @@
             </div>
         @endif
 
+        @can('admin.users.create')
+
         <div class="card-header">
             <a href="{{ route('admin.users.create') }}" class="btn btn-primary"> Crear Usuario</a>
         </div>
+
+        @endcan
 
         <div class="card-body">
             <table id="tabla" class="table-striped dt-responsive nowrap display compact" style="width:100%">
@@ -28,6 +32,7 @@
                         <th>Nombre</th>
                         <th>Email</th>
                         <th>Fecha de Creación</th>
+                        <th>Roles &nbsp;&nbsp;</th>
                         <th> </th>
                     </tr>
                 </thead>
@@ -39,36 +44,54 @@
                             <td>{{ $user->email }}</td>
                             <td>{{ $user->created_at->format('d-m-Y g:i a') }}</td>
                             <td>
+                                @foreach ($user->roles as $role)
+                                    @switch($role->name)
+                                        @case($role->name == 'super_admin')
+                                            <span class="badge badge-warning">
+                                                {{ $role->name }}
+                                            </span>
+                                        @break
+
+                                        @case($role->name == 'admin')
+                                            <span class="badge badge-primary">
+                                                {{ $role->name }}
+                                            </span>
+                                        @break
+
+                                        @case($role->name == 'usuario')
+                                            <span class="badge badge-secondary">
+                                                {{ $role->name }}
+                                            </span>
+                                        @break
+                                    @endswitch
+                                @endforeach
+
+                            </td>
+                            <td>
+                                @can('admin.users.show')
                                 {{-- Mostrar --}}
-                                <a href="{{ route('admin.users.show', $user) }}" class="btn btn-primary">Ver</a>
+                                    <a href="{{ route('admin.users.show', $user) }}" class="btn btn-primary">Ver</a>
+                                @endcan
 
                                 {{-- Editar --}}
 
-                                <a href="{{ route('admin.users.edit', $user) }}" class="btn btn-success">Editar</a>
+                                @can('admin.users.edit')
+                                    <a href="{{ route('admin.users.edit', $user) }}" class="btn btn-success">Editar</a>
+                                @endcan
 
+                                @can('admin.users.destroy')
+                                    {{-- Eliminar --}}
 
-                                {{-- Eliminar --}}
+                                    <form style="display: inline" action="{{ route('admin.users.destroy', $user) }}"
+                                        method="post" class="formulario-eliminar"
+                                        onsubmit="return confirm('¿Está seguro que quiere eliminar este registro?')">
 
-                                <form style="display: inline" action="{{ route('admin.users.destroy', $user) }}"
-                                    method="post" class="formulario-eliminar" onsubmit="return confirm('¿Está seguro que quiere eliminar este registro?')" >
+                                        @csrf
+                                        @method('DELETE')
 
-                                    @csrf
-                                    @method('DELETE')
-
-                                    <input type="submit" id="delete" value="Eliminar" class="btn btn-danger">
-
-
-                                    {{-- <button type="button"  class="btn btn-danger" data-toggle="modal"
-                                        data-target="#delete{{ $user->id }}">
-                                        Eliminar
-                                    </button> --}}
-
-                                    {{-- <div class="modal fade" id="delete{{ $user->id }}" tabindex="-1" role="dialog"
-                                        aria-labelledby="myModalLabel">
-                                        @include('admin.partials.modal_eliminar')
-                                    </div> --}}
-                                </form>
-
+                                        <input type="submit" id="delete" value="Eliminar" class="btn btn-danger">
+                                    </form>
+                                @endcan
                             </td>
                         </tr>
                     @endforeach

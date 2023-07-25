@@ -87,13 +87,10 @@
                 </div>
             </div>
             {{-- {!! Form::submit('Guardar', ['class' => 'btn btn-success']) !!} --}}
-            <a href="{{ route('admin.supplies.show', $history->supply) }}" class="btn btn-warning"> Volver </a>
+            <a href="javascript:history.back()" class="btn btn-warning"> Volver </a>
 
         </div>
         {{-- {!! Form::close() !!} --}}
 
     </div>
 @stop
-
-
-

@@ -16,10 +16,13 @@
             </div>
         @endif
 
+        @can('admin.supplies.create')
+
         <div class="card-header">
             <a href="{{ route('admin.supplies.create') }}" class="btn btn-primary"> Ingresar nuevo producto</a>
         </div>
 
+        @endcan
         <div class="card-body">
             <table id="tabla" class="table-striped dt-responsive nowrap display compact" style="width:100%">
                 <thead>
@@ -53,18 +56,30 @@
                             <td>{{ $supply->cant }}</td>
                             <td>
 
+                                @can('admin.supplies.show')
+
                                 {{-- Ver --}}
                                 <a href="{{ route('admin.supplies.show', $supply) }}" class="btn btn-primary">Ver</a>
+
+                                @endcan
+
                                 {{-- Editar --}}
+                                @can('admin.supplies.edit')
+
                                 <a href="{{ route('admin.supplies.edit', $supply) }}" class="btn btn-success">Editar</a>
+                                @endcan
+
+                                @can('admin.supplies.delete')
+
                                 {{-- Eliminar --}}
-                                <form id="delete" style="display: inline"
+                                <form onsubmit="return confirm('¿Está seguro que quiere eliminar este registro?')" id="delete" style="display: inline"
                                     action="{{ route('admin.supplies.destroy', $supply) }}" method="post"
                                     class="formulario-eliminar">
                                     @csrf
                                     @method('DELETE')
                                     <input type="submit" id="delete" value="Eliminar" class="btn btn-danger">
                                 </form>
+                                @endcan
 
                             </td>
                         </tr>
@@ -88,33 +103,5 @@
 @stop
 
 @section('js')
-
-    <script type="text/javascript">
-        //         $('.formulario-eliminar').submit(function(e) {
-        //             e.preventDefault();
-
-        //             Swal.fire({
-        //                 title: '¿Estas seguro?',
-        //                 icon: 'warning',
-        //                 showCancelButton: true,
-        //                 confirmButtonColor: '#3085d6',
-        //                 cancelButtonColor: '#d33',
-        //                 confirmButtonText: 'Sí, Borrar'
-        //             }).then((result) => {
-        //                 if (result.isConfirmed) {
-        // /*                     Swal.fire(
-        //                         'Deleted!',
-        //                         'Your file has been deleted.',
-        //                         'success'
-        //                     ) */
-        //                     this.submit();
-        //                 }
-        //             })
-        //         });
-    </script>
-
-
-
     @include('admin.partials.js_datatables copy')
-
 @stop

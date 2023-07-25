@@ -29,32 +29,42 @@ class RoleSeeder extends Seeder
 
         //PERMISOS DE LOS USUARIOS
         Permission::create(["name"=>"admin.users.index"])->syncRoles([$admin,$super_user,$usuario]);
-        Permission::create(["name"=>"admin.users.create"])->syncRoles([$admin,$super_user,$usuario]);
-        Permission::create(["name"=>"admin.users.edit"])->syncRoles([$admin,$super_user,$usuario]);
         Permission::create(["name"=>"admin.users.show"])->syncRoles([$admin,$super_user,$usuario]);
-        Permission::create(["name"=>"admin.users.destroy"])->syncRoles([$admin,$super_user]);
+        Permission::create(["name"=>"admin.users.create"])->syncRoles([$admin,$super_user]);
+        Permission::create(["name"=>"admin.users.edit"])->syncRoles([$admin,$super_user]);
+        Permission::create(["name"=>"admin.users.destroy"])->syncRoles([$super_user]);
 
         //PERMISOS DE LOS VEHICULOS
 
-        Permission::create(["name"=>"admin.cars.index"]);
-        Permission::create(["name"=>"admin.cars.create"]);
-        Permission::create(["name"=>"admin.cars.edit"]);
-        Permission::create(["name"=>"admin.cars.show"]);
-        Permission::create(["name"=>"admin.cars.destroy"]);
+        Permission::create(["name"=>"admin.cars.index"])->syncRoles([$admin,$super_user,$usuario]);
+        Permission::create(["name"=>"admin.cars.create"])->syncRoles([$admin,$super_user,$usuario]);
+        Permission::create(["name"=>"admin.cars.edit"])->syncRoles([$admin,$super_user,$usuario]);
+        Permission::create(["name"=>"admin.cars.show"])->syncRoles([$admin,$super_user,$usuario]);
+        Permission::create(["name"=>"admin.cars.destroy"])->syncRoles([$admin,$super_user]);
 
 
         //PERMISOS DE LOS PRODUCTOS
-        Permission::create(["name"=>"admin.supplies.index"]);
-        Permission::create(["name"=>"admin.supplies.create"]);
-        Permission::create(["name"=>"admin.supplies.edit"]);
-        Permission::create(["name"=>"admin.supplies.show"]);
-        Permission::create(["name"=>"admin.supplies.destroy"]);
+        Permission::create(["name"=>"admin.supplies.index"])->syncRoles([$admin,$super_user,$usuario]);
+        Permission::create(["name"=>"admin.supplies.create"])->syncRoles([$admin,$super_user,$usuario]);
+        Permission::create(["name"=>"admin.supplies.edit"])->syncRoles([$admin,$super_user,$usuario]);
+        Permission::create(["name"=>"admin.supplies.show"])->syncRoles([$admin,$super_user,$usuario]);
+        Permission::create(["name"=>"admin.supplies.destroy"])->syncRoles([$admin,$super_user]);
 
         //PERMISOS DE LOS MOVIMIENTOS
-        Permission::create(["name"=>"admin.motions.index"]);
-        Permission::create(["name"=>"admin.motions.create"]);
-        Permission::create(["name"=>"admin.motions.edit"]);
-        Permission::create(["name"=>"admin.motions.show"]);
-        Permission::create(["name"=>"admin.motions.destroy"]);
+        Permission::create(["name"=>"admin.motions.index"])->syncRoles([$admin,$super_user,$usuario]);
+        Permission::create(["name"=>"admin.motions.create"])->syncRoles([$admin,$super_user,$usuario]);
+        Permission::create(["name"=>"admin.motions.show"])->syncRoles([$admin,$super_user,$usuario]);
+        Permission::create(["name"=>"admin.motions.destroy"])->syncRoles([$admin,$super_user,$usuario]);
+
+        //PERMISOS DE LOS HISTORIALES DE PRODUCTOS
+        Permission::create(["name"=>"admin.histories.index"])->syncRoles([$admin,$super_user,$usuario]);
+        Permission::create(["name"=>"admin.histories.show"])->syncRoles([$admin,$super_user,$usuario]);
+
+
     }
+
+    //notas
+    //admin.motions.destroy = ver detalles del vehículo desde el menu de historial
 }
+    //admin.histories.show = ver detalles de los datos antiguos y nuevos del producto
+    //seleccionado

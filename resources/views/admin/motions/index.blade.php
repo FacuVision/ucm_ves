@@ -16,9 +16,11 @@
             </div>
         @endif
 
-        <div class="card-header">
-            <a href="{{ route('admin.motions.create') }}" class="btn btn-primary"> Ingresar Movimiento</a>
-        </div>
+        @can('admin.motions.create')
+            <div class="card-header">
+                <a href="{{ route('admin.motions.create') }}" class="btn btn-primary"> Ingresar Movimiento</a>
+            </div>
+        @endcan
 
         <div class="card-body">
             <table id="tabla" class="table-striped dt-responsive nowrap display compact" style="width:100%">
@@ -36,24 +38,27 @@
                         <tr>
                             <td>{{ $motion->id }}</td>
                             <td>{{ $motion->title }}</td>
-                            <td>{{ $motion->car->plate}}</td>
-                            <td>{{ $motion->created_at->format('d-m-Y g:i a')}}</td>
+                            <td>{{ $motion->car->plate }}</td>
+                            <td>{{ $motion->created_at->format('d-m-Y g:i a') }}</td>
                             <td>
+                                @can('admin.motions.show')
                                 {{-- Mostrar --}}
                                 <a href="{{ route('admin.motions.show', $motion) }}" class="btn btn-primary">Ver detalle</a>
 
+                                @endcan
                                 {{-- Editar --}}
 
                                 {{-- <a href="{{ route('admin.motions.edit', $motion) }}" class="btn btn-success">Editar</a> --}}
 
-
-                                {{-- Eliminar --}}
-                                <form style="display: inline" action="{{ route('admin.motions.destroy', $motion) }}"
-                                    method="post" class="formulario-eliminar">
-                                    @csrf
-                                    @method('DELETE')
-                                    <input type="submit" id="delete" value="Datos del vehículo" class="btn btn-warning">
-                                </form>
+                                @can('admin.motions.show')
+                                    {{-- Eliminar --}}
+                                    <form style="display: inline" action="{{ route('admin.motions.destroy', $motion) }}"
+                                        method="post" class="formulario-eliminar">
+                                        @csrf
+                                        @method('DELETE')
+                                        <input type="submit" id="delete" value="Datos del vehículo" class="btn btn-warning">
+                                    </form>
+                                @endcan
 
                             </td>
                         </tr>

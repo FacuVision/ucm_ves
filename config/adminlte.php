@@ -316,6 +316,8 @@ return [
             'route'  => 'admin.histories.index',
             'icon'        => 'far fa-fw fa-file',
             'icon_color' => 'white',
+            'can' => 'admin.histories.index'
+
 
         ],
         ['header' => 'Administracion'],
@@ -323,18 +325,21 @@ return [
             'text' => 'Users',
             'route'  => 'admin.users.index',
             'icon' => 'fas fa-fw fa-user',
+            'can' => 'admin.users.index'
         ],
 
         [
             'text' => 'Vehículos',
             'icon' => 'fas fa-fw fa-car',
             'route'  => 'admin.cars.index',
+            'can' => 'admin.cars.index'
         ],
         [
             'text' => 'Productos',
             'route'  => 'admin.supplies.index',
             'icon' => 'fas fa-fw fa-arrow-circle-up',
             'icon_color' => 'green',
+            'can' => 'admin.supplies.index'
 
         ],
         [
@@ -342,14 +347,16 @@ return [
             'route'  => 'admin.motions.index',
             'icon_color' => 'orange',
             'icon' => 'fas fa-fw fa-arrow-circle-down',
-        ],
-        [
-            'text' => 'Roles',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-lock',
-            'icon_color' => 'yellow',
+            'can' => 'admin.motions.index'
 
         ]
+        // ,
+        // [
+        //     'text' => 'Roles',
+        //     'url'  => 'admin/settings',
+        //     'icon' => 'fas fa-fw fa-lock',
+        //     'icon_color' => 'yellow'
+        // ]
         // ,
 
         // ['header' => 'Etiquetas'],

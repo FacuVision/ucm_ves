@@ -213,7 +213,7 @@ class MotionController extends Controller
      */
     public function destroy(Motion $motion)
     {
-        return redirect()->route('admin.cars.show', $motion->car_id)
-            ->with('mensaje', 'Movimiento creado correctamente');
+        //VER DETALLES DEL VEHÍCULO
+        return redirect()->route('admin.cars.show', $motion->car_id);
     }
 }

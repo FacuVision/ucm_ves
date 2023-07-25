@@ -39,7 +39,7 @@
         <div class="card-header">
 
 
-            <h5 class="color">Movimientos del vehículo</h5>
+            <h5 class="color">Productos del movimiento</h5>
         </div>
         <div class="card-body">
             <table id="tabla" class="table-striped dt-responsive nowrap display compact" style="width:100%">
