@@ -14,15 +14,21 @@
 
         <div style="display: block" class="card-header">
 
+        @if (count($errors) > 0)
+            <div class="text-danger">
+
+                @foreach ($errors->all() as $message)
+                    <li>{{ $message }}</li>
+                @endforeach
+
+            </div>
+        @endif
 
             @if (session('error'))
                 <div class="alert alert-danger">
                     <strong>{{ session('error') }}</strong>
                 </div>
             @endif
-
-
-
 
         </div>
 

@@ -84,11 +84,6 @@ class SupplyController extends Controller
 
         //ZONA DE CREACION DE HISTORIAL CUANDO SE INGRESA UN PRODUCTO
 
-        // $table->string("datos_antiguos")->nullable();
-        // $table->string("datos_nuevos");
-        // $table->enum("type", ["actualizacion", "primer ingreso","salida","eliminacion"]);
-        // $table->enum("status", ["conforme", "con modifcaciones"]);
-
         if ($supply != null) {
 
             $observations_array = ["conforme", "con modificaciones"];

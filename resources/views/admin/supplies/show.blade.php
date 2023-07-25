@@ -34,7 +34,6 @@
                             <span class="badge badge-success">{{ $supply->observation }} </span>
                             @else
                             <span class="badge badge-danger">{{ $supply->observation }} </span>
-
                         @endif
 
                     </li>

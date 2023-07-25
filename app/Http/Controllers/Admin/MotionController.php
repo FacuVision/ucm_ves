@@ -15,7 +15,7 @@ class MotionController extends Controller
      */
     public function index()
     {
-       $motions = Motion::all();
+        $motions = Motion::all();
         return view("admin.motions.index", compact("motions"));
     }
 
@@ -26,19 +26,19 @@ class MotionController extends Controller
     {
         //HACEMOS LA Busqueda de informacion de los campos y almacenamos en los arrays
         //los que no esten de baja
-        $select_supply = Supply::all()->where("status","<>","baja");
-        $carros = Car::all()->where("status","<>","baja");
+        $select_supply = Supply::all()->where("status", "<>", "baja");
+        $carros = Car::all()->where("status", "<>", "baja");
 
         //crearemos un array especial para recorrerlos dentro de los select de la vista
         foreach ($select_supply as $key) {
-          $array[$key->id] = $key->name ." - ". $key->brand. " - Cod. ".$key->code." - Stock: ". $key->cant ." - Precio - S/. ". $key->price;
+            $array[$key->id] = $key->name . " - " . $key->brand . " - Cod. " . $key->code . " - Stock: " . $key->cant . " - Precio - S/. " . $key->price;
         }
 
         foreach ($carros as $carro) {
-            $array_vehiculos[$carro->id] = $carro->type ." -
-            Marca: ". $carro->brand. " -
-            N° Placa ".$carro->plate." -
-            Color : ". $carro->color;
+            $array_vehiculos[$carro->id] = $carro->type . " -
+            Marca: " . $carro->brand . " -
+            N° Placa " . $carro->plate . " -
+            Color : " . $carro->color;
         }
 
         //finalmente asignamos en otra variable para mejor nombre
@@ -58,7 +58,7 @@ class MotionController extends Controller
         $lista_productos = json_decode($request->hiden_json);
 
         if ($lista_productos == null) {
-            return redirect()->route('admin.motions.create')->with('error', 'Las actividades no pueden estar vacias');
+            return redirect()->route('admin.motions.create')->with('error', 'La lista de productos no puede estar vacia');
         }
 
         $request->validate([
@@ -70,6 +70,30 @@ class MotionController extends Controller
 
         //hacemos la creacion del movimiento
 
+
+       // die();
+
+        $observations_array = ["conforme", "con modificaciones"];
+        $array_unidades = [
+            'globales',
+            'metros',
+            'centimetros',
+            'milimetros',
+            'toneladas',
+            'kilogramos',
+            'gramos',
+            'litros',
+            'mililitros',
+            'metros cuadrados',
+            'metros cúbicos',
+        ];
+
+        $lineas_array = ['parte', 'suministro', 'respuesto'];
+
+
+        //CREACION DE MOVIMIENTO
+
+
         $recient_motion = Motion::create([
             "user_id" => auth()->user()->id,
             "car_id" => $request->id_car_h,
@@ -78,53 +102,60 @@ class MotionController extends Controller
         ]);
 
 
-//VERIFICAMOS LA CANTIDAD Y EL STOCK
+        //VERIFICAMOS LA CANTIDAD Y EL STOCK
         foreach ($lista_productos as $key) {
-        $producto = Supply::where("id",$key->supply_id)->get();
 
-            if($key->cant > $producto[0]->cant){
+            $producto = Supply::where("id", $key->supply_id)->get();
+
+            if ($key->cant > $producto[0]->cant) {
 
                 $recient_motion->delete();
 
                 return redirect()->route('admin.motions.index')
-                ->with('mensaje', 'No hay Stock disponible para el producto seleccionado')
-                ->with('color', 'danger');
-
+                    ->with('mensaje', 'No hay Stock disponible para el producto seleccionado')
+                    ->with('color', 'danger');
             }
         }
 
 
 
-//REALIZAMOS LA INSERCION DE LOS PRODUCTOS Y EL MOVIMIENTO
+        //REALIZAMOS LA INSERCION DE LOS PRODUCTOS Y EL MOVIMIENTO
         foreach ($lista_productos as $key) {
 
-        $producto = Supply::where("id",$key->supply_id)->get();
-        $recient_motion->supplies()->attach($key->supply_id,
-                                            [
-                                                "cant"=> $key->cant,
-                                                "motion_price" => $producto[0]->price
-                                            ]
-                                            );
+            $producto = Supply::where("id", $key->supply_id)->get();
 
-            Supply::where("id",$key->supply_id)->update([
+            $recient_motion->supplies()->attach(
+                $key->supply_id,
+                [
+                    "cant" => $key->cant,
+                    "motion_price" => $producto[0]->price
+                ]
+            );
+
+            Supply::where("id", $key->supply_id)->update([
                 "cant" => ($producto[0]->cant - $key->cant)
             ]);
 
-            $producto = null;
+            $datos_antiguos = "Id: ".$producto[0]->id."\nCodigo :".$producto[0]->code."\nNombre: ".$producto[0]->name."\nDetalle: ".$producto[0]->detail."\nLinea: ".$producto[0]->line."\nMarca: ".$producto[0]->brand."\nUnidades: ".$producto[0]->unit."\nCantidad: ".$producto[0]->cant."\nCosto: ".$producto[0]->price;
+            $datos_nuevos = "Id: ".$producto[0]->id."\nCodigo :".$producto[0]->code."\nNombre: ".$producto[0]->name."\nDetalle: ".$producto[0]->detail."\nLinea: ".$producto[0]->line."\nMarca: ".$producto[0]->brand."\nUnidades: ".$producto[0]->unit."\nCantidad: ".$producto[0]->cant - $key->cant."\nCosto: ".$producto[0]->price;
 
+            $producto[0]->histories()->create([
+                "type" => "salida",
+                "datos_nuevos" => $datos_nuevos,
+                "datos_antiguos" => $datos_antiguos,
+                "user_id" => auth()->user()->id
+            ]);
+
+            $producto = null;
         }
 
-        //die();
-        //return $array_final;
-        //die();
 
 
 
 
         return redirect()->route('admin.motions.index')
-        ->with('mensaje', 'Movimiento creado correctamente')
-        ->with('color', 'success');
-
+            ->with('mensaje', 'Movimiento creado correctamente')
+            ->with('color', 'success');
     }
 
     /**
@@ -139,17 +170,17 @@ class MotionController extends Controller
         $productos = [];
         foreach ($supplies_motions as $sm) {
 
-            array_push($productos,
-            [
-                "id" => $sm->id,
-                "name" => $sm->name,
-                "brand" => $sm->brand,
-                "cant" => $sm->pivot->cant,
-                "price" => $sm->pivot->motion_price,
-                "subtotal" => $sm->pivot->cant * $sm->pivot->motion_price
-            ]
-        );
-
+            array_push(
+                $productos,
+                [
+                    "id" => $sm->id,
+                    "name" => $sm->name,
+                    "brand" => $sm->brand,
+                    "cant" => $sm->pivot->cant,
+                    "price" => $sm->pivot->motion_price,
+                    "subtotal" => $sm->pivot->cant * $sm->pivot->motion_price
+                ]
+            );
         }
 
         $suma = 0;
@@ -183,6 +214,6 @@ class MotionController extends Controller
     public function destroy(Motion $motion)
     {
         return redirect()->route('admin.cars.show', $motion->car_id)
-        ->with('mensaje', 'Movimiento creado correctamente');
+            ->with('mensaje', 'Movimiento creado correctamente');
     }
 }

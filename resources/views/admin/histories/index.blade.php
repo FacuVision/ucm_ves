@@ -17,7 +17,7 @@
         @endif
 
         <div class="card-header">
-            <a href="{{ route('admin.supplies.create') }}" class="btn btn-primary"> Ingresar nuevo producto</a>
+            {{-- <a href="{{ route('admin.supplies.create') }}" class="btn btn-primary"> Ingresar nuevo producto</a> --}}
         </div>
 
         <div class="card-body">
@@ -25,37 +25,29 @@
                 <thead>
                     <tr>
                         <th>Id</th>
-                        <th>Nombre Producto</th>
-                        <th>Responsable</th>
-                        <th>Dni</th>
+                        <th>Producto</th>
+                        <th>Cod. Prod</th>
+                        <th>Marca</th>
+                        <th>Estado</th>
+                        <th>Tipo</th>
+                        <th>Fecha de actualizacion</th>
                         <th>Detalle</th>
-                        <th>Fecha</th>
-                        <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
+
                     @foreach ($histories as $his)
                         <tr>
-                            <td>{{$his->id}}</td>
-                            <td>{{$his->supply->name}}</td>
-                            <td>{{$supply->name}}</td>
-                            <td>{{$supply->detail}}</td>
-                            <td>{{$supply->line}}</td>
-                            <td>{{$supply->brand}}</td>
-                            <td>{{$supply->unit}}</td>
-                            <td>{{$supply->price}}</td>
-                            <td>{{$supply->cant}}</td>
+                            <td>{{ $his->id }}</td>
+                            <td>{{ $his->supply->name }}</td>
+                            <td>{{ $his->supply->code }}</td>
+                            <td>{{ $his->supply->brand}}</td>
+                            <td>{{ $his->status }}</td>
+                            <td>{{ $his->type}}</td>
+                            <td>{{ $his->created_at->format('d-m-Y g:i a') }}</td>
                             <td>
-
-                                {{-- Editar --}}
-                                <a href="{{ route('admin.supplies.edit', $supply) }}" class="btn btn-success">Editar</a>
-                                {{-- Eliminar --}}
-                                <form style="display: inline" action="{{ route('admin.supplies.destroy', $supply) }}"
-                                    method="post" class="formulario-eliminar">
-                                    @csrf
-                                    @method('DELETE')
-                                    <input type="submit" id="delete" value="Eliminar" class="btn btn-danger">
-                                </form>
+                                {{-- Ver --}}
+                                <a href="{{ route('admin.histories.show', $his) }}" class="btn btn-primary">Ver</a>
 
                             </td>
                         </tr>
@@ -64,7 +56,6 @@
                 </tbody>
             </table>
         </div>
-
     </div>
 
 

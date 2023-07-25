@@ -153,8 +153,12 @@ return [
         'lastname' => 'apellido',
         'address' => 'dirección',
         'phone' => 'teléfono',
-
-
-],
+        'title h' => 'titulo de movimiento',
+        'code' => 'codigo',
+        'detail' => 'detalle',
+        'brand' => 'marca',
+        'price' => 'costo'
+       ],
 
 ];
+

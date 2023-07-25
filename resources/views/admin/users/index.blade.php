@@ -48,11 +48,25 @@
 
 
                                 {{-- Eliminar --}}
+
                                 <form style="display: inline" action="{{ route('admin.users.destroy', $user) }}"
-                                    method="post" class="formulario-eliminar">
+                                    method="post" class="formulario-eliminar" onsubmit="return confirm('¿Está seguro que quiere eliminar este registro?')" >
+
                                     @csrf
                                     @method('DELETE')
+
                                     <input type="submit" id="delete" value="Eliminar" class="btn btn-danger">
+
+
+                                    {{-- <button type="button"  class="btn btn-danger" data-toggle="modal"
+                                        data-target="#delete{{ $user->id }}">
+                                        Eliminar
+                                    </button> --}}
+
+                                    {{-- <div class="modal fade" id="delete{{ $user->id }}" tabindex="-1" role="dialog"
+                                        aria-labelledby="myModalLabel">
+                                        @include('admin.partials.modal_eliminar')
+                                    </div> --}}
                                 </form>
 
                             </td>
@@ -66,37 +80,18 @@
     </div>
 
 
+
+
+
 @stop
 
 @section('css')
     <link rel="stylesheet" href="/css/admin_custom.css">
+
+
 @stop
 
 @section('js')
-
-    <script type="text/javascript">
-        $('.formulario-eliminar').submit(function(e) {
-            e.preventDefault();
-
-            Swal.fire({
-                title: '¿Estas seguro?',
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Sí, Borrar'
-            }).then((result) => {
-                if (result.isConfirmed) {
-/*                     Swal.fire(
-                        'Deleted!',
-                        'Your file has been deleted.',
-                        'success'
-                    ) */
-                    this.submit();
-                }
-            })
-        });
-    </script>
     @include('admin.partials.js_datatables copy')
 
 @stop

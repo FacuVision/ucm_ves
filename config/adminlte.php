@@ -253,7 +253,7 @@ return [
     */
 
     'use_route_url' => false,
-    'dashboard_url' => '/',
+    'dashboard_url' => '/admin',
     'logout_url' => 'logout',
     'login_url' => 'login',
     'register_url' => 'register',
@@ -312,11 +312,11 @@ return [
             'can'  => 'manage-blog',
         ],
         [
-            'text'        => 'Pendientes',
-            'url'         => 'admin/pages',
+            'text'        => 'Historial de productos',
+            'route'  => 'admin.histories.index',
             'icon'        => 'far fa-fw fa-file',
-            'label'       => 4,
-            'label_color' => 'success',
+            'icon_color' => 'white',
+
         ],
         ['header' => 'Administracion'],
         [
@@ -349,24 +349,25 @@ return [
             'icon' => 'fas fa-fw fa-lock',
             'icon_color' => 'yellow',
 
-        ],
+        ]
+        // ,
 
-        ['header' => 'Etiquetas'],
-        [
-            'text'       => 'Importantes',
-            'icon_color' => 'red',
-            'url'        => '#',
-        ],
-        [
-            'text'       => 'Alerta',
-            'icon_color' => 'yellow',
-            'url'        => '#',
-        ],
-        [
-            'text'       => 'Informativo',
-            'icon_color' => 'cyan',
-            'url'        => '#',
-        ],
+        // ['header' => 'Etiquetas'],
+        // [
+        //     'text'       => 'Importantes',
+        //     'icon_color' => 'red',
+        //     'url'        => '#',
+        // ],
+        // [
+        //     'text'       => 'Alerta',
+        //     'icon_color' => 'yellow',
+        //     'url'        => '#',
+        // ],
+        // [
+        //     'text'       => 'Informativo',
+        //     'icon_color' => 'cyan',
+        //     'url'        => '#',
+        // ],
     ],
 
     /*

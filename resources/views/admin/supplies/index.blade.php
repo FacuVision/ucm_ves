@@ -76,6 +76,10 @@
 
     </div>
 
+    <div class="modal-dialog modal-dialog-centered">
+
+    </div>
+
 
 @stop
 
@@ -107,12 +111,9 @@
         //                 }
         //             })
         //         });
-
     </script>
 
-    <div class="modal-dialog modal-dialog-centered">
 
-    </div>
 
     @include('admin.partials.js_datatables copy')
 

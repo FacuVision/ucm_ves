@@ -217,13 +217,14 @@ class UserController extends Controller
         /*      echo auth()->user()->id ." " . $user->id;
         die(); */
 
+        //return $user;
+
         if (auth()->user()->id == $user->id) {
 
             return redirect()->route('admin.users.index')
                 ->with('mensaje', 'No puedes eliminarte a tí mismo')
                 ->with('color','danger');
 
-            die();
             }
 
         else

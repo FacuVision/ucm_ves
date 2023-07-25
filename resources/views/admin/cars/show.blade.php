@@ -33,7 +33,7 @@
         </div>
 
         <div class="card-footer">
-            <a href="{{ route('admin.cars.index') }}" class="btn btn-warning"> Volver </a>
+            <a href="javascript:history.back()" class="btn btn-warning"> Volver </a>
         </div>
 
     </div>
