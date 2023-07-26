@@ -307,10 +307,31 @@ class SupplyController extends Controller
      */
     public function destroy(Supply $supply)
     {
+
+
+        if ($supply != null) {
+
+            $observations_array = ["conforme", "con modificaciones"];
+
+            $datos_antiguos = "Id: ".$supply->id."\nCodigo :".$supply->code."\nNombre: ".$supply->name."\nDetalle: ".$supply->detail."\nLinea: ".$supply->line."\nMarca: ".$supply->brand."\nUnidades: ".$supply->unit."\nCantidad: ".$supply->cant."\nCosto: ".$supply->price;
+
+            $supply->histories()->create([
+                "datos_antiguos" => $datos_antiguos,
+                "datos_nuevos" => "No registra",
+                "type" => "eliminacion",
+                "status" => $supply->observation,
+                "user_id" => auth()->user()->id
+            ]);
+        }
+
+
         $supply->update(["status" => "baja"]);
 
         return redirect()->route('admin.supplies.index')
             ->with('mensaje', 'Producto eliminado correctamente')
             ->with('color', 'danger');
     }
+
+
+
 }

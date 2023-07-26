@@ -69,7 +69,7 @@
                                 <a href="{{ route('admin.supplies.edit', $supply) }}" class="btn btn-success">Editar</a>
                                 @endcan
 
-                                @can('admin.supplies.delete')
+                                @can('admin.supplies.destroy')
 
                                 {{-- Eliminar --}}
                                 <form onsubmit="return confirm('¿Está seguro que quiere eliminar este registro?')" id="delete" style="display: inline"
