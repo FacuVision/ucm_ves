@@ -12,6 +12,15 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+     public function __construct() {
+        $this->middleware('can:admin.users.index')->only('index');
+        $this->middleware('can:admin.users.edit')->only('edit', 'update');
+        $this->middleware('can:admin.users.create')->only('store','create');
+        $this->middleware('can:admin.users.show')->only('show');
+        $this->middleware('can:admin.users.destroy')->only('destroy');
+     }
+
     public function index()
     {
         $users = User::where('status','alta')->get();
@@ -39,7 +48,7 @@ class UserController extends Controller
             "nombre" => "required|string",
             "apellido" => "required|string",
             "phone" => "numeric|required|unique:profiles|digits:9",
-            "dni" => "required|string|max:8",
+            "dni" => "required|string|max:8|unique:profiles",
             "direccion" => "required|max:100",
             "roles" => "required",
         ]);
@@ -57,8 +66,7 @@ class UserController extends Controller
                 "lastname" => $request->apellido,
                 "dni" => $request->dni,
                 "address" => $request->direccion,
-                "phone" => $request->phone,
-
+                "phone" => $request->phone
             ]
         );
 

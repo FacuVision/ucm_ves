@@ -11,6 +11,16 @@ class CarController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+     public function __construct() {
+        $this->middleware('can:admin.cars.index')->only('index');
+        $this->middleware('can:admin.cars.edit')->only('edit', 'update');
+        $this->middleware('can:admin.cars.create')->only('store','create');
+        $this->middleware('can:admin.cars.destroy')->only('destroy');
+        $this->middleware('can:admin.cars.show')->only('show');
+
+    }
+
     public function index()
     {
         $cars = Car::where('status','alta')->get();

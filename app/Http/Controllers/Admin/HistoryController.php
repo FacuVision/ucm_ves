@@ -8,6 +8,14 @@ use Illuminate\Http\Request;
 
 class HistoryController extends Controller
 {
+
+
+
+    public function __construct() {
+        $this->middleware('can:admin.histories.index')->only('index');
+        $this->middleware('can:admin.histories.show')->only('show');
+    }
+
     /**
      * Display a listing of the resource.
      */

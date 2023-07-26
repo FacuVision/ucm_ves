@@ -9,12 +9,23 @@
 @section('content')
     <p>Agrega o elimina productos indicando su cantidad</p>
 
+
+    <div id="jsonDiv">
+
+    </div>
+
     <div class="card">
 
+{{--
+        <div class="card-header">
 
-        <div style="display: block" class="card-header">
 
-        @if (count($errors) > 0)
+
+        </div> --}}
+
+        <div class="card-body">
+
+            @if (count($errors) > 0)
             <div class="text-danger">
 
                 @foreach ($errors->all() as $message)
@@ -30,13 +41,6 @@
                 </div>
             @endif
 
-        </div>
-
-        <div class="card-body">
-
-            <div id="jsonDiv">
-
-            </div>
 
             {!! Form::open(['method' => 'POST', 'route' => 'admin.motions.store', 'id' => 'FormFinal']) !!}
             {!! Form::hidden('hiden_json', '', ['id' => 'hiden_json']) !!}

@@ -17,11 +17,9 @@
         @endif
 
         @can('admin.users.create')
-
-        <div class="card-header">
-            <a href="{{ route('admin.users.create') }}" class="btn btn-primary"> Crear Usuario</a>
-        </div>
-
+            <div class="card-header">
+                <a href="{{ route('admin.users.create') }}" class="btn btn-primary"> Crear Usuario</a>
+            </div>
         @endcan
 
         <div class="card-body">
@@ -69,13 +67,13 @@
                             </td>
                             <td>
                                 @can('admin.users.show')
-                                {{-- Mostrar --}}
+                                    {{-- Mostrar --}}
                                     <a href="{{ route('admin.users.show', $user) }}" class="btn btn-primary">Ver</a>
                                 @endcan
 
                                 {{-- Editar --}}
 
-                                @can('admin.users.edit')
+                                @can('admin.users.destroy')
                                     <a href="{{ route('admin.users.edit', $user) }}" class="btn btn-success">Editar</a>
                                 @endcan
 

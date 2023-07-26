@@ -27,25 +27,47 @@
         </div>
         <div class="card-body">
 
-            {!! Form::model($car, ['route' => ['admin.cars.update', $car], 'method' => 'PUT']) !!}
+            {!! Form::model($car, ['route' => ['admin.cars.update', $car], 'method' => 'PUT', 'id' => 'form_edit']) !!}
 
             <div class="form-group">
 
                 <div class="form-group">
 
+
+
+                    @can('admin.users.destroy')
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col">
+
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value=1 id="edicion">
+                                        <label class="form-check-label" for="edicion">
+                                            <strong>
+                                                Hacer editable
+                                            </strong>
+                                        </label>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    @endcan
+
                     <div class="form-group">
                         <div class="row">
                             <div class="col">
                                 {!! Form::label('type', 'Tipo') !!}
-                                {!! Form::text('type', $car->type, ['class' => 'form-control']) !!}
+                                {!! Form::text('type', $car->type, ['class' => 'form-control', 'disabled' => true]) !!}
                             </div>
                             <div class="col">
                                 {!! Form::label('plate', 'Placa') !!}
-                                {!! Form::text('plate', $car->plate, ['class' => 'form-control']) !!}
+                                {!! Form::text('plate', $car->plate, ['class' => 'form-control', 'disabled' => true]) !!}
                             </div>
+
                             <div class="col">
-                                {!! Form::label('mileage', 'Kilometraje') !!}
-                                {!! Form::number('mileage', $car->mileage, ['class' => 'form-control']) !!}
+                                {!! Form::label('model', 'Modelo') !!}
+                                {!! Form::text('model', $car->model, ['class' => 'form-control', 'disabled' => true]) !!}
                             </div>
                         </div>
                     </div>
@@ -54,16 +76,18 @@
                         <div class="row">
                             <div class="col">
                                 {!! Form::label('brand', 'Marca') !!}
-                                {!! Form::text('brand', $car->brand, ['class' => 'form-control']) !!}
+                                {!! Form::text('brand', $car->brand, ['class' => 'form-control', 'disabled' => true]) !!}
                             </div>
                             <div class="col">
                                 {!! Form::label('color', 'Color') !!}
                                 {!! Form::text('color', $car->color, ['class' => 'form-control']) !!}
                             </div>
+
                             <div class="col">
-                                {!! Form::label('model', 'Modelo') !!}
-                                {!! Form::text('model', $car->model, ['class' => 'form-control']) !!}
+                                {!! Form::label('mileage', 'Kilometraje') !!}
+                                {!! Form::number('mileage', $car->mileage, ['class' => 'form-control']) !!}
                             </div>
+
                         </div>
                     </div>
                 </div>
@@ -78,3 +102,59 @@
 
     </div>
 @stop
+
+
+@section('js')
+    <script>
+
+        let tipo = document.getElementById('type');
+        let placa = document.getElementById('plate');
+        let marca = document.getElementById('brand');
+        let modelo = document.getElementById('model');
+
+        $('#form_edit').submit(function(e) {
+
+            e.preventDefault();
+
+            placa.removeAttribute("disabled");
+            tipo.removeAttribute("disabled");
+            marca.removeAttribute("disabled");
+            modelo.removeAttribute("disabled");
+
+
+            this.submit();
+        });
+
+
+
+        function on() {
+
+            placa.removeAttribute("disabled");
+            tipo.removeAttribute("disabled");
+            marca.removeAttribute("disabled");
+            modelo.removeAttribute("disabled");
+        }
+
+        function off() {
+
+            placa.setAttribute("disabled", false);
+            tipo.setAttribute("disabled", false);
+            marca.setAttribute("disabled", false);
+            modelo.setAttribute("disabled", false);
+
+        }
+
+        var checkbox = document.getElementById('edicion');
+
+        checkbox.addEventListener("change", comprueba, false);
+
+        function comprueba() {
+            if (checkbox.checked) {
+                on();
+            } else {
+                off();
+            }
+        }
+
+    </script>
+@endsection

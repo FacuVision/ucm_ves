@@ -40,11 +40,17 @@
 
     <div class="card">
         <div class="card-header">
-
-
             <h5 class="color">Movimientos del vehículo</h5>
         </div>
+
         <div class="card-body">
+
+            <div class="card">
+                @can('admin.motions.create')
+                <a href="{{ route('admin.motions.index') }}" class="btn btn-primary"> Ingresar Movimiento</a>
+                @endcan
+
+            </div>
             <table id="tabla" class="table-striped dt-responsive nowrap display compact" style="width:100%">
                 <thead>
                     <tr>
@@ -53,6 +59,7 @@
                         <th>Titulo</th>
                         <th>Descripcion</th>
                         <th>Fecha de creacion</th>
+                        <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -63,6 +70,13 @@
                             <td>{{ $movimiento->title }}</td>
                             <td>{{ $movimiento->detail }}</td>
                             <td>{{ $movimiento->created_at->format('d-m-Y g:i a') }}</td>
+
+                            <td>
+                                @can('admin.motions.show')
+                                {{-- Mostrar --}}
+                                <a href="{{ route('admin.motions.show', $movimiento) }}" class="btn btn-primary">Ver</a>
+                            @endcan
+                            </td>
                         </tr>
                     @endforeach
 

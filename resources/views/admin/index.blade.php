@@ -3,11 +3,11 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <h1>Dashboard</h1>
+    <h1>Bienvenido</h1>
 @stop
 
 @section('content')
-    <p>Welcome to this beautiful admin panel.</p>
+    <p>Sistema de control de repuestos de la Municipalidad de Villa el Salvador</p>
 @stop
 
 @section('css')

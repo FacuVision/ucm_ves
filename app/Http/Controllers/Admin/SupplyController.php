@@ -11,6 +11,17 @@ class SupplyController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+    public function __construct() {
+        $this->middleware('can:admin.supplies.index')->only('index');
+        $this->middleware('can:admin.supplies.edit')->only('edit', 'update');
+        $this->middleware('can:admin.supplies.create')->only('store','create');
+        $this->middleware('can:admin.supplies.destroy')->only('destroy');
+        $this->middleware('can:admin.supplies.show')->only('show');
+
+    }
+
+
     public function index()
     {
         $supplies = Supply::where('status', 'alta')->get();

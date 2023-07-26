@@ -47,7 +47,7 @@
 
                                 @can('admin.cars.show')
                                 {{-- Mostrar --}}
-                                <a href="{{ route('admin.cars.show', $car) }}" class="btn btn-primary">Movimientos</a>
+                                <a href="{{ route('admin.cars.show', $car) }}" class="btn btn-primary">Detalle y movimientos</a>
                                 @endcan
 
                                 {{-- Editar --}}

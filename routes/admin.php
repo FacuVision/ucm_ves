@@ -19,7 +19,7 @@ use App\Http\Controllers\Admin\HistoryController;
 |
 */
 
-Route::get('/', [HomeController::class,'index']);
+Route::get('/', [HomeController::class,'index'])->middleware('can:admin.home')->name('admin.home');
 Route::resource('users', UserController::class)->names('admin.users');
 Route::resource('cars', CarController::class)->names('admin.cars');
 Route::resource('supplies', SupplyController::class)->names('admin.supplies');

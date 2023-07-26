@@ -13,6 +13,19 @@ class MotionController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+
+     public function __construct() {
+        $this->middleware('can:admin.motions.index')->only('index');
+        $this->middleware('can:admin.motions.edit')->only('edit', 'update');
+        $this->middleware('can:admin.motions.create')->only('store','create');
+        $this->middleware('can:admin.motions.destroy')->only('destroy');
+        $this->middleware('can:admin.motions.show')->only('show');
+
+    }
+
+
+
     public function index()
     {
         $motions = Motion::all();
@@ -28,6 +41,7 @@ class MotionController extends Controller
         //los que no esten de baja
         $select_supply = Supply::all()->where("status", "<>", "baja");
         $carros = Car::all()->where("status", "<>", "baja");
+        $array = [];
 
         //crearemos un array especial para recorrerlos dentro de los select de la vista
         foreach ($select_supply as $key) {
@@ -44,6 +58,7 @@ class MotionController extends Controller
         //finalmente asignamos en otra variable para mejor nombre
         $select_vehiculos = $array_vehiculos;
         $select_supply = $array;
+
 
         return view("admin.motions.create", compact("select_supply", "select_vehiculos"));
     }
