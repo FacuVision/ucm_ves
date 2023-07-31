@@ -158,7 +158,8 @@ class MotionController extends Controller
                 "type" => "salida",
                 "datos_nuevos" => $datos_nuevos,
                 "datos_antiguos" => $datos_antiguos,
-                "user_id" => auth()->user()->id
+                "user_id" => auth()->user()->id,
+                "status" => $producto[0]->observation
             ]);
 
             $producto = null;

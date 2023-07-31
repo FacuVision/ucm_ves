@@ -50,11 +50,8 @@
 
 
 <style>
-    a[href="http://ucm_ves.test/password/reset"] {
-        display:none;
-    }
-
-    a[href="http://ucm_ves.test/register"] {
+    .card-footer{
         display:none;
     }
 </style>
+
