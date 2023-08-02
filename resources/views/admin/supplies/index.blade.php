@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'Dashboard')
+@section('title', 'Control de Repuestos VES')
 
 @section('content_header')
-    <h1>Productos</h1>
+    <h1>Repuestos</h1>
     @include('admin.partials.css_datatables')
 @stop
 
@@ -19,7 +19,7 @@
         @can('admin.supplies.create')
 
         <div class="card-header">
-            <a href="{{ route('admin.supplies.create') }}" class="btn btn-primary"> Ingresar nuevo producto</a>
+            <a href="{{ route('admin.supplies.create') }}" class="btn btn-primary"> Ingresar nuevo repuesto</a>
         </div>
 
         @endcan

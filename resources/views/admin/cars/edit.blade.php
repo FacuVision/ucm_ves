@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Dashboard')
+@section('title', 'Control de Repuestos VES')
 
 @section('content_header')
     <h1>Editar vehículo </h1>
@@ -57,17 +57,17 @@
                     <div class="form-group">
                         <div class="row">
                             <div class="col">
-                                {!! Form::label('type', 'Tipo') !!}
-                                {!! Form::text('type', $car->type, ['class' => 'form-control', 'disabled' => true]) !!}
-                            </div>
-                            <div class="col">
                                 {!! Form::label('plate', 'Placa') !!}
                                 {!! Form::text('plate', $car->plate, ['class' => 'form-control', 'disabled' => true]) !!}
                             </div>
+                            <div class="col">
+                                {!! Form::label('type', 'Tipo') !!}
+                                {!! Form::text('type', $car->type, ['class' => 'form-control', 'disabled' => true]) !!}
+                            </div>
 
                             <div class="col">
-                                {!! Form::label('model', 'Modelo') !!}
-                                {!! Form::text('model', $car->model, ['class' => 'form-control', 'disabled' => true]) !!}
+                                {!! Form::label('brand', 'Marca') !!}
+                                {!! Form::text('brand', $car->brand, ['class' => 'form-control', 'disabled' => true]) !!}
                             </div>
                         </div>
                     </div>
@@ -75,14 +75,23 @@
                     <div class="form-group">
                         <div class="row">
                             <div class="col">
-                                {!! Form::label('brand', 'Marca') !!}
-                                {!! Form::text('brand', $car->brand, ['class' => 'form-control', 'disabled' => true]) !!}
+                                {!! Form::label('model', 'Modelo') !!}
+                                {!! Form::text('model', $car->model, ['class' => 'form-control', 'disabled' => true]) !!}
                             </div>
                             <div class="col">
                                 {!! Form::label('color', 'Color') !!}
                                 {!! Form::text('color', $car->color, ['class' => 'form-control']) !!}
                             </div>
 
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col">
+                                {!! Form::label('combustible_type', 'Tipo de combustible') !!}
+                                {!! Form::text('combustible_type', $car->combustible_type , ['class' => 'form-control', 'disabled' => true]) !!}
+                            </div>
                             <div class="col">
                                 {!! Form::label('mileage', 'Kilometraje') !!}
                                 {!! Form::number('mileage', $car->mileage, ['class' => 'form-control']) !!}
@@ -111,6 +120,7 @@
         let placa = document.getElementById('plate');
         let marca = document.getElementById('brand');
         let modelo = document.getElementById('model');
+        let combustible_type = document.getElementById('combustible_type');
 
         $('#form_edit').submit(function(e) {
 
@@ -120,6 +130,7 @@
             tipo.removeAttribute("disabled");
             marca.removeAttribute("disabled");
             modelo.removeAttribute("disabled");
+            combustible_type.removeAttribute("disabled");
 
 
             this.submit();
@@ -133,6 +144,7 @@
             tipo.removeAttribute("disabled");
             marca.removeAttribute("disabled");
             modelo.removeAttribute("disabled");
+            combustible_type.removeAttribute("disabled");
         }
 
         function off() {
@@ -141,6 +153,7 @@
             tipo.setAttribute("disabled", false);
             marca.setAttribute("disabled", false);
             modelo.setAttribute("disabled", false);
+            combustible_type.setAttribute("disabled", false);
 
         }
 

@@ -1,39 +1,34 @@
 @extends('adminlte::page')
 
-@section('title', 'Dashboard')
+@section('title', 'Control de Repuestos VES')
 
 @section('content_header')
-    <h1>Añadir productos al movimiento</h1>
+    <h1>Añadir Repuestos al movimiento</h1>
+    @include('admin.partials.css_datatables')
+    {{-- @include('admin.partials.css_select2') --}}
+
 @stop
 
 @section('content')
-    <p>Agrega o elimina productos indicando su cantidad</p>
+    <p>Agrega o elimina repuestos indicando su cantidad</p>
 
 
-    <div id="jsonDiv">
-
-    </div>
+    <div id="jsonDiv"></div>
 
     <div class="card">
-
-{{--
-        <div class="card-header">
-
-
-
-        </div> --}}
+        {{-- <div class="card-header"> </div> --}}
 
         <div class="card-body">
 
             @if (count($errors) > 0)
-            <div class="text-danger">
+                <div class="text-danger">
 
-                @foreach ($errors->all() as $message)
-                    <li>{{ $message }}</li>
-                @endforeach
+                    @foreach ($errors->all() as $message)
+                        <li>{{ $message }}</li>
+                    @endforeach
 
-            </div>
-        @endif
+                </div>
+            @endif
 
             @if (session('error'))
                 <div class="alert alert-danger">
@@ -56,15 +51,26 @@
                 <div class="columns">
                     <div class="column">
                         <br>
+
                         <label class="label">Vehículo destinado:</label>
-                        <select name="car" id="car" class="form-control">
+                        {{-- <select name="car" id="car" class="form-control">
+                            @foreach ($select_vehiculos as $key => $value)
+                                <option value={{ $key }}>{{ $value }}</option>
+                            @endforeach
+                        </select> --}}
+                        <select name="car" id="car" class="form-select">
                             @foreach ($select_vehiculos as $key => $value)
                                 <option value={{ $key }}>{{ $value }}</option>
                             @endforeach
                         </select>
+
+
                     </div>
 
                 </div>
+
+
+
                 <div class="columns">
                     <div class="column">
                         <label class="label">Titulo:</label>
@@ -83,12 +89,19 @@
                 <div class="row">
                     <div class="col-3">
                         <label class="label">Cantidad:</label>
-                        <input value="1" type="number" min=1 name="cant" id="cant" required class="form-control">
+                        <input value="1" type="number" min=1 name="cant" id="cant" required
+                            class="form-control">
                     </div>
 
                     <div class="col-9">
-                        <label class="label">Producto:</label>
-                        <select name="supply" id="supply" class="form-control">
+                        <label class="label">Repuesto:</label>
+                        {{-- <select name="supply" id="supply" class="form-control">
+                            @foreach ($select_supply as $key => $value)
+                                <option value={{ $key }}>{{ $value }}</option>
+                            @endforeach
+                        </select> --}}
+
+                        <select name="supply" id="supply" class="form-select">
                             @foreach ($select_supply as $key => $value)
                                 <option value={{ $key }}>{{ $value }}</option>
                             @endforeach
@@ -113,7 +126,7 @@
                 <div class="columns">
                     <div class="column">
                         <button id="btnSave" type="button" class="btn btn-warning">
-                            Registrar productos
+                            Registrar Repuestos
                         </button>
                     </div>
                 </div>
@@ -144,6 +157,10 @@
 @stop
 
 @section('js')
+
+    @include('admin.partials.js_datatables copy')
+    {{-- @include('admin.partials.js_select2') --}}
+
     <script src="{{ asset('js/motions_create.js') }}"></script>
 
 @stop

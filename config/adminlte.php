@@ -312,7 +312,7 @@ return [
             'can'  => 'manage-blog',
         ],
         [
-            'text'        => 'Historial de productos',
+            'text'        => 'Historial de repuestos',
             'route'  => 'admin.histories.index',
             'icon'        => 'far fa-fw fa-file',
             'icon_color' => 'white',
@@ -322,7 +322,7 @@ return [
         ],
         ['header' => 'Administracion'],
         [
-            'text' => 'Users',
+            'text' => 'Usuarios',
             'route'  => 'admin.users.index',
             'icon' => 'fas fa-fw fa-user',
             'can' => 'admin.users.index'
@@ -335,7 +335,7 @@ return [
             'can' => 'admin.cars.index'
         ],
         [
-            'text' => 'Productos',
+            'text' => 'Repuestos',
             'route'  => 'admin.supplies.index',
             'icon' => 'fas fa-fw fa-arrow-circle-up',
             'icon_color' => 'green',

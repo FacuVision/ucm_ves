@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'Dashboard')
+@section('title', 'Control de Repuestos VES')
 
 @section('content_header')
-    <h1>Editar Producto </h1>
+    <h1>Editar Repuesto </h1>
 @stop
 
 @section('content')

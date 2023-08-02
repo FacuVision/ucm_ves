@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Dashboard')
+@section('title', 'Control de Repuestos VES')
 
 @section('content_header')
     <h1> Movimiento de fecha {{ $motion->created_at->format('d-m-Y g:i a') }} </h1>
@@ -39,7 +39,7 @@
         <div class="card-header">
 
 
-            <h5 class="color">Productos del movimiento</h5>
+            <h5 class="color">Repuestos del movimiento</h5>
         </div>
         <div class="card-body">
             <table id="tabla" class="table-striped dt-responsive nowrap display compact" style="width:100%">

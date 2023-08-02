@@ -1,3 +1,5 @@
+
+
 let parameters = []
 let tipoPregunta = ""
 
@@ -24,7 +26,7 @@ const addJsonElement = json => {
     const templateElement = (data, position) => {
         return (`
             <button class="delete" onclick="removeElement(event, ${position})"></button>
-            <strong class='badge badge-light'>Producto</strong> <br>${data}
+            <strong class='badge badge-light'>Repuesto</strong> <br>${data}
         `)
     }
 
@@ -83,19 +85,12 @@ const addJsonElement = json => {
             const $jsonDiv = document.getElementById("jsonDiv")
             document.getElementById("hiden_json").value = `${JSON.stringify(parameters)}`
 
-
-
-
-
-
             $divElements.innerHTML = ""
             parameters = []
-
-
-
 
             $FormFinal.submit()
 
     })
 
 })()
+

@@ -42,6 +42,7 @@ class MotionController extends Controller
         $select_supply = Supply::all()->where("status", "<>", "baja");
         $carros = Car::all()->where("status", "<>", "baja");
         $array = [];
+        $select_vehiculos = [];
 
         //crearemos un array especial para recorrerlos dentro de los select de la vista
         foreach ($select_supply as $key) {

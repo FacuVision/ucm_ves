@@ -51,7 +51,8 @@ class SupplyController extends Controller
             "unit" => "required|string",
             "price" => "numeric|required",
             "observation" => "required",
-            "cant" => "numeric|required"
+            "cant" => "numeric|required",
+            "observation_detail" => "string"
         ];
 
         $arr = [
@@ -181,7 +182,9 @@ class SupplyController extends Controller
             "unit" => "required",
             "price" => "numeric|required",
             "cant" => "numeric|required",
-            "observation" => "required"
+            "observation" => "required",
+            "observation_detail" => "string"
+
         ];
 
         $codigo_nuevo = [
@@ -193,7 +196,9 @@ class SupplyController extends Controller
             "unit" => "required",
             "price" => "numeric|required",
             "cant" => "numeric|required",
-            "observation" => "required"
+            "observation" => "required",
+            "observation_detail" => "string"
+
         ];
 
         $arr = [

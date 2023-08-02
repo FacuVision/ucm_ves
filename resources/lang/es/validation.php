@@ -157,7 +157,11 @@ return [
         'code' => 'codigo',
         'detail' => 'detalle',
         'brand' => 'marca',
-        'price' => 'costo'
+        'price' => 'costo',
+        'title_h' => 'Título de Movimiento',
+        'detail_h' => 'Descripcion de Movimiento',
+        'id_car_h' => 'Código de vehiculo',
+        "combustible_type" => "Tipo de combustible"
        ],
 
 ];

@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'Dashboard')
+@section('title', 'Control de Repuestos VES')
 
 @section('content_header')
-    <h1>Historial de movimientos de productos</h1>
+    <h1>Historial de movimientos de Repuestos</h1>
     @include('admin.partials.css_datatables')
 @stop
 
@@ -25,7 +25,7 @@
                 <thead>
                     <tr>
                         <th>Id</th>
-                        <th>Producto</th>
+                        <th>Repuesto</th>
                         <th>Cod. Prod</th>
                         <th>Marca</th>
                         <th>Estado</th>

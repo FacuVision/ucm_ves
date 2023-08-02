@@ -22,9 +22,20 @@
 
 
 
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+
+<!-- Scripts -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.0/dist/jquery.slim.min.js"></script> -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+
+
 
 
 <script>
+
     $(document).ready(function() {
         $('#tabla').DataTable({
 
@@ -70,30 +81,17 @@
 
         });
     } );
-</script>
 
-<script>
+    $('#car').select2({
+            theme: "bootstrap-5",
+            width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
+            placeholder: "Selecciona vehiculo"
+        });
 
-
-// $(document).ready(function() {
-//     $('#example').DataTable({
-//         language: {
-//                 "lengthMenu": "Mostrar _MENU_ registros",
-//                 "zeroRecords": "No se encontraron resultados",
-//                 "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-//                 "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
-//                 "infoFiltered": "(filtrado de un total de _MAX_ registros)",
-//                 "sSearch": "Buscar:",
-//                 "oPaginate": {
-//                     "sFirst": "Primero",
-//                     "sLast":"Último",
-//                     "sNext":"Siguiente",
-//                     "sPrevious": "Anterior"
-// 			     },
-// 			     "sProcessing":"Procesando...",
-//             },
-
-//     });
-// });
+    $('#supply').select2({
+            theme: "bootstrap-5",
+            width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
+            placeholder: "Selecciona vehiculo"
+        });
 
 </script>

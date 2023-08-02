@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Dashboard')
+@section('title', 'Control de Repuestos VES')
 
 @section('content_header')
     <h1>Vehículo de placa N° {{ $car->plate }} </h1>
@@ -18,15 +18,23 @@
 
             <div class="card" style="width: auto;">
                 <div class="card-header bg-info-subtle">
-                    <strong> Tipo:</strong> {{ $car->type }}
+                    <strong>Placa:</strong> {{ $car->plate }}
                 </div>
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item"><strong>Placa:</strong> {{ $car->plate }}</li>
-                    <li class="list-group-item"><strong>Kilometraje:</strong> {{ $car->mileage }}</li>
+                    <li class="list-group-item"><strong>Tipo:</strong> {{ $car->type }}</li>
                     <li class="list-group-item "><strong>Marca:</strong> {{ $car->brand }}</li>
-                    <li class="list-group-item "><strong>Color:</strong> {{ $car->color }} </li>
                     <li class="list-group-item "><strong>Modelo:</strong> {{ $car->model }} </li>
+                    <li class="list-group-item "><strong>Color:</strong> {{ $car->color }} </li>
+                    <li class="list-group-item "><strong>Tipo de combustible:</strong> {{ $car->combustible_type }} </li>
+                    <li class="list-group-item"><strong>Kilometraje:</strong> {{ $car->mileage }}</li>
                     <li class="list-group-item "><strong>Primer ingreso al sistema: </strong> {{ $car->created_at->format('d-m-Y g:i a') }} </li>
+                    <li class="list-group-item "><strong>Última actualizacion: </strong>
+                        @if ($car->updated_at != null)
+                            {{ $car->updated_at->format('d-m-Y g:i a') }}
+                        @else
+                            <span class="badge badge-secondary"> Sin modificaciones aún</span>
+                        @endif
+                    </li>
                 </ul>
 
             </div>
@@ -57,7 +65,6 @@
                         <th>Id</th>
                         <th>Responsable</th>
                         <th>Titulo</th>
-                        <th>Descripcion</th>
                         <th>Fecha de creacion</th>
                         <th>Acciones</th>
                     </tr>
@@ -68,7 +75,6 @@
                             <td>{{ $movimiento->id }}</td>
                             <td>{{ $movimiento->user->profile->name }}</td>
                             <td>{{ $movimiento->title }}</td>
-                            <td>{{ $movimiento->detail }}</td>
                             <td>{{ $movimiento->created_at->format('d-m-Y g:i a') }}</td>
 
                             <td>

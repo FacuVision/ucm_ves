@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string("brand"); //marca
             $table->string("color"); //color
             $table->string("model"); // modelo
+            $table->string("combustible_type"); // modelo
             $table->enum("status", ["alta", "baja"])->default('alta');
             $table->timestamps();
         });

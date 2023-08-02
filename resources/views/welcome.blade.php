@@ -68,10 +68,10 @@
                                     </svg>
                                 </div>
 
-                                <h2 class="mt-6 text-xl font-semibold text-gray-900">Registro de entrada y salida de productos</h2>
+                                <h2 class="mt-6 text-xl font-semibold text-gray-900">Registro de entrada y salida de Repuestos</h2>
 
                                 <p class="mt-4 text-gray-500 text-sm leading-relaxed">
-                                    Crea, actualiza, elimina y visualiza los productos que ingresan al almcacén.
+                                    Crea, actualiza, elimina y visualiza los repuestos que ingresan al almacacén.
                                     Asi como tambien podras ver el historial de cambios detallados.
                                 </p>
                             </div>

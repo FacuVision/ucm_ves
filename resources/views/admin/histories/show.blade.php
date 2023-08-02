@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Dashboard')
+@section('title', 'Control de Repuestos VES')
 
 @section('content_header')
     <h1>Historial N° {{ $history->id }}</h1>
@@ -21,11 +21,11 @@
             <div class="form-group">
                 <div class="row">
                     <div class="col">
-                        {!! Form::label('code', 'Código de producto') !!}
+                        {!! Form::label('code', 'Código de repuesto') !!}
                         {!! Form::text('user_name', $history->supply->code, ['disabled' => 'true', 'class' => 'form-control']) !!}
                     </div>
                     <div class="col">
-                        {!! Form::label('name', 'Nombre de producto') !!}
+                        {!! Form::label('name', 'Nombre de repuesto') !!}
                         {!! Form::text('user_name', $history->supply->name, ['disabled' => 'true', 'class' => 'form-control']) !!}
                     </div>
                 </div>

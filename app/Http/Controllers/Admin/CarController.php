@@ -46,7 +46,8 @@ class CarController extends Controller
             "color" => "required|string",
             "brand" => "required|string",
             "mileage" => "numeric|required",
-            "model" => "required|string"
+            "model" => "required|string",
+            "combustible_type" => "required|string"
         ];
 
 
@@ -89,7 +90,8 @@ class CarController extends Controller
             "color" => "required|string",
             "brand" => "required|string",
             "mileage" => "numeric|required",
-            "model" => "required|string"
+            "model" => "required|string",
+            "combustible_type" => "required|string"
         ];
 
         $sin_placa = [
@@ -98,7 +100,8 @@ class CarController extends Controller
             "color" => "required|string",
             "brand" => "required|string",
             "mileage" => "numeric|required",
-            "model" => "required|string"
+            "model" => "required|string",
+            "combustible_type" => "required|string"
         ];
 
 
