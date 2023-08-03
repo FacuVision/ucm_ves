@@ -42,6 +42,11 @@ class SupplyController extends Controller
      */
     public function store(Request $request)
     {
+
+        //return $request->all();
+
+
+
         $codigo_unico = [
             "code" => "unique:supplies|required",
             "name" => "required|string",
@@ -51,8 +56,7 @@ class SupplyController extends Controller
             "unit" => "required|string",
             "price" => "numeric|required",
             "observation" => "required",
-            "cant" => "numeric|required",
-            "observation_detail" => "string"
+            "cant" => "numeric|required"
         ];
 
         $arr = [
@@ -87,7 +91,8 @@ class SupplyController extends Controller
             "brand" =>  $request->brand,
             "price" =>  $request->price,
             "cant" =>  $request->cant,
-            "observation" => $observations_array[$request->observation]
+            "observation" => $observations_array[$request->observation],
+            "observation_detail" => $request->observation_detail
         ]);
 
 
@@ -108,7 +113,9 @@ class SupplyController extends Controller
                 "datos_nuevos" => $datos_nuevos,
                 "type" => "primer ingreso",
                 "status" => $observations_array[$request->observation],
-                "user_id" => auth()->user()->id
+                "user_id" => auth()->user()->id,
+                "status_detail" => $request->observation_detail
+
             ]);
         }
 
@@ -182,8 +189,7 @@ class SupplyController extends Controller
             "unit" => "required",
             "price" => "numeric|required",
             "cant" => "numeric|required",
-            "observation" => "required",
-            "observation_detail" => "string"
+            "observation" => "required"
 
         ];
 
@@ -196,9 +202,7 @@ class SupplyController extends Controller
             "unit" => "required",
             "price" => "numeric|required",
             "cant" => "numeric|required",
-            "observation" => "required",
-            "observation_detail" => "string"
-
+            "observation" => "required"
         ];
 
         $arr = [
@@ -256,7 +260,8 @@ class SupplyController extends Controller
                 "datos_nuevos" => $datos_nuevos,
                 "datos_antiguos" => $datos_antiguos,
                 "user_id" => auth()->user()->id,
-                "status" => $observations_array[$request->observation]
+                "status" => $observations_array[$request->observation],
+                "status_detail" => $request->observation_detail
             ]);
         }
 
@@ -276,6 +281,7 @@ class SupplyController extends Controller
             $supply->brand = $request->brand;
             $supply->price = $request->price;
             $supply->cant = $request->cant;
+            $supply->observation_detail = $request->observation_detail;
             $supply->observation = $observations_array[$request->observation];
             $supply->save();
 
@@ -296,6 +302,7 @@ class SupplyController extends Controller
         $supply->brand = $request->brand;
         $supply->price = $request->price;
         $supply->cant = $request->cant;
+        $supply->observation_detail = $request->observation_detail;
         $supply->observation = $observations_array[$request->observation];
         $supply->save();
 
@@ -325,7 +332,9 @@ class SupplyController extends Controller
                 "datos_nuevos" => "No registra",
                 "type" => "eliminacion",
                 "status" => $supply->observation,
-                "user_id" => auth()->user()->id
+                "user_id" => auth()->user()->id,
+                "status_detail" => $supply->observation_detail
+
             ]);
         }
 

@@ -46,7 +46,14 @@
             <div class="mb-3">
                 <label for="detail" class="form-label">Detalles</label>
                 <textarea class="form-control" id="detail" rows="3" disabled>{{$supply->detail}}</textarea>
-              </div>
+            </div>
+
+            @if ($supply->observation_detail != null)
+                <div class="mb-3">
+                    <label for="detail" class="form-label">Observacion detalles</label>
+                    <textarea class="form-control" id="detail" rows="3" disabled>{{$supply->observation_detail}}</textarea>
+                </div>
+            @endif
         </div>
 
         <div class="card-footer">

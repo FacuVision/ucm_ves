@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string("code")->unique();
             $table->string("name");
             $table->text("detail")->nullable();
+            $table->text("observation_detail")->nullable();
             $table->integer("cant");
             $table->enum("line", ["parte", "suministro", "respuesto"]);
             $table->string("brand");

@@ -104,10 +104,21 @@
                                 </div>
                                 <div class="col">
                                     {!! Form::label('observation', 'Observación') !!}
-                                    {!! Form::select('observation', ["conforme", "con modificaciones"], $observation_id, ['class' => 'form-control']) !!}
+                                    {!! Form::select('observation', ["conforme", "con modificaciones"], $observation_id, ['class' => 'form-control','onChange' => 'pagoOnChange(this)']) !!}
                                 </div>
 
                             </div>
+                        </div>
+
+                        <div id="bloque" class="form-group">
+
+                            <div class="row">
+                                <div class="col">
+                                    {!! Form::label('observation_detail', 'Detalle de observacion') !!}
+                                    {!! Form::textarea('observation_detail', $supply->observation_detail, ['class' => 'form-control', 'rows' => 3]) !!}
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -122,3 +133,34 @@
 
     </div>
 @stop
+
+@section('js')
+    <script>
+
+        obs = document.getElementById("observation");
+        if (obs.value == "0") {
+            divC = document.getElementById("bloque");
+            divC.style.display = "none";
+        } else {
+            divC.style.display = "";
+
+        }
+
+        function pagoOnChange(sel) {
+            if (sel.value == "0") {
+                divC = document.getElementById("bloque");
+                divC.style.display = "none";
+                area = document.getElementById("observation_detail");
+                area.value = ""
+
+            }
+            if (sel.value == "1") {
+                divC = document.getElementById("bloque");
+                divC.style.display = "";
+            }
+        }
+    </script>
+
+@endsection
+
+@section('css')

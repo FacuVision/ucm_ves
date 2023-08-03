@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->text("datos_antiguos")->nullable();
             $table->text("datos_nuevos");
+            $table->text("status_detail")->nullable();
             $table->enum("type", ["actualizacion", "primer ingreso","salida","eliminacion"]);
             $table->enum("status", ["conforme", "con modificaciones"]);
 

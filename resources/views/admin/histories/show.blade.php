@@ -53,23 +53,46 @@
                     </div>
                 </div>
                 <br>
-                <div class="row">
-                    <div class="col">
-                        {!! Form::label('type', 'Tipo de transaccion') !!}
-                        {!! Form::text('type', $history->type, ['class' => 'form-control', 'disabled' => 'true']) !!}
-                    </div>
-                    <div class="col">
-                        {!! Form::label('type', 'Fecha') !!}
-                        {!! Form::text('type', $history->created_at->format('d-m-Y g:i a'), [
-                            'class' => 'form-control',
-                            'disabled' => 'true',
-                        ]) !!}
-                    </div>
-                    <div class="col">
-                        {!! Form::label('status', 'Observaciones') !!}
-                        {!! Form::text('status', $history->status, ['class' => 'form-control', 'disabled' => 'true']) !!}
+                <div class="form-group">
+
+                    <div class="row">
+                        <div class="col">
+                            {!! Form::label('type', 'Tipo de transaccion') !!}
+                            {!! Form::text('type', $history->type, ['class' => 'form-control', 'disabled' => 'true']) !!}
+                        </div>
+                        <div class="col">
+                            {!! Form::label('type', 'Fecha') !!}
+                            {!! Form::text('type', $history->created_at->format('d-m-Y g:i a'), [
+                                'class' => 'form-control',
+                                'disabled' => 'true',
+                            ]) !!}
+                        </div>
+                        <div class="col">
+                            {!! Form::label('status', 'Observaciones') !!}
+                            {!! Form::text('status', $history->status, ['class' => 'form-control', 'disabled' => 'true']) !!}
+                        </div>
                     </div>
                 </div>
+
+
+                @if ($history->status_detail != null)
+
+                <div class="form-group">
+
+                    <div class="row">
+                        <div class="col">
+                            {!! Form::label('status_detail', 'Detalles de la observacion') !!}
+                            {!! Form::textarea('status_detail', $history->status_detail, [
+                                'disabled' => 'true',
+                                'class' => 'form-control',
+                                'rows' => 4
+                                ]) !!}
+                        </div>
+                    </div>
+                </div>
+
+                @endif
+
                 <br>
                 <div class="row">
                     <div class="col">

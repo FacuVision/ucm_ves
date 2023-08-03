@@ -29,147 +29,147 @@
 
             {!! Form::open(['method' => 'POST', 'route' => 'admin.supplies.store']) !!}
 
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col">
+                        {!! Form::label('code', 'Código') !!}
+                        {!! Form::text('code', null, ['class' => 'form-control']) !!}
+                    </div>
+                    <div class="col">
+                        {!! Form::label('name', 'Nombre') !!}
+                        {!! Form::text('name', null, ['class' => 'form-control']) !!}
+                    </div>
+                </div>
+            </div>
+
             <div class="form-group">
 
-                <div class="form-group">
-                    <div class="row">
-                        <div class="col">
-                            {!! Form::label('code', 'Código') !!}
-                            {!! Form::text('code', null, ['class' => 'form-control']) !!}
-                        </div>
-                        <div class="col">
-                            {!! Form::label('name', 'Nombre') !!}
-                            {!! Form::text('name', null, ['class' => 'form-control']) !!}
-                        </div>
+                <div class="row">
+                    <div class="col">
+                        {!! Form::label('detail', 'Detalles') !!}
+                        {!! Form::textarea('detail', null, ['class' => 'form-control', 'rows' => 3]) !!}
                     </div>
                 </div>
+            </div>
 
-                <div class="form-group">
-
-                    <div class="row">
-                        <div class="col">
-                            {!! Form::label('detail', 'Detalles') !!}
-                            {!! Form::textarea('detail', null, ['class' => 'form-control', 'rows' => 3]) !!}
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-group">
-
-                    <div class="row">
-                        <div class="col">
-                            {!! Form::label('line', 'Línea') !!}
-                            {!! Form::select('line', ['parte', 'suministro', 'respuesto'], null, ['class' => 'form-control']) !!}
-                        </div>
-                        <div class="col">
-                            {!! Form::label('brand', 'Marca') !!}
-                            {!! Form::text('brand', null, ['class' => 'form-control']) !!}
-                        </div>
-                    </div>
-                </div>
-
-
-
+            <div class="form-group">
 
                 <div class="row">
-
                     <div class="col">
-                        {!! Form::label('unit', 'Unidad') !!}
-                        {!! Form::select(
-                            'unit',
-                            [
-                                'globales',
-                                'metros',
-                                'centimetros',
-                                'milimetros',
-                                'toneladas',
-                                'kilogramos',
-                                'gramos',
-                                'litros',
-                                'mililitros',
-                                'metros cuadrados',
-                                'metros cúbicos',
-                            ],
-                            null,
-                            ['class' => 'form-control'],
-                        ) !!}
+                        {!! Form::label('line', 'Línea') !!}
+                        {!! Form::select('line', ['parte', 'suministro', 'respuesto'], null, ['class' => 'form-control']) !!}
                     </div>
                     <div class="col">
-                        {!! Form::label('costo', 'Costo') !!}
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">S/.</span>
-                            </div>
-                            {!! Form::number('price', null, ['min' => 1, 'class' => 'form-control', 'step' => 'any']) !!}
-                        </div>
-                    </div>
-                    <div class="col">
-                        {!! Form::label('cant', 'Cantidad') !!}
-                        {!! Form::number('cant', 1, ['class' => 'form-control', 'min' => '1']) !!}
-                    </div>
-
-                </div>
-                <div class="form-group">
-
-                    <div class="row">
-                        <div class="col-6">
-                            {!! Form::label('observation', 'Observación') !!}
-                            {!! Form::select('observation', ['conforme', 'con modificaciones'], null, ['class' => 'form-control']) !!}
-                        </div>
+                        {!! Form::label('brand', 'Marca') !!}
+                        {!! Form::text('brand', null, ['class' => 'form-control']) !!}
                     </div>
                 </div>
-                <div id="div" class="form-group">
+            </div>
 
-                    <div class="row">
-                        <div class="col">
-                            {!! Form::label('observation_detail', 'Detalle de observacion') !!}
-                            {!! Form::textarea('observation_detail', null, ['class' => 'form-control', 'rows' => 3]) !!}
+
+
+
+            <div class="row">
+
+                <div class="col">
+                    {!! Form::label('unit', 'Unidad') !!}
+                    {!! Form::select(
+                        'unit',
+                        [
+                            'globales',
+                            'metros',
+                            'centimetros',
+                            'milimetros',
+                            'toneladas',
+                            'kilogramos',
+                            'gramos',
+                            'litros',
+                            'mililitros',
+                            'metros cuadrados',
+                            'metros cúbicos',
+                        ],
+                        null,
+                        ['class' => 'form-control'],
+                    ) !!}
+                </div>
+                <div class="col">
+                    {!! Form::label('costo', 'Costo') !!}
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">S/.</span>
                         </div>
+                        {!! Form::number('price', null, ['min' => 1, 'class' => 'form-control', 'step' => 'any']) !!}
                     </div>
+                </div>
+                <div class="col">
+                    {!! Form::label('cant', 'Cantidad') !!}
+                    {!! Form::number('cant', 1, ['class' => 'form-control', 'min' => '1']) !!}
+                </div>
 
+            </div>
+            <div class="form-group">
+
+                <div class="row">
+                    <div class="col-6">
+                        {!! Form::label('observation', 'Observación') !!}
+                        {!! Form::select('observation', ['conforme', 'con modificaciones'], null, [
+                            'id' => 'observation',
+                            'class' => 'form-control',
+                            'onChange' => 'pagoOnChange(this)',
+                        ]) !!}
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div id="bloque" class="form-group">
+
+                <div class="row">
+                    <div class="col">
+                        {!! Form::label('observation_detail', 'Detalle de observacion') !!}
+                        {!! Form::textarea('observation_detail', null, ['class' => 'form-control', 'rows' => 3]) !!}
+                    </div>
                 </div>
 
             </div>
         </div>
-
         <div class="card-footer">
 
             {!! Form::submit('Guardar', ['class' => 'btn btn-success']) !!}
             <a href="{{ route('admin.supplies.index') }}" class="btn btn-warning"> Volver </a>
         </div>
 
-
     </div>
+
+
     {!! Form::close() !!}
-    </div>
 
-    </div>
 
 @stop
 
 @section('js')
-
     <script>
-        document.querySelector("#elige").addEventListener("change", function() {
-            if (this.value.length) {
-                if (document.querySelector(".visible").length) {
-                    document.querySelector(".visible").className = "";
-                }
-                document.querySelector("#" + this.value).className = "visible";
+        divC = document.getElementById("bloque");
+        divC.style.display = "none";
+
+        function pagoOnChange(sel) {
+            if (sel.value == "0") {
+                divC = document.getElementById("bloque");
+                divC.style.display = "none";
+                area = document.getElementById("observation_detail");
+                area.value = ""
+
+            } else {
+                divC = document.getElementById("bloque");
+                divC.style.display = "";
             }
-        }, false);
+        }
     </script>
 
 @endsection
 
 @section('css')
-    <style>
-        .visible {
-            display: block;
-        }
 
-        #div {
-            display: none;
-        }
-    </style>
 @endsection
