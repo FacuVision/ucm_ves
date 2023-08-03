@@ -17,7 +17,7 @@ class UserSeeder extends Seeder
         $super_admin = User::create([
             "name" => "Munives",
             "email" => "desarrolloudt@munives.gob.pe",
-            "password" => bcrypt("Munives_2023")
+            "password" => bcrypt("desarrolloudt@munives.gob.pe")
         ]);
 
         $super_admin->profile()->create(

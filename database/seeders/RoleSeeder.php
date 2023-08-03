@@ -28,8 +28,8 @@ class RoleSeeder extends Seeder
         Permission::create(["name"=>"admin.home"])->syncRoles([$admin,$super_user,$usuario]);
 
         //PERMISOS DE LOS USUARIOS
-        Permission::create(["name"=>"admin.users.index"])->syncRoles([$admin,$super_user,$usuario]);
-        Permission::create(["name"=>"admin.users.show"])->syncRoles([$admin,$super_user,$usuario]);
+        Permission::create(["name"=>"admin.users.index"])->syncRoles([$admin,$super_user]);
+        Permission::create(["name"=>"admin.users.show"])->syncRoles([$admin,$super_user]);
         Permission::create(["name"=>"admin.users.create"])->syncRoles([$super_user]);
         Permission::create(["name"=>"admin.users.edit"])->syncRoles([$super_user]);
         Permission::create(["name"=>"admin.users.destroy"])->syncRoles([$super_user]);
