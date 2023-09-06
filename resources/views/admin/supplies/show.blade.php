@@ -57,7 +57,7 @@
         </div>
 
         <div class="card-footer">
-            <a href="{{ route('admin.supplies.index') }}" class="btn btn-warning"> Volver </a>
+            <a href="{{ route('admin.supplies.index') }}" class="btn btn-warning btn-sm"> Volver </a>
         </div>
 
     </div>
@@ -92,7 +92,7 @@
                             <td>{{ $his->created_at->format('d-m-Y g:i a') }}</td>
                             <td>
                                 {{-- Ver --}}
-                                <a href="{{ route('admin.histories.show', $his) }}" class="btn btn-primary">Ver</a>
+                                <a href="{{ route('admin.histories.show', $his) }}" class="btn btn-primary btn-sm">Ver</a>
 
                             </td>
                         </tr>

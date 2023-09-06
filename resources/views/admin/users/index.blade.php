@@ -18,7 +18,7 @@
 
         @can('admin.users.create')
             <div class="card-header">
-                <a href="{{ route('admin.users.create') }}" class="btn btn-primary"> Crear Usuario</a>
+                <a href="{{ route('admin.users.create') }}" class="btn btn-primary btn-sm"> Crear Usuario</a>
             </div>
         @endcan
 
@@ -68,13 +68,13 @@
                             <td>
                                 @can('admin.users.show')
                                     {{-- Mostrar --}}
-                                    <a href="{{ route('admin.users.show', $user) }}" class="btn btn-primary">Ver</a>
+                                    <a href="{{ route('admin.users.show', $user) }}" class="btn btn-primary btn-sm">Ver</a>
                                 @endcan
 
                                 {{-- Editar --}}
 
                                 @can('admin.users.destroy')
-                                    <a href="{{ route('admin.users.edit', $user) }}" class="btn btn-success">Editar</a>
+                                    <a href="{{ route('admin.users.edit', $user) }}" class="btn btn-success btn-sm">Editar</a>
                                 @endcan
 
                                 @can('admin.users.destroy')
@@ -87,7 +87,7 @@
                                         @csrf
                                         @method('DELETE')
 
-                                        <input type="submit" id="delete" value="Eliminar" class="btn btn-danger">
+                                        <input type="submit" id="delete" value="Eliminar" class="btn btn-danger btn-sm">
                                     </form>
                                 @endcan
                             </td>

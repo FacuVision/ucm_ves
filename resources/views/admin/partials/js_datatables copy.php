@@ -62,19 +62,19 @@
 				extend:    'excelHtml5',
 				text:      '<i class="fas fa-file-excel"></i> ',
 				titleAttr: 'Exportar a Excel',
-				className: 'btn btn-success'
+				className: 'btn btn-success btn-sm'
 			},
 			{
 				extend:    'pdfHtml5',
 				text:      '<i class="fas fa-file-pdf"></i> ',
 				titleAttr: 'Exportar a PDF',
-				className: 'btn btn-danger'
+				className: 'btn btn-danger btn-sm'
 			},
 			{
 				extend:    'print',
 				text:      '<i class="fa fa-print"></i> ',
 				titleAttr: 'Imprimir',
-				className: 'btn btn-info'
+				className: 'btn btn-info btn-sm'
 			},
 		]
 
@@ -91,7 +91,7 @@
     $('#supply').select2({
             theme: "bootstrap-5",
             width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
-            placeholder: "Selecciona vehiculo"
+            placeholder: "Selecciona repuesto"
         });
 
 </script>

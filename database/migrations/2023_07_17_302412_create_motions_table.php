@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id')->nullable();
             $table->unsignedBigInteger('car_id')->nullable();
-            $table->string('title',100);
+            $table->string('type',100);
             $table->text('detail');
 
             //RELACIONES

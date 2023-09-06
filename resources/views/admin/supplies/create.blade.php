@@ -47,16 +47,6 @@
 
                 <div class="row">
                     <div class="col">
-                        {!! Form::label('detail', 'Detalles') !!}
-                        {!! Form::textarea('detail', null, ['class' => 'form-control', 'rows' => 3]) !!}
-                    </div>
-                </div>
-            </div>
-
-            <div class="form-group">
-
-                <div class="row">
-                    <div class="col">
                         {!! Form::label('line', 'Línea') !!}
                         {!! Form::select('line', ['parte', 'suministro', 'respuesto'], null, ['class' => 'form-control']) !!}
                     </div>
@@ -74,24 +64,7 @@
 
                 <div class="col">
                     {!! Form::label('unit', 'Unidad') !!}
-                    {!! Form::select(
-                        'unit',
-                        [
-                            'globales',
-                            'metros',
-                            'centimetros',
-                            'milimetros',
-                            'toneladas',
-                            'kilogramos',
-                            'gramos',
-                            'litros',
-                            'mililitros',
-                            'metros cuadrados',
-                            'metros cúbicos',
-                        ],
-                        null,
-                        ['class' => 'form-control'],
-                    ) !!}
+                    {!! Form::select('unit', ['unidades', 'kilogramos', 'litros'], null, ['class' => 'form-control']) !!}
                 </div>
                 <div class="col">
                     {!! Form::label('costo', 'Costo') !!}
@@ -108,6 +81,17 @@
                 </div>
 
             </div>
+
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col">
+                        {!! Form::label('detail', 'Detalles') !!}
+                        {!! Form::textarea('detail', null, ['class' => 'form-control', 'rows' => 3]) !!}
+                    </div>
+                </div>
+            </div>
+         <hr>
             <div class="form-group">
 
                 <div class="row">
@@ -124,21 +108,22 @@
 
 
 
-            <div id="bloque" class="form-group">
 
+
+            <div id="bloque" class="form-group">
                 <div class="row">
                     <div class="col">
                         {!! Form::label('observation_detail', 'Detalle de observacion') !!}
                         {!! Form::textarea('observation_detail', null, ['class' => 'form-control', 'rows' => 3]) !!}
                     </div>
                 </div>
-
             </div>
+
         </div>
         <div class="card-footer">
 
-            {!! Form::submit('Guardar', ['class' => 'btn btn-success']) !!}
-            <a href="{{ route('admin.supplies.index') }}" class="btn btn-warning"> Volver </a>
+            {!! Form::submit('Guardar', ['class' => 'btn btn-success btn-sm']) !!}
+            <a href="{{ route('admin.supplies.index') }}" class="btn btn-warning btn-sm"> Volver </a>
         </div>
 
     </div>

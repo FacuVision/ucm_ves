@@ -41,30 +41,25 @@
         </div>
 
         <div class="card-footer">
-            <a href="javascript:history.back()" class="btn btn-warning"> Volver </a>
+            <a href="javascript:history.back()" class="btn btn-warning btn-sm"> Volver </a>
         </div>
 
     </div>
 
     <div class="card">
         <div class="card-header">
-            <h5 class="color">Movimientos del vehículo</h5>
+            <h5 class="color">Historial de salidas</h5>
         </div>
 
         <div class="card-body">
 
-            <div class="card">
-                @can('admin.motions.create')
-                <a href="{{ route('admin.motions.index') }}" class="btn btn-primary"> Ingresar Movimiento</a>
-                @endcan
 
-            </div>
             <table id="tabla" class="table-striped dt-responsive nowrap display compact" style="width:100%">
                 <thead>
                     <tr>
                         <th>Id</th>
                         <th>Responsable</th>
-                        <th>Titulo</th>
+                        <th>Tipo</th>
                         <th>Fecha de creacion</th>
                         <th>Acciones</th>
                     </tr>
@@ -74,13 +69,13 @@
                         <tr>
                             <td>{{ $movimiento->id }}</td>
                             <td>{{ $movimiento->user->profile->name }}</td>
-                            <td>{{ $movimiento->title }}</td>
+                            <td>{{ $movimiento->type }}</td>
                             <td>{{ $movimiento->created_at->format('d-m-Y g:i a') }}</td>
 
                             <td>
                                 @can('admin.motions.show')
                                 {{-- Mostrar --}}
-                                <a href="{{ route('admin.motions.show', $movimiento) }}" class="btn btn-primary">Ver</a>
+                                <a href="{{ route('admin.motions.show', $movimiento) }}" class="btn btn-primary btn-sm">Ver</a>
                             @endcan
                             </td>
                         </tr>

@@ -73,19 +73,11 @@
                                     {!! Form::select(
                                         'unit',
                                         [
-                                            'globales',
-                                            'metros',
-                                            'centimetros',
-                                            'milimetros',
-                                            'toneladas',
-                                            'kilogramos',
-                                            'gramos',
-                                            'litros',
-                                            'mililitros',
-                                            'metros cuadrados',
-                                            'metros cúbicos'
-                                        ],
-                                        $cod_unidad,
+                                    'unidades',
+                                    'kilogramos',
+                                    'litros'
+                                    ],
+                                       $cod_unidad,
                                         ['class' => 'form-control'],
                                     ) !!}
                                 </div>
@@ -125,8 +117,8 @@
             </div>
 
 
-            {!! Form::submit('Guardar', ['class' => 'btn btn-success']) !!}
-            <a href="{{ route('admin.supplies.index') }}" class="btn btn-warning"> Volver </a>
+            {!! Form::submit('Guardar', ['class' => 'btn btn-success btn-sm']) !!}
+            <a href="{{ route('admin.supplies.index') }}" class="btn btn-warning btn-sm"> Volver </a>
 
         </div>
         {!! Form::close() !!}

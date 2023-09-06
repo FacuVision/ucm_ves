@@ -21,17 +21,9 @@ return new class extends Migration
             $table->enum("line", ["parte", "suministro", "respuesto"]);
             $table->string("brand");
             $table->enum("unit",
-                    ["metros",
-                    "centimetros",
-                    "milimetros",
-                    "toneladas",
+                    ["unidades",
                     "kilogramos",
-                    "gramos",
-                    "litros",
-                    "mililitros",
-                    "metros cuadrados",
-                    "metros cúbicos",
-                    "globales"
+                    "litros"
                 ]);
             $table->float('price', 8, 2);
             $table->enum("observation", ["conforme", "con modificaciones"]);

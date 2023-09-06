@@ -70,6 +70,7 @@ class MotionController extends Controller
     public function store(Request $request)
     {
 
+        //return $request->all();
         //EN CASO SE ENVIE UN LISTADO SIN PRODUCTOS
         $lista_productos = json_decode($request->hiden_json);
 
@@ -91,17 +92,9 @@ class MotionController extends Controller
 
         $observations_array = ["conforme", "con modificaciones"];
         $array_unidades = [
-            'globales',
-            'metros',
-            'centimetros',
-            'milimetros',
-            'toneladas',
+            'unidades',
             'kilogramos',
-            'gramos',
-            'litros',
-            'mililitros',
-            'metros cuadrados',
-            'metros cúbicos',
+            'litros'
         ];
 
         $lineas_array = ['parte', 'suministro', 'respuesto'];
@@ -113,7 +106,7 @@ class MotionController extends Controller
         $recient_motion = Motion::create([
             "user_id" => auth()->user()->id,
             "car_id" => $request->id_car_h,
-            "title" =>  $request->title_h,
+            "type" =>  $request->title_h,
             "detail" =>  $request->detail_h
         ]);
 

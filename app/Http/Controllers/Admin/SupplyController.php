@@ -60,17 +60,9 @@ class SupplyController extends Controller
         ];
 
         $arr = [
-            'globales',
-            'metros',
-            'centimetros',
-            'milimetros',
-            'toneladas',
+            'unidades',
             'kilogramos',
-            'gramos',
-            'litros',
-            'mililitros',
-            'metros cuadrados',
-            'metros cúbicos',
+            'litros'
         ];
 
         $arr2 = ['parte', 'suministro', 'respuesto'];
@@ -146,19 +138,10 @@ class SupplyController extends Controller
     {
 
         $arr = [
-            'globales',
-            'metros',
-            'centimetros',
-            'milimetros',
-            'toneladas',
+            'unidades',
             'kilogramos',
-            'gramos',
-            'litros',
-            'mililitros',
-            'metros cuadrados',
-            'metros cúbicos',
+            'litros'
         ];
-
         $arr2 = ['parte', 'suministro', 'respuesto'];
         $observations_array = ["conforme", "con modificaciones"];
 
@@ -206,17 +189,9 @@ class SupplyController extends Controller
         ];
 
         $arr = [
-            'globales',
-            'metros',
-            'centimetros',
-            'milimetros',
-            'toneladas',
+            'unidades',
             'kilogramos',
-            'gramos',
-            'litros',
-            'mililitros',
-            'metros cuadrados',
-            'metros cúbicos',
+            'litros'
         ];
 
         $arr2 = ['parte', 'suministro', 'respuesto'];
@@ -230,17 +205,9 @@ class SupplyController extends Controller
 
             $observations_array = ["conforme", "con modificaciones"];
             $arr = [
-                'globales',
-                'metros',
-                'centimetros',
-                'milimetros',
-                'toneladas',
+                'unidades',
                 'kilogramos',
-                'gramos',
-                'litros',
-                'mililitros',
-                'metros cuadrados',
-                'metros cúbicos',
+                'litros'
             ];
 
             $arr2 = ['parte', 'suministro', 'respuesto'];

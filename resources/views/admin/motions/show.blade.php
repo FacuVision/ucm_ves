@@ -3,7 +3,7 @@
 @section('title', 'Control de Repuestos VES')
 
 @section('content_header')
-    <h1> Movimiento de fecha {{ $motion->created_at->format('d-m-Y g:i a') }} </h1>
+    <h1> Salida de fecha {{ $motion->created_at->format('d-m-Y g:i a') }} </h1>
 @stop
 
 @section('css')
@@ -20,7 +20,7 @@
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item"><strong>Responsable:</strong> {{ $motion->user->profile->name }} {{ $motion->user->profile->lastname }}</li>
                     <li class="list-group-item"><strong>Responsable DNI:</strong> {{ $motion->user->profile->dni }}</li>
-                    <li class="list-group-item"><strong>Titulo:</strong> {{ $motion->title }}</li>
+                    <li class="list-group-item"><strong>Tipo:</strong> {{ $motion->type }}</li>
                     <li class="list-group-item"><strong>Descripcion:</strong> {{ $motion->detail }}</li>
                     <li class="list-group-item "><strong>Fecha:</strong> {{ $motion->created_at->format('d-m-Y g:i a') }}</li>
                     <li class="list-group-item "><strong>Vehiculo destinado:</strong> {{ $motion->car->plate }} </li>
@@ -30,7 +30,7 @@
         </div>
 
         <div class="card-footer">
-            <a href="javascript:history.back()" class="btn btn-warning"> Volver </a>
+            <a href="javascript:history.back()" class="btn btn-warning btn-sm"> Volver </a>
         </div>
 
     </div>
@@ -39,7 +39,7 @@
         <div class="card-header">
 
 
-            <h5 class="color">Repuestos del movimiento</h5>
+            <h5 class="color">Detalle de salida</h5>
         </div>
         <div class="card-body">
             <table id="tabla" class="table-striped dt-responsive nowrap display compact" style="width:100%">

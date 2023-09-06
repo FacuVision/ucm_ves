@@ -3,7 +3,7 @@
 @section('title', 'Control de Repuestos VES')
 
 @section('content_header')
-    <h1>Añadir Repuestos al movimiento</h1>
+    <h1>Registro de salida de repuestos</h1>
     @include('admin.partials.css_datatables')
     {{-- @include('admin.partials.css_select2') --}}
 
@@ -37,6 +37,7 @@
             @endif
 
 
+
             {!! Form::open(['method' => 'POST', 'route' => 'admin.motions.store', 'id' => 'FormFinal']) !!}
             {!! Form::hidden('hiden_json', '', ['id' => 'hiden_json']) !!}
             {!! Form::hidden('title_h', '', ['id' => 'title_h']) !!}
@@ -48,33 +49,17 @@
 
             <form action="" id="frmProductos" class="m-3">
 
+
+
+
                 <div class="columns">
                     <div class="column">
-                        <br>
+                        <label class="label">Tipo de salida:</label>
 
-                        <label class="label">Vehículo destinado:</label>
-                        {{-- <select name="car" id="car" class="form-control">
-                            @foreach ($select_vehiculos as $key => $value)
-                                <option value={{ $key }}>{{ $value }}</option>
-                            @endforeach
-                        </select> --}}
-                        <select name="car" id="car" class="form-select">
-                            @foreach ($select_vehiculos as $key => $value)
-                                <option value={{ $key }}>{{ $value }}</option>
-                            @endforeach
+                        <select name="title" id="title" class="form-control">
+                            <option value="Traslado">Traslado</option>
+                            <option value="Reparacion">Reparacion</option>
                         </select>
-
-
-                    </div>
-
-                </div>
-
-
-
-                <div class="columns">
-                    <div class="column">
-                        <label class="label">Titulo:</label>
-                        <input type="text" name="title" id="title" class="form-control">
                     </div>
 
                     <div class="column">
@@ -82,6 +67,18 @@
                         <textarea name="detail" id="detail" rows="5" class="form-control"></textarea>
                     </div>
 
+                </div>
+
+                <div class="columns">
+                    <div class="column">
+                        <label class="label">Vehículo destinado:</label>
+
+                        <select name="car" id="car" class="form-select">
+                            @foreach ($select_vehiculos as $key => $value)
+                                <option value={{ $key }}>{{ $value }}</option>
+                            @endforeach
+                        </select>
+                    </div>
                 </div>
 
 
@@ -95,11 +92,7 @@
 
                     <div class="col-9">
                         <label class="label">Repuesto:</label>
-                        {{-- <select name="supply" id="supply" class="form-control">
-                            @foreach ($select_supply as $key => $value)
-                                <option value={{ $key }}>{{ $value }}</option>
-                            @endforeach
-                        </select> --}}
+
 
                         <select name="supply" id="supply" class="form-select">
                             @foreach ($select_supply as $key => $value)
@@ -110,11 +103,11 @@
 
                 </div>
 
-                <div class="columns">
+                <div class="row">
 
-                    <div class="column">
+                    <div class="col">
                         <br>
-                        <label class="label">Añadir:</label>
+                        <label class="label">Agregar a la lista:</label>
 
                         <button id="btnAdd" type="button" class="btn btn-success">
                             <span class="icon">
@@ -122,22 +115,23 @@
                             </span>
                         </button>
                     </div>
-                </div>
-                <div class="columns">
-                    <div class="column">
+                    <div class="col">
+                        <br>
+                        <label class="label">Para finalizar:</label>
+
                         <button id="btnSave" type="button" class="btn btn-warning">
-                            Registrar Repuestos
+                            Registrar repuestos de la lista
                         </button>
                     </div>
                 </div>
+                <br>
+                <div id="divElements">
 
+                </div>
 
             </form>
-            <hr>
 
-            <div id="divElements">
 
-            </div>
         </div>
 
         <div class="card-footer">
@@ -159,7 +153,6 @@
 @section('js')
 
     @include('admin.partials.js_datatables copy')
-    {{-- @include('admin.partials.js_select2') --}}
 
     <script src="{{ asset('js/motions_create.js') }}"></script>
 

@@ -3,7 +3,7 @@
 @section('title', 'Control de Repuestos VES')
 
 @section('content_header')
-    <h1>Historial de movimientos de Repuestos</h1>
+    <h1>Historial de Repuestos</h1>
     @include('admin.partials.css_datatables')
 @stop
 
@@ -17,7 +17,7 @@
         @endif
 
         <div class="card-header">
-            {{-- <a href="{{ route('admin.supplies.create') }}" class="btn btn-primary"> Ingresar nuevo producto</a> --}}
+            {{-- <a href="{{ route('admin.supplies.create') }}" class="btn btn-primary btn-sm"> Ingresar nuevo producto</a> --}}
         </div>
 
         <div class="card-body">
@@ -47,7 +47,7 @@
                             <td>{{ $his->created_at->format('d-m-Y g:i a') }}</td>
                             <td>
                                 {{-- Ver --}}
-                                <a href="{{ route('admin.histories.show', $his) }}" class="btn btn-primary">Ver</a>
+                                <a href="{{ route('admin.histories.show', $his) }}" class="btn btn-primary btn-sm">Ver</a>
 
                             </td>
                         </tr>

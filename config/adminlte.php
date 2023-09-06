@@ -343,7 +343,7 @@ return [
 
         ],
         [
-            'text' => 'Movimientos de Salida',
+            'text' => 'Salidas',
             'route'  => 'admin.motions.index',
             'icon_color' => 'orange',
             'icon' => 'fas fa-fw fa-arrow-circle-down',

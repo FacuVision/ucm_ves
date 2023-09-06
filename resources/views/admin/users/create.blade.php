@@ -85,8 +85,8 @@
 
             </div>
             <div class="form-group">
-                {!! Form::submit('Crear', ['class' => 'btn btn-success']) !!}
-                <a href="{{ route('admin.users.index') }}" class="btn btn-warning"> Volver </a>
+                {!! Form::submit('Crear', ['class' => 'btn btn-success btn-sm']) !!}
+                <a href="{{ route('admin.users.index') }}" class="btn btn-warning btn-sm"> Volver </a>
             </div>
 
 

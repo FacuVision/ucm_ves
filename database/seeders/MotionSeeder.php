@@ -17,7 +17,7 @@ class MotionSeeder extends Seeder
         Motion::create([
             "user_id" => 1,
             "car_id" => 1,
-            "title" => "primer movimiento",
+            type => "primer movimiento",
             "detail" => "detalle 1"
         ]);
     }

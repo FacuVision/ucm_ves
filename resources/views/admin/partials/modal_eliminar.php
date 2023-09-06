@@ -9,8 +9,8 @@
 
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                <input type="submit" id="delete" value="Eliminar" class="btn btn-danger">
-                <!-- <button type="submit" class="btn btn-danger" data-dismiss="modal" id="delete">Borrar</button> -->
+                <input type="submit" id="delete" value="Eliminar" class="btn btn-danger btn-sm">
+                <!-- <button type="submit" class="btn btn-danger btn-sm" data-dismiss="modal" id="delete">Borrar</button> -->
 
             </div>
 

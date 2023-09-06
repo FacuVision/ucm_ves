@@ -3,7 +3,7 @@
 @section('title', 'Control de Repuestos VES')
 
 @section('content_header')
-    <h1>Movimientos de Salida</h1>
+    <h1>Salidas de Repuestos</h1>
     @include('admin.partials.css_datatables')
 @stop
 
@@ -18,7 +18,7 @@
 
         @can('admin.motions.create')
             <div class="card-header">
-                <a href="{{ route('admin.motions.create') }}" class="btn btn-primary"> Ingresar Movimiento</a>
+                <a href="{{ route('admin.motions.create') }}" class="btn btn-primary btn-sm"> Ingresar Movimiento</a>
             </div>
         @endcan
 
@@ -27,9 +27,9 @@
                 <thead>
                     <tr>
                         <th>Id</th>
-                        <th>Título</th>
+                        <th>Tipo</th>
                         <th>Vehículo placa</th>
-                        <th>Fecha de movimiento</th>
+                        <th>Fecha de salida</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
@@ -37,18 +37,18 @@
                     @foreach ($motions as $motion)
                         <tr>
                             <td>{{ $motion->id }}</td>
-                            <td>{{ $motion->title }}</td>
+                            <td>{{ $motion->type}}</td>
                             <td>{{ $motion->car->plate }}</td>
                             <td>{{ $motion->created_at->format('d-m-Y g:i a') }}</td>
                             <td>
                                 @can('admin.motions.show')
                                 {{-- Mostrar --}}
-                                <a href="{{ route('admin.motions.show', $motion) }}" class="btn btn-primary">Ver detalle</a>
+                                <a href="{{ route('admin.motions.show', $motion) }}" class="btn btn-primary btn-sm">Ver detalle</a>
 
                                 @endcan
                                 {{-- Editar --}}
 
-                                {{-- <a href="{{ route('admin.motions.edit', $motion) }}" class="btn btn-success">Editar</a> --}}
+                                {{-- <a href="{{ route('admin.motions.edit', $motion) }}" class="btn btn-success btn-sm">Editar</a> --}}
 
                                 @can('admin.motions.show')
                                     {{-- Eliminar --}}
@@ -56,7 +56,7 @@
                                         method="post" class="formulario-eliminar">
                                         @csrf
                                         @method('DELETE')
-                                        <input type="submit" id="delete" value="Datos del vehículo" class="btn btn-warning">
+                                        <input type="submit" id="delete" value="Datos del vehículo" class="btn btn-warning btn-sm">
                                     </form>
                                 @endcan
 

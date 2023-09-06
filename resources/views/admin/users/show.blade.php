@@ -72,7 +72,7 @@
 
         </div>
         <div class="card-footer">
-            <a href="{{ route('admin.users.index') }}" class="btn btn-warning"> Volver </a>
+            <a href="{{ route('admin.users.index') }}" class="btn btn-warning btn-sm"> Volver </a>
         </div>
 
     </div>

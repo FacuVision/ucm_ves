@@ -35,7 +35,7 @@
 
 
 
-                    @can('admin.cars.edit')
+                    @can('admin.cars.destroy')
                         <div class="form-group">
                             <div class="row">
                                 <div class="col">
@@ -48,7 +48,6 @@
                                             </strong>
                                         </label>
                                     </div>
-
                                 </div>
                             </div>
                         </div>
@@ -80,7 +79,7 @@
                             </div>
                             <div class="col">
                                 {!! Form::label('color', 'Color') !!}
-                                {!! Form::text('color', $car->color, ['class' => 'form-control']) !!}
+                                {!! Form::text('color', $car->color, ['class' => 'form-control', 'disabled' => true]) !!}
                             </div>
 
 
@@ -103,8 +102,8 @@
             </div>
 
 
-            {!! Form::submit('Guardar', ['class' => 'btn btn-success']) !!}
-            <a href="{{ route('admin.cars.index') }}" class="btn btn-warning"> Volver </a>
+            {!! Form::submit('Guardar', ['class' => 'btn btn-success btn-sm']) !!}
+            <a href="{{ route('admin.cars.index') }}" class="btn btn-warning btn-sm"> Volver </a>
 
         </div>
         {!! Form::close() !!}
@@ -120,6 +119,7 @@
         let placa = document.getElementById('plate');
         let marca = document.getElementById('brand');
         let modelo = document.getElementById('model');
+        let color = document.getElementById('color');
         let combustible_type = document.getElementById('combustible_type');
 
         $('#form_edit').submit(function(e) {
@@ -131,6 +131,7 @@
             marca.removeAttribute("disabled");
             modelo.removeAttribute("disabled");
             combustible_type.removeAttribute("disabled");
+            color.removeAttribute("disabled");
 
 
             this.submit();
@@ -145,6 +146,7 @@
             marca.removeAttribute("disabled");
             modelo.removeAttribute("disabled");
             combustible_type.removeAttribute("disabled");
+            color.removeAttribute("disabled");
         }
 
         function off() {
@@ -154,6 +156,7 @@
             marca.setAttribute("disabled", false);
             modelo.setAttribute("disabled", false);
             combustible_type.setAttribute("disabled", false);
+            color.setAttribute("disabled", false);
 
         }
 

@@ -81,8 +81,8 @@
             </div>
 
 
-            {!! Form::submit('Guardar', ['class' => 'btn btn-success']) !!}
-            <a href="{{ route('admin.cars.index') }}" class="btn btn-warning"> Volver </a>
+            {!! Form::submit('Guardar', ['class' => 'btn btn-success btn-sm']) !!}
+            <a href="{{ route('admin.cars.index') }}" class="btn btn-warning btn-sm"> Volver </a>
 
         </div>
         {!! Form::close() !!}

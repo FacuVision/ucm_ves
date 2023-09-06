@@ -19,7 +19,7 @@
         @can('admin.supplies.create')
 
         <div class="card-header">
-            <a href="{{ route('admin.supplies.create') }}" class="btn btn-primary"> Ingresar nuevo repuesto</a>
+            <a href="{{ route('admin.supplies.create') }}" class="btn btn-primary btn-sm"> Ingresar nuevo repuesto</a>
         </div>
 
         @endcan
@@ -59,14 +59,14 @@
                                 @can('admin.supplies.show')
 
                                 {{-- Ver --}}
-                                <a href="{{ route('admin.supplies.show', $supply) }}" class="btn btn-primary">Ver</a>
+                                <a href="{{ route('admin.supplies.show', $supply) }}" class="btn btn-primary btn-sm">Ver</a>
 
                                 @endcan
 
                                 {{-- Editar --}}
                                 @can('admin.supplies.edit')
 
-                                <a href="{{ route('admin.supplies.edit', $supply) }}" class="btn btn-success">Editar</a>
+                                <a href="{{ route('admin.supplies.edit', $supply) }}" class="btn btn-success btn-sm">Editar</a>
                                 @endcan
 
                                 @can('admin.supplies.destroy')
@@ -77,7 +77,7 @@
                                     class="formulario-eliminar">
                                     @csrf
                                     @method('DELETE')
-                                    <input type="submit" id="delete" value="Eliminar" class="btn btn-danger">
+                                    <input type="submit" id="delete" value="Eliminar" class="btn btn-danger btn-sm">
                                 </form>
                                 @endcan
 

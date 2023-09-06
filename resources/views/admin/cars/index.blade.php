@@ -17,7 +17,7 @@
         @endif
         @can('admin.cars.create')
             <div class="card-header">
-                <a href="{{ route('admin.cars.create') }}" class="btn btn-primary"> Ingresar Vehículo</a>
+                <a href="{{ route('admin.cars.create') }}" class="btn btn-primary btn-sm"> Ingresar Vehículo</a>
             </div>
         @endcan
 
@@ -47,13 +47,13 @@
 
                                 @can('admin.cars.show')
                                 {{-- Mostrar --}}
-                                <a href="{{ route('admin.cars.show', $car) }}" class="btn btn-primary">Detalle y movimientos</a>
+                                <a href="{{ route('admin.cars.show', $car) }}" class="btn btn-primary btn-sm btn-sm">Detalle y Salidas</a>
                                 @endcan
 
                                 {{-- Editar --}}
                                 @can('admin.cars.edit')
 
-                                <a href="{{ route('admin.cars.edit', $car) }}" class="btn btn-success">Editar</a>
+                                <a href="{{ route('admin.cars.edit', $car) }}" class="btn btn-success btn-sm">Editar</a>
 @endcan
 
                                 {{-- Eliminar --}}
@@ -64,7 +64,7 @@
                                     onsubmit="return confirm('¿Está seguro que quiere eliminar este registro?')">
                                     @csrf
                                     @method('DELETE')
-                                    <input type="submit" id="delete" value="Eliminar" class="btn btn-danger">
+                                    <input type="submit" id="delete" value="Eliminar" class="btn btn-danger btn-sm">
                                 </form>
                                 @endcan
 
