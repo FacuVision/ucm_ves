@@ -88,7 +88,7 @@ const addJsonElement = json => {
             $divElements.innerHTML = ""
             parameters = []
 
-            $FormFinal.submit()
+           $FormFinal.submit()
 
     })
 

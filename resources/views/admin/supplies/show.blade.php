@@ -14,47 +14,101 @@
 @section('content')
     <div class="card">
 
-        <div class="card-body">
-
-            <div class="card" style="width: auto;">
-                <div class="card-header bg-info-subtle">
-                    <strong> Código :</strong> {{ $supply->code }}
-                </div>
-
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item"><strong>Nombre:</strong> {{ $supply->name }}</li>
-                    <li class="list-group-item "><strong>Línea:</strong> {{ $supply->line }}</li>
-                    <li class="list-group-item "><strong>Marca:</strong> {{ $supply->brand }} </li>
-                    <li class="list-group-item "><strong>Unidad:</strong> {{ $supply->unit }} </li>
-                    <li class="list-group-item "><strong>Costo: </strong> S/. {{ $supply->price }} </li>
-                    <li class="list-group-item "><strong>Cantidad disponible: </strong> {{ $supply->cant }} </li>
-                    <li class="list-group-item "><strong>Observacion: </strong>
-
-                        @if ($supply->observation == "conforme")
-                            <span class="badge badge-success">{{ $supply->observation }} </span>
-                            @else
-                            <span class="badge badge-danger">{{ $supply->observation }} </span>
-                        @endif
-
-                    </li>
-                    <li class="list-group-item "><strong>Fecha de primer ingreso: </strong> {{$supply->created_at->format('d-m-Y g:i a')}} </li>
-                    <li class="list-group-item "><strong>Fecha de ultima actualizacion: </strong> {{ $supply->updated_at->format('d-m-Y g:i a') }} </li>
-                </ul>
-
-            </div>
-
-            <div class="mb-3">
-                <label for="detail" class="form-label">Detalles</label>
-                <textarea class="form-control" id="detail" rows="3" disabled>{{$supply->detail}}</textarea>
-            </div>
-
-            @if ($supply->observation_detail != null)
-                <div class="mb-3">
-                    <label for="detail" class="form-label">Observacion detalles</label>
-                    <textarea class="form-control" id="detail" rows="3" disabled>{{$supply->observation_detail}}</textarea>
-                </div>
-            @endif
+        <div class="card-header">
+            Detalles:
         </div>
+        <div class="card-body">
+            <div>
+                <table class="table-striped dt-responsive nowrap display compact" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Codigo</th>
+                            <th>Tipo</th>
+                            <th>Marca</th>
+                            <th>Unidad</th>
+                            <th>Precio</th>
+                            <th>Cantidad</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{ $supply->name }}</td>
+                            <td>{{ $supply->code }}</td>
+                            <td>{{ $supply->line }}</td>
+                            <td>{{ $supply->brand }}</td>
+                            <td>{{ $supply->unit }}</td>
+                            <td>S/. {{ $supply->price }}</td>
+                            <td>{{ $supply->cant }}</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="mt-4">
+                <table class="table-striped dt-responsive nowrap display compact" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Observaciones</th>
+                            <th>Primer ingreso al sistema:</th>
+                            <th>Última actualizacion:</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                @if ($supply->observation == "conforme")
+                                <span class="badge badge-success">{{ $supply->observation }} </span>
+                                @else
+                                <span class="badge badge-danger">{{ $supply->observation }} </span>
+                                @endif
+                            </td>
+                            <td>{{ $supply->created_at->format('d-m-Y g:i a')}}</td>
+                            <td>
+                                @if ($supply->updated_at != null)
+                                {{ $supply->updated_at->format('d-m-Y g:i a') }}
+                                @else
+                                    <span class="badge badge-secondary"> Sin modificaciones aún</span>
+                                @endif
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="mt-4">
+                <table width="100%" class="table-striped dt-responsive nowrap display compact">
+                    <thead>
+                        <th>Detalles</th>
+                    </thead>
+                    <tbody>
+                        <td>{{$supply->detail}}</td>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="mt-4">
+                <table width="100%" class="table-striped dt-responsive nowrap display compact">
+                    <thead>
+                        <th  style="color: brown">Observaciones</th>
+                    </thead>
+                    <tbody>
+                        <td>
+                            @if ($supply->observation_detail == null)
+                                Sin observaciones
+                            @else
+                            {{$supply->observation_detail}}
+                            @endif
+
+                        </td>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
 
         <div class="card-footer">
             <a href="{{ route('admin.supplies.index') }}" class="btn btn-warning btn-sm"> Volver </a>

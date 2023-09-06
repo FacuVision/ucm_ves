@@ -13,38 +13,65 @@
 
 @section('content')
     <div class="card">
-
+        <div class="card-header">
+            Detalles:
+        </div>
         <div class="card-body">
+            <div>
+                <table class="table-striped dt-responsive nowrap display compact" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Tipo</th>
+                            <th>Marca</th>
+                            <th>Modelo</th>
+                            <th>Color</th>
+                            <th>Tipo de combustible</th>
+                            <th>Kilometraje</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{ $car->type }}</td>
+                            <td>{{ $car->brand }}</td>
+                            <td>{{ $car->model }}</td>
+                            <td>{{ $car->color }}</td>
+                            <td>{{ $car->combustible_type }}</td>
+                            <td>{{ $car->mileage }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
 
-            <div class="card" style="width: auto;">
-                <div class="card-header bg-info-subtle">
-                    <strong>Placa:</strong> {{ $car->plate }}
-                </div>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item"><strong>Tipo:</strong> {{ $car->type }}</li>
-                    <li class="list-group-item "><strong>Marca:</strong> {{ $car->brand }}</li>
-                    <li class="list-group-item "><strong>Modelo:</strong> {{ $car->model }} </li>
-                    <li class="list-group-item "><strong>Color:</strong> {{ $car->color }} </li>
-                    <li class="list-group-item "><strong>Tipo de combustible:</strong> {{ $car->combustible_type }} </li>
-                    <li class="list-group-item"><strong>Kilometraje:</strong> {{ $car->mileage }}</li>
-                    <li class="list-group-item "><strong>Primer ingreso al sistema: </strong> {{ $car->created_at->format('d-m-Y g:i a') }} </li>
-                    <li class="list-group-item "><strong>Última actualizacion: </strong>
-                        @if ($car->updated_at != null)
-                            {{ $car->updated_at->format('d-m-Y g:i a') }}
-                        @else
-                            <span class="badge badge-secondary"> Sin modificaciones aún</span>
-                        @endif
-                    </li>
-                </ul>
+            <div class="mt-4">
+                <table class="table-striped dt-responsive nowrap display compact" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Primer ingreso al sistema:</th>
+                            <th>Última actualizacion:</th>
 
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{ $car->created_at->format('d-m-Y g:i a')}}</td>
+                            <td>
+                                @if ($car->updated_at != null)
+                                {{ $car->updated_at->format('d-m-Y g:i a') }}
+                                @else
+                                    <span class="badge badge-secondary"> Sin modificaciones aún</span>
+                                @endif
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
-
         <div class="card-footer">
             <a href="javascript:history.back()" class="btn btn-warning btn-sm"> Volver </a>
         </div>
 
     </div>
+
 
     <div class="card">
         <div class="card-header">
@@ -74,9 +101,10 @@
 
                             <td>
                                 @can('admin.motions.show')
-                                {{-- Mostrar --}}
-                                <a href="{{ route('admin.motions.show', $movimiento) }}" class="btn btn-primary btn-sm">Ver</a>
-                            @endcan
+                                    {{-- Mostrar --}}
+                                    <a href="{{ route('admin.motions.show', $movimiento) }}"
+                                        class="btn btn-primary btn-sm">Ver</a>
+                                @endcan
                             </td>
                         </tr>
                     @endforeach

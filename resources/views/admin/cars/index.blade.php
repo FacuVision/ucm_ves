@@ -54,7 +54,7 @@
                                 @can('admin.cars.edit')
 
                                 <a href="{{ route('admin.cars.edit', $car) }}" class="btn btn-success btn-sm">Editar</a>
-@endcan
+                                @endcan
 
                                 {{-- Eliminar --}}
                                 @can('admin.cars.destroy')
