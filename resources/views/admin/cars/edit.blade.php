@@ -92,7 +92,12 @@
                                 {!! Form::text('combustible_type', $car->combustible_type , ['class' => 'form-control', 'disabled' => true]) !!}
                             </div>
                             <div class="col">
-                                {!! Form::label('mileage', 'Kilometraje') !!}
+                                {!! Form::label('old_mileage', 'Antiguo kilometraje') !!}
+                                {!! Form::number('old_mileage', $car->old_mileage, ['class' => 'form-control', 'disabled' => true]) !!}
+                            </div>
+
+                            <div class="col">
+                                {!! Form::label('mileage', 'Kilometraje actual') !!}
                                 {!! Form::number('mileage', $car->mileage, ['class' => 'form-control']) !!}
                             </div>
 

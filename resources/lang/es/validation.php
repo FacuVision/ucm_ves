@@ -157,6 +157,7 @@ return [
         'code' => 'codigo',
         'detail' => 'detalle',
         'brand' => 'marca',
+        'plate' => 'N° Placa',
         'price' => 'costo',
         'title_h' => 'Tipo de salida',
         'detail_h' => 'Descripcion de Salida',

@@ -8,6 +8,9 @@ function removeElement(event, position) {
     delete parameters[position]
 }
 
+
+
+
 const addJsonElement = json => {
     parameters.push(json)
     return parameters.length - 1
@@ -69,11 +72,11 @@ const addJsonElement = json => {
 
     $btnSave.addEventListener("click", (event) => {
 
+        const $form = document.getElementById("FormFinal");
             let title = document.getElementById("title").value;
             let detail = document.getElementById("detail").value;
             let car = document.getElementById("car").value;
 
-            const $form = document.getElementById("FormFinal");
 
             $form.title_h.value = title;
             $form.detail_h.value = detail;
@@ -88,7 +91,7 @@ const addJsonElement = json => {
             $divElements.innerHTML = ""
             parameters = []
 
-           $FormFinal.submit()
+          $FormFinal.submit()
 
     })
 

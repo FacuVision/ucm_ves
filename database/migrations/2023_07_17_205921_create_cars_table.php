@@ -16,6 +16,7 @@ return new class extends Migration
             //$table->enum("status", ["borrador", "registrado"]);
             $table->string("type"); //tipo
             $table->string("plate"); //placa
+            $table->string("old_mileage")->nullable(); //kilometraje antiguo
             $table->string("mileage"); //kilometraje
             $table->string("brand"); //marca
             $table->string("color"); //color

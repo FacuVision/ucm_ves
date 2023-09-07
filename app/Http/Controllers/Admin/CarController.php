@@ -117,7 +117,16 @@ class CarController extends Controller
 
         }
 
-        $car->update($request->all());
+        $car->update([
+            "plate" => $request->plate,
+            "type" => $request->type,
+            "color" => $request->color,
+            "brand" => $request->brand,
+            "mileage" => $request->mileage,
+            "old_mileage" => $car->mileage,
+            "model" => $car->model,
+            "combustible_type" => $car->combustible_type]
+        );
 
         return redirect()
         ->route('admin.cars.edit', $car)

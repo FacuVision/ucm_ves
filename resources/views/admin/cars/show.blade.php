@@ -26,7 +26,8 @@
                             <th>Modelo</th>
                             <th>Color</th>
                             <th>Tipo de combustible</th>
-                            <th>Kilometraje</th>
+                            <th>Kilometraje antiguo</th>
+                            <th>Kilometraje actual</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -36,7 +37,13 @@
                             <td>{{ $car->model }}</td>
                             <td>{{ $car->color }}</td>
                             <td>{{ $car->combustible_type }}</td>
-                            <td>{{ $car->mileage }}</td>
+                            <td>@if ($car->old_mileage == null)
+                                -
+                                @else
+                                {{ $car->old_mileage }} km
+                                @endif
+                        </td>
+                            <td>{{ $car->mileage }} km </td>
                         </tr>
                     </tbody>
                 </table>
@@ -48,7 +55,6 @@
                         <tr>
                             <th>Primer ingreso al sistema:</th>
                             <th>Última actualizacion:</th>
-
                         </tr>
                     </thead>
                     <tbody>

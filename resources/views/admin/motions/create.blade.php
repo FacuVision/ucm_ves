@@ -39,10 +39,13 @@
 
 
             {!! Form::open(['method' => 'POST', 'route' => 'admin.motions.store', 'id' => 'FormFinal']) !!}
+
             {!! Form::hidden('hiden_json', '', ['id' => 'hiden_json']) !!}
             {!! Form::hidden('title_h', '', ['id' => 'title_h']) !!}
             {!! Form::hidden('detail_h', '', ['id' => 'detail_h']) !!}
             {!! Form::hidden('id_car_h', '', ['id' => 'id_car_h']) !!}
+            {!! Form::hidden('new_km_h', '', ['id' => 'new_km_h']) !!}
+
 
             {!! Form::close() !!}
 
@@ -69,8 +72,8 @@
 
                 </div>
 
-                <div class="columns">
-                    <div class="column">
+                <div class="row">
+                    <div class="col-9">
                         <label class="label">Vehículo destinado:</label>
 
                         <select name="car" id="car" class="form-select">
@@ -79,11 +82,13 @@
                             @endforeach
                         </select>
                     </div>
+                    <div class="col-3">
+                        <label class="label">Nuevo kilometraje:</label>
+                        <input class="form-control" type="number" name="new_km" id="new_km" onchange="document.getElementById('new_km_h').value = this.value">
+                    </div>
                 </div>
 
-
-
-                <div class="row">
+                <div class="row mt-3">
                     <div class="col-3">
                         <label class="label">Cantidad:</label>
                         <input value="1" type="number" min=1 name="cant" id="cant" required
@@ -92,8 +97,6 @@
 
                     <div class="col-9">
                         <label class="label">Repuesto:</label>
-
-
                         <select name="supply" id="supply" class="form-select">
                             @foreach ($select_supply as $key => $value)
                                 <option value={{ $key }}>{{ $value }}</option>
@@ -152,8 +155,9 @@
 
 @section('js')
 
-    @include('admin.partials.js_datatables copy')
 
+    @include('admin.partials.js_datatables copy')
     <script src="{{ asset('js/motions_create.js') }}"></script>
+
 
 @stop

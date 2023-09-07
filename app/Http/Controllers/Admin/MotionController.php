@@ -51,9 +51,9 @@ class MotionController extends Controller
 
         foreach ($carros as $carro) {
             $array_vehiculos[$carro->id] = $carro->type . " -
-            Marca: " . $carro->brand . " -
             N° Placa " . $carro->plate . " -
-            Color : " . $carro->color;
+            Marca: " . $carro->brand . " -
+            Kilometraje : " . $carro->mileage;
         }
 
         //finalmente asignamos en otra variable para mejor nombre
@@ -111,6 +111,8 @@ class MotionController extends Controller
         ]);
 
 
+
+
         //VERIFICAMOS LA CANTIDAD Y EL STOCK
         foreach ($lista_productos as $key) {
 
@@ -124,6 +126,18 @@ class MotionController extends Controller
                     ->with('mensaje', 'No hay Stock disponible para el producto seleccionado')
                     ->with('color', 'danger');
             }
+        }
+
+        //ACTUALIZAMOS EL VALOR DEL AUTO AL NUEVO KILOMETRAJE
+
+        if ($request->new_km_h != null) {
+
+            $car = Car::find($request->id_car_h);
+
+            $car->update([
+                "mileage" => $request->new_km_h,
+                "old_mileage" => $car->mileage
+            ]);
         }
 
 
