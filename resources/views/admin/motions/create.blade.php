@@ -10,7 +10,7 @@
 @stop
 
 @section('content')
-    <p>Agrega o elimina repuestos indicando su cantidad</p>
+    <p>Los campos marcados con (*) son obligatorios</p>
 
 
     <div id="jsonDiv"></div>
@@ -57,24 +57,25 @@
 
                 <div class="columns">
                     <div class="column">
-                        <label class="label">Tipo de salida:</label>
+                        <label class="label">Tipo de salida (*):</label>
 
-                        <select name="title" id="title" class="form-control">
+                        <select name="title" id="title" class="form-control" required>
                             <option value="Traslado">Traslado</option>
                             <option value="Reparacion">Reparacion</option>
                         </select>
                     </div>
 
                     <div class="column">
-                        <label class="label">Descripcion:</label>
-                        <textarea name="detail" id="detail" rows="5" class="form-control"></textarea>
+                        {!! Form::label('detail', 'Descripcion') !!}
+                        <textarea required class="form-control" name="detail" id="detail" rows="5">{{session('detail')}}</textarea>
+
                     </div>
 
                 </div>
 
                 <div class="row">
                     <div class="col-9">
-                        <label class="label">Vehículo destinado:</label>
+                        <label class="label">Vehículo destinado (*):</label>
 
                         <select name="car" id="car" class="form-select">
                             @foreach ($select_vehiculos as $key => $value)
@@ -84,19 +85,19 @@
                     </div>
                     <div class="col-3">
                         <label class="label">Nuevo kilometraje:</label>
-                        <input class="form-control" type="number" name="new_km" id="new_km" onchange="document.getElementById('new_km_h').value = this.value">
+                        <input class="form-control" min="0"  type="number" name="new_km" id="new_km" onchange="document.getElementById('new_km_h').value = this.value">
                     </div>
                 </div>
 
                 <div class="row mt-3">
                     <div class="col-3">
-                        <label class="label">Cantidad:</label>
-                        <input value="1" type="number" min=1 name="cant" id="cant" required
+                        <label class="label">Cantidad (*):</label>
+                        <input value="1" type="number" min="1" name="cant" id="cant" required
                             class="form-control">
                     </div>
 
                     <div class="col-9">
-                        <label class="label">Repuesto:</label>
+                        <label class="label">Repuesto (*):</label>
                         <select name="supply" id="supply" class="form-select">
                             @foreach ($select_supply as $key => $value)
                                 <option value={{ $key }}>{{ $value }}</option>
@@ -110,7 +111,7 @@
 
                     <div class="col">
                         <br>
-                        <label class="label">Agregar a la lista:</label>
+                        <label class="label">Agregar a la lista (*):</label>
 
                         <button id="btnAdd" type="button" class="btn btn-success">
                             <span class="icon">

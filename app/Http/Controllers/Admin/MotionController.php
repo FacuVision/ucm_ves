@@ -70,24 +70,31 @@ class MotionController extends Controller
     public function store(Request $request)
     {
 
+        if ($request->detail_h == null) {
+
+            $request->validate([
+                "hiden_json" => "required",
+                "title_h" => "required|string",
+                "detail_h" => "required|string",
+                "id_car_h" => "required",
+            ]);
+        }
+
         //return $request->all();
         //EN CASO SE ENVIE UN LISTADO SIN PRODUCTOS
         $lista_productos = json_decode($request->hiden_json);
 
         if ($lista_productos == null) {
-            return redirect()->route('admin.motions.create')->with('error', 'La lista de productos no puede estar vacia');
+            return back()->with('error', 'La lista de productos no puede estar vacia')->with('detail',$request->detail_h);
         }
 
-        $request->validate([
-            "hiden_json" => "required",
-            "title_h" => "required|string",
-            "detail_h" => "required|string",
-            "id_car_h" => "required",
-        ]);
+        if ($request->new_km_h < 0) {
+            return back()->with('error', 'Los valores de kilometraje no pueden ser negativos')->with('detail',$request->detail_h);
+        }
+
+
 
         //hacemos la creacion del movimiento
-
-
        // die();
 
         $observations_array = ["conforme", "con modificaciones"];
@@ -159,8 +166,8 @@ class MotionController extends Controller
                 "cant" => ($producto[0]->cant - $key->cant)
             ]);
 
-            $datos_antiguos = "Id: ".$producto[0]->id."\nCodigo :".$producto[0]->code."\nNombre: ".$producto[0]->name."\nDetalle: ".$producto[0]->detail."\nLinea: ".$producto[0]->line."\nMarca: ".$producto[0]->brand."\nUnidades: ".$producto[0]->unit."\nCantidad: ".$producto[0]->cant."\nCosto: ".$producto[0]->price;
-            $datos_nuevos = "Id: ".$producto[0]->id."\nCodigo :".$producto[0]->code."\nNombre: ".$producto[0]->name."\nDetalle: ".$producto[0]->detail."\nLinea: ".$producto[0]->line."\nMarca: ".$producto[0]->brand."\nUnidades: ".$producto[0]->unit."\nCantidad: ".$producto[0]->cant - $key->cant."\nCosto: ".$producto[0]->price;
+            $datos_antiguos = "Id: ".$producto[0]->id."\nCodigo :".$producto[0]->code."\nNombre: ".$producto[0]->name."\nDetalle: ".$producto[0]->detail."\nLinea: ".$producto[0]->line."\nMarca: ".$producto[0]->brand."\nMedida: ".$producto[0]->unit."\nCantidad: ".$producto[0]->cant."\nCosto: ".$producto[0]->price;
+            $datos_nuevos = "Id: ".$producto[0]->id."\nCodigo :".$producto[0]->code."\nNombre: ".$producto[0]->name."\nDetalle: ".$producto[0]->detail."\nLinea: ".$producto[0]->line."\nMarca: ".$producto[0]->brand."\nMedida: ".$producto[0]->unit."\nCantidad: ".$producto[0]->cant - $key->cant."\nCosto: ".$producto[0]->price;
 
             $producto[0]->histories()->create([
                 "type" => "salida",

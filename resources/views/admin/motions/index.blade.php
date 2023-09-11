@@ -18,7 +18,7 @@
 
         @can('admin.motions.create')
             <div class="card-header">
-                <a href="{{ route('admin.motions.create') }}" class="btn btn-primary btn-sm"> Ingresar Movimiento</a>
+                <a href="{{ route('admin.motions.create') }}" class="btn btn-primary btn-sm">Registrar salida</a>
             </div>
         @endcan
 

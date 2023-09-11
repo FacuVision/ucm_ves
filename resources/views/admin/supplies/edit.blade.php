@@ -69,7 +69,7 @@
 
 
                                 <div class="col">
-                                    {!! Form::label('unit', 'Unidad') !!}
+                                    {!! Form::label('unit', 'Medida') !!}
                                     {!! Form::select(
                                         'unit',
                                         [

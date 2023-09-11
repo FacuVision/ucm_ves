@@ -12,28 +12,74 @@
 @endsection
 
 @section('content')
-    <div class="card">
 
-        <div class="card-body">
+<div class="card">
 
-            <div class="card" style="width: auto;">
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item"><strong>Responsable:</strong> {{ $motion->user->profile->name }} {{ $motion->user->profile->lastname }}</li>
-                    <li class="list-group-item"><strong>Responsable DNI:</strong> {{ $motion->user->profile->dni }}</li>
-                    <li class="list-group-item"><strong>Tipo:</strong> {{ $motion->type }}</li>
-                    <li class="list-group-item"><strong>Descripcion:</strong> {{ $motion->detail }}</li>
-                    <li class="list-group-item "><strong>Fecha:</strong> {{ $motion->created_at->format('d-m-Y g:i a') }}</li>
-                    <li class="list-group-item "><strong>Vehiculo destinado:</strong> {{ $motion->car->plate }} </li>
-                </ul>
 
-            </div>
-        </div>
-
-        <div class="card-footer">
-            <a href="javascript:history.back()" class="btn btn-warning btn-sm"> Volver </a>
-        </div>
-
+    <div class="card-header">
+        Detalles:
     </div>
+    <div class="card-body">
+        <div>
+            <table class="table-striped dt-responsive nowrap display compact" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>Responsable:</th>
+                        <th>Responsable DNI:</th>
+                        <th>Tipo:</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{ $motion->user->profile->name }} {{ $motion->user->profile->lastname }}</td>
+                        <td>{{ $motion->user->profile->dni }}</td>
+                        <td>{{ $motion->type }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="mt-2">
+            <table class="table-striped dt-responsive nowrap display compact" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>Descripcion:</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{ $motion->detail }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="mt-2">
+            <table class="table-striped dt-responsive nowrap display compact" style="width:100%">
+                <thead>
+                    <tr>
+
+                        <th>Vehiculo destinado:</th>
+                        <th>Fecha:</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{ $motion->car->plate }}</td>
+                        <td>{{ $motion->created_at->format('d-m-Y g:i a') }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="card-footer">
+        <a href="javascript:history.back()" class="btn btn-warning btn-sm"> Volver </a>
+    </div>
+</div>
+
+
+
+
 
     <div class="card">
         <div class="card-header">
@@ -56,12 +102,12 @@
                 <tbody>
                     @foreach ($productos as $pr)
                         <tr>
-                            <td>{{ $pr["id"] }}</td>
-                            <td>{{ $pr["name"] }}</td>
-                            <td>{{ $pr["brand"] }}</td>
-                            <td>{{ $pr["cant"] }}</td>
-                            <td>S/. {{ $pr["price"] }}</td>
-                            <td>S/. {{ $pr["subtotal"] }}</td>
+                            <td>{{ $pr['id'] }}</td>
+                            <td>{{ $pr['name'] }}</td>
+                            <td>{{ $pr['brand'] }}</td>
+                            <td>{{ $pr['cant'] }}</td>
+                            <td>S/. {{ $pr['price'] }}</td>
+                            <td>S/. {{ $pr['subtotal'] }}</td>
                         </tr>
                     @endforeach
                 </tbody>
@@ -72,7 +118,7 @@
                         <td></td>
                         <td></td>
                         <td style="font-weight: bold">Total </td>
-                        <td style="font-weight: bold">S/. {{$suma}}</td>
+                        <td style="font-weight: bold">S/. {{ $suma }}</td>
                     </tr>
                 </tfoot>
             </table>

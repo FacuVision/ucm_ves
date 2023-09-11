@@ -162,7 +162,8 @@ return [
         'title_h' => 'Tipo de salida',
         'detail_h' => 'Descripcion de Salida',
         'id_car_h' => 'Código de vehiculo',
-        "combustible_type" => "Tipo de combustible"
+        "combustible_type" => "Tipo de combustible",
+        "new_km_h" => "Nuevo kilometraje"
        ],
 
 ];

@@ -49,7 +49,7 @@
                 </table>
             </div>
 
-            <div class="mt-4">
+            <div class="mt-2">
                 <table class="table-striped dt-responsive nowrap display compact" style="width:100%">
                     <thead>
                         <tr>

@@ -22,11 +22,11 @@
                 <div class="row">
                     <div class="col">
                         {!! Form::label('code', 'Código de repuesto') !!}
-                        {!! Form::text('user_name', $history->supply->code, ['disabled' => 'true', 'class' => 'form-control']) !!}
+                        {!! Form::text('user_name', $history->supply->code, ['disabled' => 'true', 'class' => 'form-control custom-select-sm']) !!}
                     </div>
                     <div class="col">
                         {!! Form::label('name', 'Nombre de repuesto') !!}
-                        {!! Form::text('user_name', $history->supply->name, ['disabled' => 'true', 'class' => 'form-control']) !!}
+                        {!! Form::text('user_name', $history->supply->name, ['disabled' => 'true', 'class' => 'form-control custom-select-sm']) !!}
                     </div>
                 </div>
             </div>
@@ -44,12 +44,12 @@
                         {!! Form::label('user_name', 'Responsable') !!}
                         {!! Form::text('user_name', $history->user->profile->name . ' ' . $history->user->profile->lastname, [
                             'disabled' => 'true',
-                            'class' => 'form-control',
+                            'class' => 'form-control custom-select-sm',
                         ]) !!}
                     </div>
                     <div class="col">
                         {!! Form::label('user_dni', 'DNI N°') !!}
-                        {!! Form::text('user_dni', $history->user->profile->dni, ['disabled' => 'true', 'class' => 'form-control']) !!}
+                        {!! Form::text('user_dni', $history->user->profile->dni, ['disabled' => 'true', 'class' => 'form-control custom-select-sm']) !!}
                     </div>
                 </div>
                 <br>
@@ -58,18 +58,18 @@
                     <div class="row">
                         <div class="col">
                             {!! Form::label('type', 'Tipo de transaccion') !!}
-                            {!! Form::text('type', $history->type, ['class' => 'form-control', 'disabled' => 'true']) !!}
+                            {!! Form::text('type', $history->type, ['class' => 'form-control custom-select-sm', 'disabled' => 'true']) !!}
                         </div>
                         <div class="col">
                             {!! Form::label('type', 'Fecha') !!}
                             {!! Form::text('type', $history->created_at->format('d-m-Y g:i a'), [
-                                'class' => 'form-control',
+                                'class' => 'form-control custom-select-sm',
                                 'disabled' => 'true',
                             ]) !!}
                         </div>
                         <div class="col">
                             {!! Form::label('status', 'Observaciones') !!}
-                            {!! Form::text('status', $history->status, ['class' => 'form-control', 'disabled' => 'true']) !!}
+                            {!! Form::text('status', $history->status, ['class' => 'form-control custom-select-sm', 'disabled' => 'true']) !!}
                         </div>
                     </div>
                 </div>
@@ -84,7 +84,7 @@
                             {!! Form::label('status_detail', 'Detalles de la observacion') !!}
                             {!! Form::textarea('status_detail', $history->status_detail, [
                                 'disabled' => 'true',
-                                'class' => 'form-control',
+                                'class' => 'form-control custom-select-sm',
                                 'rows' => 4
                                 ]) !!}
                         </div>
@@ -99,12 +99,12 @@
                         {!! Form::label('datos_antiguos', 'Datos antiguos') !!}
                         {!! Form::textarea('datos_antiguos', $history->datos_antiguos, [
                             'disabled' => 'true',
-                            'class' => 'form-control',
+                            'class' => 'form-control custom-select-sm',
                         ]) !!}
                     </div>
                     <div class="col">
                         {!! Form::label('datos_nuevos', 'Datos nuevos') !!}
-                        {!! Form::textarea('datos_nuevos', $history->datos_nuevos, ['disabled' => 'true', 'class' => 'form-control']) !!}
+                        {!! Form::textarea('datos_nuevos', $history->datos_nuevos, ['disabled' => 'true', 'class' => 'form-control custom-select-sm']) !!}
                     </div>
 
                 </div>

@@ -97,7 +97,7 @@ class SupplyController extends Controller
 
             $observations_array = ["conforme", "con modificaciones"];
 
-            $datos_nuevos = "Id: ".$supply->id."\nCodigo :".$supply->code."\nNombre: ".$supply->name."\nDetalle: ".$supply->detail."\nLinea: ".$supply->line."\nMarca: ".$supply->brand."\nUnidades: ".$supply->unit."\nCantidad: ".$supply->cant."\nCosto: ".$supply->price;
+            $datos_nuevos = "Id: ".$supply->id."\nCodigo :".$supply->code."\nNombre: ".$supply->name."\nDetalle: ".$supply->detail."\nLinea: ".$supply->line."\nMarca: ".$supply->brand."\nMedida: ".$supply->unit."\nCantidad: ".$supply->cant."\nCosto: ".$supply->price;
 
             $supply->histories()->create([
 
@@ -216,8 +216,8 @@ class SupplyController extends Controller
             //$cod_linea = array_search($supply->line, $arr2);
 
 
-            $datos_nuevos = "Id: ".$supply->id."\nCodigo :".$request->code."\nNombre: ".$request->name."\nDetalle: ".$request->detail."\nLinea: ".$arr2[$request->line]."\nMarca: ".$request->brand."\nUnidades: ".$arr[$request->unit]."\nCantidad: ".$request->cant."\nCosto: ".$request->price;
-            $datos_antiguos = "Id: ".$supply->id."\nCodigo :".$supply->code."\nNombre: ".$supply->name."\nDetalle: ".$supply->detail."\nLinea: ".$supply->line."\nMarca: ".$supply->brand."\nUnidades: ".$supply->unit."\nCantidad: ".$supply->cant."\nCosto: ".$supply->price;
+            $datos_nuevos = "Id: ".$supply->id."\nCodigo :".$request->code."\nNombre: ".$request->name."\nDetalle: ".$request->detail."\nLinea: ".$arr2[$request->line]."\nMarca: ".$request->brand."\nMedida: ".$arr[$request->unit]."\nCantidad: ".$request->cant."\nCosto: ".$request->price;
+            $datos_antiguos = "Id: ".$supply->id."\nCodigo :".$supply->code."\nNombre: ".$supply->name."\nDetalle: ".$supply->detail."\nLinea: ".$supply->line."\nMarca: ".$supply->brand."\nMedida: ".$supply->unit."\nCantidad: ".$supply->cant."\nCosto: ".$supply->price;
 
 
             //Si hay actualizacion de cantidad
@@ -292,7 +292,7 @@ class SupplyController extends Controller
 
             $observations_array = ["conforme", "con modificaciones"];
 
-            $datos_antiguos = "Id: ".$supply->id."\nCodigo :".$supply->code."\nNombre: ".$supply->name."\nDetalle: ".$supply->detail."\nLinea: ".$supply->line."\nMarca: ".$supply->brand."\nUnidades: ".$supply->unit."\nCantidad: ".$supply->cant."\nCosto: ".$supply->price;
+            $datos_antiguos = "Id: ".$supply->id."\nCodigo :".$supply->code."\nNombre: ".$supply->name."\nDetalle: ".$supply->detail."\nLinea: ".$supply->line."\nMarca: ".$supply->brand."\nMedida: ".$supply->unit."\nCantidad: ".$supply->cant."\nCosto: ".$supply->price;
 
             $supply->histories()->create([
                 "datos_antiguos" => $datos_antiguos,

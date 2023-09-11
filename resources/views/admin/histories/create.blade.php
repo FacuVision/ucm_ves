@@ -36,16 +36,16 @@
                     <div class="form-group">
                         <div class="row">
                             <div class="col">
-                                {!! Form::label('code', 'Código') !!}
+                                {!! Form::label('code', 'Código (*)') !!}
                                 {!! Form::text('code', null, ['class' => 'form-control']) !!}
                             </div>
                             <div class="col">
-                                {!! Form::label('name', 'Nombre') !!}
+                                {!! Form::label('name', 'Nombre (*)') !!}
                                 {!! Form::text('name', null, ['class' => 'form-control']) !!}
                             </div>
 
                             <div class="col">
-                                {!! Form::label('line', 'Línea') !!}
+                                {!! Form::label('line', 'Línea (*)') !!}
                                 {!! Form::select('line', ["parte", "suministro", "respuesto"], null, ['class' => 'form-control']) !!}
                             </div>
 
@@ -53,7 +53,7 @@
 
                         <div class="row">
                             <div class="col">
-                                {!! Form::label('detail', 'Detalles') !!}
+                                {!! Form::label('detail', 'Detalles (*)') !!}
                                 {!! Form::textarea('detail', null, ['class' => 'form-control', 'rows' => 3]) !!}
                             </div>
                         </div>
@@ -65,12 +65,12 @@
 
 
                             <div class="col">
-                                {!! Form::label('brand', 'Marca') !!}
+                                {!! Form::label('brand', 'Marca (*)') !!}
                                 {!! Form::text('brand', null, ['class' => 'form-control']) !!}
                             </div>
 
                             <div class="col">
-                                {!! Form::label('unit', 'Unidad') !!}
+                                {!! Form::label('unit', 'Medida (*)') !!}
                                 {!! Form::select(
                                     'unit',
                                     [
@@ -83,7 +83,7 @@
                                 ) !!}
                             </div>
                             <div class="col">
-                                {!! Form::label('costo', 'Costo') !!}
+                                {!! Form::label('costo', 'Costo (*)') !!}
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">S/.</span>
@@ -92,7 +92,7 @@
                                 </div>
                             </div>
                             <div class="col">
-                                {!! Form::label('cant', 'Cantidad') !!}
+                                {!! Form::label('cant', 'Cantidad (*)') !!}
                                 {!! Form::number('cant', null, ['class' => 'form-control']) !!}
                             </div>
                         </div>

@@ -36,15 +36,15 @@
                     <div class="form-group">
                         <div class="row">
                             <div class="col">
-                                {!! Form::label('plate', 'Placa') !!}
+                                {!! Form::label('plate', 'Placa (*) ') !!}
                                 {!! Form::text('plate', null , ['class' => 'form-control']) !!}
                             </div>
                             <div class="col">
-                                {!! Form::label('type', 'Tipo') !!}
+                                {!! Form::label('type', 'Tipo (*)') !!}
                                 {!! Form::text('type', null , ['class' => 'form-control']) !!}
                             </div>
                             <div class="col">
-                                {!! Form::label('brand', 'Marca') !!}
+                                {!! Form::label('brand', 'Marca (*)') !!}
                                 {!! Form::text('brand', null , ['class' => 'form-control']) !!}
                             </div>
 
@@ -54,11 +54,11 @@
                     <div class="form-group">
                         <div class="row">
                             <div class="col">
-                                {!! Form::label('model', 'Modelo') !!}
+                                {!! Form::label('model', 'Modelo (*)') !!}
                                 {!! Form::text('model', null , ['class' => 'form-control']) !!}
                             </div>
                             <div class="col">
-                                {!! Form::label('color', 'Color') !!}
+                                {!! Form::label('color', 'Color (*)') !!}
                                 {!! Form::text('color', null , ['class' => 'form-control']) !!}
                             </div>
 
@@ -68,11 +68,11 @@
                         <div class="row">
 
                             <div class="col">
-                                {!! Form::label('combustible_type', 'Tipo de combustible') !!}
+                                {!! Form::label('combustible_type', 'Tipo de combustible (*)') !!}
                                 {!! Form::text('combustible_type', null , ['class' => 'form-control']) !!}
                             </div>
                             <div class="col">
-                                {!! Form::label('mileage', 'Kilometraje') !!}
+                                {!! Form::label('mileage', 'Kilometraje (*)') !!}
                                 {!! Form::number('mileage', null , ['class' => 'form-control']) !!}
                             </div>
                         </div>

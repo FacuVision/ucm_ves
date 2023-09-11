@@ -26,7 +26,7 @@
                             <th>Codigo</th>
                             <th>Tipo</th>
                             <th>Marca</th>
-                            <th>Unidad</th>
+                            <th>Medida</th>
                             <th>Precio</th>
                             <th>Cantidad</th>
 
@@ -47,7 +47,7 @@
                 </table>
             </div>
 
-            <div class="mt-4">
+            <div class="mt-2">
                 <table class="table-striped dt-responsive nowrap display compact" style="width:100%">
                     <thead>
                         <tr>
@@ -79,7 +79,7 @@
                 </table>
             </div>
 
-            <div class="mt-4">
+            <div class="mt-2">
                 <table width="100%" class="table-striped dt-responsive nowrap display compact">
                     <thead>
                         <th>Detalles</th>
@@ -90,7 +90,7 @@
                 </table>
             </div>
 
-            <div class="mt-4">
+            <div class="mt-2">
                 <table width="100%" class="table-striped dt-responsive nowrap display compact">
                     <thead>
                         <th  style="color: brown">Observaciones</th>
