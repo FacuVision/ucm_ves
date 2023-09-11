@@ -66,7 +66,7 @@
                     </div>
 
                     <div class="column">
-                        {!! Form::label('detail', 'Descripcion') !!}
+                        {!! Form::label('detail', 'Descripcion (*)') !!}
                         <textarea required class="form-control" name="detail" id="detail" rows="5">{{session('detail')}}</textarea>
 
                     </div>

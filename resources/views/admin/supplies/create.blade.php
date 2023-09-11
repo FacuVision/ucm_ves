@@ -37,7 +37,7 @@
                         {!! Form::text('code', null, ['class' => 'form-control']) !!}
                     </div>
                     <div class="col">
-                        {!! Form::label('name', 'Nombre') !!}
+                        {!! Form::label('name', 'Nombre (*)') !!}
                         {!! Form::text('name', null, ['class' => 'form-control']) !!}
                     </div>
                 </div>
