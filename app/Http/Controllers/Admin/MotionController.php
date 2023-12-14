@@ -166,8 +166,8 @@ class MotionController extends Controller
                 "cant" => ($producto[0]->cant - $key->cant)
             ]);
 
-            $datos_antiguos = "Id: ".$producto[0]->id."\nCodigo :".$producto[0]->code."\nNombre: ".$producto[0]->name."\nDetalle: ".$producto[0]->detail."\nLinea: ".$producto[0]->line."\nMarca: ".$producto[0]->brand."\nMedida: ".$producto[0]->unit."\nCantidad: ".$producto[0]->cant."\nCosto: ".$producto[0]->price;
-            $datos_nuevos = "Id: ".$producto[0]->id."\nCodigo :".$producto[0]->code."\nNombre: ".$producto[0]->name."\nDetalle: ".$producto[0]->detail."\nLinea: ".$producto[0]->line."\nMarca: ".$producto[0]->brand."\nMedida: ".$producto[0]->unit."\nCantidad: ".$producto[0]->cant - $key->cant."\nCosto: ".$producto[0]->price;
+            $datos_antiguos = "Id: ".$producto[0]->id."\nCodigo de producto :".$producto[0]->code."\nNombre: ".$producto[0]->name."\nDetalle: ".$producto[0]->detail."\nLinea: ".$producto[0]->line."\nMarca: ".$producto[0]->brand."\nMedida: ".$producto[0]->unit."\nCantidad: ".$producto[0]->cant."\nCosto: ".$producto[0]->price;
+            $datos_nuevos = "Id: ".$producto[0]->id."\nCodigo de producto :".$producto[0]->code."\nNombre: ".$producto[0]->name."\nDetalle: ".$producto[0]->detail."\nLinea: ".$producto[0]->line."\nMarca: ".$producto[0]->brand."\nMedida: ".$producto[0]->unit."\nCantidad: ".$producto[0]->cant - $key->cant."\nCosto: ".$producto[0]->price;
 
             $producto[0]->histories()->create([
                 "type" => "salida",

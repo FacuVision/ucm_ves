@@ -38,7 +38,7 @@
                         <div class="form-group">
                             <div class="row">
                                 <div class="col">
-                                    {!! Form::label('code', 'Código') !!}
+                                    {!! Form::label('code', 'Código de producto') !!}
                                     {!! Form::text('code', $supply->code, ['class' => 'form-control']) !!}
                                 </div>
                                 <div class="col">
@@ -81,7 +81,7 @@
                                         ['class' => 'form-control'],
                                     ) !!}
                                 </div>
-                                <div class="col">
+                                {{-- <div class="col">
                                     {!! Form::label('price', 'Costo') !!}
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
@@ -89,7 +89,7 @@
                                         </div>
                                         {!! Form::number('price', $supply->price, ['class' => 'form-control', "step" =>"any", "min" => 1]) !!}
                                     </div>
-                                </div>
+                                </div> --}}
                                 <div class="col">
                                     {!! Form::label('cant', 'Cantidad') !!}
                                     {!! Form::number('cant', $supply->cant, ['class' => 'form-control']) !!}

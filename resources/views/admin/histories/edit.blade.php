@@ -38,7 +38,7 @@
                         <div class="form-group">
                             <div class="row">
                                 <div class="col">
-                                    {!! Form::label('code', 'Código') !!}
+                                    {!! Form::label('code', 'Código de Producto') !!}
                                     {!! Form::text('code', $supply->code, ['class' => 'form-control']) !!}
                                 </div>
                                 <div class="col">

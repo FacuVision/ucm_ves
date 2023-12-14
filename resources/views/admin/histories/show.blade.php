@@ -21,7 +21,7 @@
             <div class="form-group">
                 <div class="row">
                     <div class="col">
-                        {!! Form::label('code', 'Código de repuesto') !!}
+                        {!! Form::label('code', 'Código de producto') !!}
                         {!! Form::text('user_name', $history->supply->code, ['disabled' => 'true', 'class' => 'form-control custom-select-sm']) !!}
                     </div>
                     <div class="col">

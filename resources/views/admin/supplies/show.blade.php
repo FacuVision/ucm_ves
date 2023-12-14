@@ -23,11 +23,11 @@
                     <thead>
                         <tr>
                             <th>Nombre</th>
-                            <th>Codigo</th>
+                            <th>Codigo de producto</th>
                             <th>Tipo</th>
                             <th>Marca</th>
                             <th>Medida</th>
-                            <th>Precio</th>
+                            {{-- <th>Precio</th> --}}
                             <th>Cantidad</th>
 
                         </tr>
@@ -39,7 +39,7 @@
                             <td>{{ $supply->line }}</td>
                             <td>{{ $supply->brand }}</td>
                             <td>{{ $supply->unit }}</td>
-                            <td>S/. {{ $supply->price }}</td>
+                            {{-- <td>S/. {{ $supply->price }}</td> --}}
                             <td>{{ $supply->cant }}</td>
 
                         </tr>

@@ -27,13 +27,13 @@
             <table id="tabla" class="table-striped dt-responsive nowrap display compact" style="width:100%">
                 <thead>
                     <tr>
-                        <th>Id</th>
-                        <th>Código</th>
+                        {{-- <th>Id</th> --}}
+                        <th>Código de producto</th>
                         <th>Nombre</th>
                         <th>Línea</th>
                         <th>Marca</th>
                         <th>Observacion</th>
-                        <th>Costo</th>
+                        {{-- <th>Costo</th> --}}
                         <th>Cantidad</th>
                         <th>Acciones</th>
                     </tr>
@@ -41,7 +41,7 @@
                 <tbody>
                     @foreach ($supplies as $supply)
                         <tr>
-                            <td>{{ $supply->id }}</td>
+                            {{-- <td>{{ $supply->id }}</td> --}}
                             <td>{{ $supply->code }}</td>
                             <td>{{ $supply->name }}</td>
                             <td>{{ $supply->line }}</td>
@@ -52,7 +52,7 @@
                             @else
                                 <td style="font-weight: bold; color:red">{{ $supply->observation }}</td>
                             @endif
-                            <td>{{ $supply->price }}</td>
+                            {{-- <td>{{ $supply->price }}</td> --}}
                             <td>{{ $supply->cant }}</td>
                             <td>
 
