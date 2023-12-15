@@ -25,7 +25,7 @@ class Motion extends Model
     {
         //return $this->belongsToMany(Supply::class);
         return $this->belongsToMany(Supply::class, 'motion_supply', 'motion_id', 'supply_id')
-        ->withPivot('cant', 'motion_price');
+        ->withPivot('cant');
 
     }
 

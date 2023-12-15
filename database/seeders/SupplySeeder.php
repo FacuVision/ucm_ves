@@ -21,8 +21,7 @@ class SupplySeeder extends Seeder
                 "cant" => "50",
                 "line" => "parte",
                 "brand" => "marca001",
-                "unit" => "globales",
-                "price" => 50.5
+                "unit" => "globales"
             ]);
             $supply = Supply::create([
                 "code" => "abcd5646f",
@@ -31,8 +30,7 @@ class SupplySeeder extends Seeder
                 "cant" => "100",
                 "line" => "suministro",
                 "brand" => "vvv",
-                "unit" => "litros",
-                "price" => 20
+                "unit" => "litros"
             ]);
 
 

@@ -46,7 +46,7 @@ class MotionController extends Controller
 
         //crearemos un array especial para recorrerlos dentro de los select de la vista
         foreach ($select_supply as $key) {
-            $array[$key->id] = $key->name . " - " . $key->brand . " - Cod. " . $key->code . " - Stock: " . $key->cant . " - Precio - S/. " . $key->price;
+            $array[$key->id] = $key->name . " - " . $key->brand . " - Cod. " . $key->code . " - Stock: " . $key->cant;
         }
 
         foreach ($carros as $carro) {
@@ -157,8 +157,7 @@ class MotionController extends Controller
             $recient_motion->supplies()->attach(
                 $key->supply_id,
                 [
-                    "cant" => $key->cant,
-                    "motion_price" => $producto[0]->price
+                    "cant" => $key->cant
                 ]
             );
 
@@ -166,8 +165,8 @@ class MotionController extends Controller
                 "cant" => ($producto[0]->cant - $key->cant)
             ]);
 
-            $datos_antiguos = "Id: ".$producto[0]->id."\nCodigo de producto :".$producto[0]->code."\nNombre: ".$producto[0]->name."\nDetalle: ".$producto[0]->detail."\nLinea: ".$producto[0]->line."\nMarca: ".$producto[0]->brand."\nMedida: ".$producto[0]->unit."\nCantidad: ".$producto[0]->cant."\nCosto: ".$producto[0]->price;
-            $datos_nuevos = "Id: ".$producto[0]->id."\nCodigo de producto :".$producto[0]->code."\nNombre: ".$producto[0]->name."\nDetalle: ".$producto[0]->detail."\nLinea: ".$producto[0]->line."\nMarca: ".$producto[0]->brand."\nMedida: ".$producto[0]->unit."\nCantidad: ".$producto[0]->cant - $key->cant."\nCosto: ".$producto[0]->price;
+            $datos_antiguos = "\nCodigo de producto :".$producto[0]->code."\nNombre: ".$producto[0]->name."\nDetalle: ".$producto[0]->detail."\nLinea: ".$producto[0]->line."\nMarca: ".$producto[0]->brand."\nMedida: ".$producto[0]->unit."\nCantidad: ".$producto[0]->cant;
+            $datos_nuevos = "\nCodigo de producto :".$producto[0]->code."\nNombre: ".$producto[0]->name."\nDetalle: ".$producto[0]->detail."\nLinea: ".$producto[0]->line."\nMarca: ".$producto[0]->brand."\nMedida: ".$producto[0]->unit."\nCantidad: ".$producto[0]->cant - $key->cant;
 
             $producto[0]->histories()->create([
                 "type" => "salida",
@@ -205,21 +204,21 @@ class MotionController extends Controller
                 $productos,
                 [
                     "id" => $sm->id,
+                    "code" => $sm->code,
                     "name" => $sm->name,
                     "brand" => $sm->brand,
                     "cant" => $sm->pivot->cant,
-                    "price" => $sm->pivot->motion_price,
-                    "subtotal" => $sm->pivot->cant * $sm->pivot->motion_price
+                    "" => $sm->pivot->cant * $sm->pivot->motion_price
                 ]
             );
         }
 
-        $suma = 0;
-        foreach ($productos as $prod) {
-            $suma = $suma + $prod["subtotal"];
-        }
+        // $suma = 0;
+        // foreach ($productos as $prod) {
+        //     $suma = $suma + $prod["subtotal"];
+        // }
 
-        return view("admin.motions.show", compact("supplies_motions", "motion", "suma", "productos"));
+        return view("admin.motions.show", compact("supplies_motions", "motion", "productos"));
     }
 
 

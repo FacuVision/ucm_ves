@@ -25,7 +25,6 @@ return new class extends Migration
                     "kilogramos",
                     "litros"
                 ]);
-            $table->float('price', 8, 2);
             $table->enum("observation", ["conforme", "con modificaciones"]);
             $table->enum("status", ["alta", "baja"])->default('alta');
             $table->timestamps();

@@ -91,23 +91,25 @@
             <table id="tabla" class="table-striped dt-responsive nowrap display compact" style="width:100%">
                 <thead>
                     <tr>
-                        <th>Id</th>
+                        {{-- <th>Id</th> --}}
+                        <th>Cod. Producto</th>
                         <th>nombre</th>
                         <th>marca</th>
                         <th>cantidad</th>
-                        <th>precio</th>
-                        <th>subtotal</th>
+                        {{-- <th>precio</th> --}}
+                        {{-- <th>subtotal</th> --}}
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($productos as $pr)
                         <tr>
-                            <td>{{ $pr['id'] }}</td>
+                            {{-- <td>{{ $pr['id'] }}</td> --}}
+                            <td>{{ $pr['code'] }}</td>
                             <td>{{ $pr['name'] }}</td>
                             <td>{{ $pr['brand'] }}</td>
                             <td>{{ $pr['cant'] }}</td>
-                            <td>S/. {{ $pr['price'] }}</td>
-                            <td>S/. {{ $pr['subtotal'] }}</td>
+                            {{-- <td>S/. {{ $pr['price'] }}</td> --}}
+                            {{-- <td>S/. {{ $pr['subtotal'] }}</td> --}}
                         </tr>
                     @endforeach
                 </tbody>
@@ -117,8 +119,8 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td style="font-weight: bold">Total </td>
-                        <td style="font-weight: bold">S/. {{ $suma }}</td>
+                        {{-- <td style="font-weight: bold">Total </td> --}}
+                        {{-- <td style="font-weight: bold">S/. {{ $suma }}</td> --}}
                     </tr>
                 </tfoot>
             </table>

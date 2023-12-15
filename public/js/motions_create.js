@@ -55,11 +55,15 @@ const addJsonElement = json => {
             let str = selected;
             let arr = selected.split('- S/.');
 
-            let cantidad = $form.cant.value;
+            //let cantidad = $form.cant.value;
 
             $div.innerHTML = templateElement(
                 `<strong> Cantidad:</strong> ${$form.cant.value} <br><strong>Nombre:</strong>
-                ${selected}<br><strong>Sub Total:</strong> S/. ${arr[1]* cantidad}`, index)
+                ${selected}`, index)
+
+            // $div.innerHTML = templateElement(
+            //         `<strong> Cantidad:</strong> ${$form.cant.value} <br><strong>Nombre:</strong>
+            //         ${selected}<br><strong>Sub Total:</strong> S/. ${arr[1]* cantidad}`, index)
 
             $divElements.append($div)
             //$form.reset()

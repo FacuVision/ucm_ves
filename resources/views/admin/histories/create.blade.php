@@ -82,7 +82,7 @@
                                     ['class' => 'form-control'],
                                 ) !!}
                             </div>
-                            <div class="col">
+                            {{-- <div class="col">
                                 {!! Form::label('costo', 'Costo (*)') !!}
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
@@ -90,7 +90,7 @@
                                     </div>
                                     {!! Form::number('price', null, ['min' => 1, 'class' => 'form-control' , "step" =>"any"]) !!}
                                 </div>
-                            </div>
+                            </div> --}}
                             <div class="col">
                                 {!! Form::label('cant', 'Cantidad (*)') !!}
                                 {!! Form::number('cant', null, ['class' => 'form-control']) !!}

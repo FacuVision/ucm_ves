@@ -20,7 +20,7 @@ return new class extends Migration
 
 
         $table->integer('cant');
-        $table->float('motion_price', 8, 2);
+        // $table->float('motion_price', 8, 2);
 
 
         //RELACIONES

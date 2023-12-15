@@ -26,7 +26,7 @@
             <table id="tabla" class="table-striped dt-responsive nowrap display compact" style="width:100%">
                 <thead>
                     <tr>
-                        <th>Id</th>
+                        {{-- <th>Id</th> --}}
                         <th>Tipo</th>
                         <th>Vehículo placa</th>
                         <th>Fecha de salida</th>
@@ -36,7 +36,7 @@
                 <tbody>
                     @foreach ($motions as $motion)
                         <tr>
-                            <td>{{ $motion->id }}</td>
+                            {{-- <td>{{ $motion->id }}</td> --}}
                             <td>{{ $motion->type}}</td>
                             <td>{{ $motion->car->plate }}</td>
                             <td>{{ $motion->created_at->format('d-m-Y g:i a') }}</td>
